@@ -1,0 +1,226 @@
+/*css初始化*/
+body,div,table,tr,td,ul,li,dl,dt,dd,p,h1,h2,h3,h4,h5,h6,img,form,select,blockquote{margin:0;padding:0;}
+body{font-family:"微软雅黑";font-size:12px;margin:0 auto;}
+ul{list-style-type:none;}
+img,input{border:none;}
+a{color:#000000;text-decoration:none;}
+a:hover{color:#f00;text-decoration:none;}
+.clear{clear:both;}
+.clearfix:after{visibility:hidden;display:block;font-size:0;content:"";clear:both;height:0;}
+.clearfix{zoom:1;}
+.showInline{display:inline;}
+.showBlock{display:block;}
+.hide{display:none;}
+.fl{float:left;}
+.fr{float:right;}
+
+/**********************************************************************/
+
+body {
+	background:#fff;
+	font-size:12px;
+}
+ul {
+	list-style-type:none;
+}
+#top {
+	background:#811a37;
+}
+#top h1 {
+	width:150px;
+	height:80px;
+	font-size:12px;
+	background:url(../images/logosmall.png) no-repeat;
+	text-indent:-9999px;
+	float:left;
+}
+#top ul {
+	float:left;
+	padding:47px 0 0 10px;
+}
+#top ul li {
+	padding:0 0 0 5px;
+	float:left;
+}
+#top ul li a {
+	width:58px;
+	height:33px;
+	line-height:33px;
+	text-align:center;
+	display:block;
+	background:url(../images/li_bg.png) no-repeat left bottom;
+	font-size:14px;
+	font-weight:bold;
+	text-decoration:none;
+	color:#fff;
+}
+#top ul li a.selected {
+	background-position:right bottom;
+	color:#811a37;
+}
+#top p {
+	float:right;
+	padding:33px 20px 0 0;
+	color:#fff;
+}
+#top p a {
+	text-decoration:none;
+	color:#fff;
+}
+#top p a:hover {
+	text-decoration:underline;
+}
+#sidebar {
+	background:#f7fbfc url(../images/sidebar_right.png) repeat-y right;
+}
+#sidebar dl {
+	padding:20px;
+	text-indent:2px;
+}
+#sidebar dl dt {
+	font-size:14px;
+	color:#811a37;
+	font-weight:bold;
+	border-bottom:1px solid #ccc;
+	padding:5px 0 ;
+	margin:5px 0;
+}
+#sidebar dl dd {
+	height:22px;
+	line-height:22px;
+}
+#sidebar dl dd a {
+	color:#333;
+	text-decoration:none;
+}
+#sidebar dl dd a:hover {
+	text-decoration:underline;
+}
+#main {
+	background:#fff;
+}
+.map{
+	padding: 15px;
+}
+.list{
+	padding: 20px 0 0 0;
+	width: 95%;
+	margin: 0 auto;
+	text-align: center;
+	font-size: 15px;
+	border-collapse: collapse;
+}
+#manage table tr{
+	background: #fff;
+}
+#manage table tr:hover{
+	background: #ffffcc;
+}
+#manage table th,#manage table td{
+	height: 30px;
+	line-height: 30px;
+}
+#manage table th{
+	background: #eef3f7;
+	border-bottom: 1px solid #d5dfe8;
+}
+#manage table td{
+	border-bottom: 1px solid #eee;
+}
+#manage a{
+	font-size: 15px;
+	color: #3b6ea5;
+}
+#manage input,#manage textarea{
+	border:1px solid #ccc;
+	width: 200px;
+}
+#manage select{
+	width: 100px;
+}
+.crelink{
+	text-align: center;
+	padding: 15px;
+}
+.butt{
+	margin: 15px;
+	text-align: center;
+}
+.create,.upeate{
+	padding: 20px 0 0 0;
+	width: 300px;
+	margin: 0 auto;
+	text-align: center;
+	font-size: 15px;
+	border-collapse: collapse;
+}
+.create td p,.update td p{
+	text-align: center;
+}
+#page {
+	text-align:center;
+	padding:10px;
+}
+#page a {
+	border:1px solid #666;
+	padding:2px 5px;
+	margin:0 2px;
+}
+#page a:hover,#page span.me {
+	color:#fff;
+	border:1px solid #000;
+	background:#000;
+	text-decoration:none;
+}
+#page span.disabled {
+	border:1px solid #ccc;
+	padding:2px 5px;
+	margin:0 2px;
+	color:#ccc;
+}
+#page span.me {
+	padding:2px 5px;
+	margin:0 2px;
+}
+#adminLogin {
+	width:350px;
+	margin:100px auto;
+	color:#666;
+	font-size:14px;
+}
+#adminLogin fieldset {
+	padding:20px;
+}
+#adminLogin legend {
+	font-size:16px;
+	font-weight:bold;
+}
+#adminLogin label {
+	display:block;
+	margin:5px;
+}
+#adminLogin label.t {
+	color:#999;
+	text-indent:56px;
+}
+#adminLogin label input.text {
+	width:220px;
+	height:27px;
+	border:1px solid #666;
+	background:#eee;
+}
+#adminLogin input.submit {
+	margin: 0 0 0 60px;
+	cursor:pointer;
+}
+#adminLogin label img {
+	margin:0 0 0 56px;
+	cursor:pointer;
+}
+
+
+
+
+
+
+
