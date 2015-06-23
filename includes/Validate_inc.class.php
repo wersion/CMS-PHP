@@ -9,8 +9,13 @@
     }
 
 
-    static function checkEqual(){
-
+    static function checkEqual($date,$other_date){
+      if($date == $other_date){
+        return true;
+      }
+      else{
+        return false;
+      }
     }
 
     // 检查长度（要检查的字符串，是否允许为空，最小长度，最大长度）
