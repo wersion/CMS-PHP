@@ -37,10 +37,10 @@
       $this->_tpl->assign('create',true);
       $this->_tpl->assign('title','添加管理员');
       if(isset($_POST['send'])){
-        $_level = $_POST['level'];
-        $_level_name = $_POST['level_name'];
-        $_level_info = $_POST['level_info'];
-        if($this->_model->addLevel($_level,$_level_name,$_level_info)){
+        $this->_model->_level = $_POST['level'];
+        $this->_model->_level_name = $_POST['level_name'];
+        $this->_model->_level_info = $_POST['level_info'];
+        if($this->_model->addLevel()){
             Tool_inc::alertJump(':) 创建管理员等级成功','level.php?action=show');
         }
         else{
@@ -52,7 +52,8 @@
     // 删
     private function delete(){
       if(isset($_GET['id'])){
-        if($this->_model->deleteLevel($_GET['id'])){
+        $this->_model->_id = $_GET['id'];
+        if($this->_model->deleteLevel()){
           Tool_inc::alertJump(':) 删除管理员等级成功','level.php?action=show');
         }
         else{
@@ -69,17 +70,18 @@
       $this->_tpl->assign('update',true);
       $this->_tpl->assign('title','修改管理员');
       $date = array();
-      if($date = $this->_model->getOneLevel($_GET['id'])){
+      $this->_model->_id = $_GET['id'];
+      if($date = $this->_model->getOneLevel()){
         $this->_tpl->assign('id',$date->id);        
         $this->_tpl->assign('level',$date->level);
         $this->_tpl->assign('level_name',$date->level_name);
         $this->_tpl->assign('level_info',$date->level_info);
         if(isset($_POST['send'])){
-          $_id = $_POST['levelid'];
-          $_level = $_POST['level'];
-          $_level_name = $_POST['level_name'];
-          $_level_info = $_POST['level_info'];
-          if($this->_model->updateLevel($_id,$_level,$_level_name,$_level_info)){
+          $this->_model->_id = $_POST['levelid'];
+          $this->_model->_level = $_POST['level'];
+          $this->_model->_level_name = $_POST['level_name'];
+          $this->_model->_level_info = $_POST['level_info'];
+          if($this->_model->updateLevel()){
             Tool_inc::alertJump(':) 修改管理员等级成功','level.php?action=show');
           }
           else{
@@ -94,9 +96,12 @@
 
     // 查
     private function read(){
+      $_page = new Page_inc($this->_model->getTotalLevel(),PAGE_SIZE);               //初始化分页类
+      $this->_model->_limit = $_page->limit;
       $this->_tpl->assign('show',true);
       $this->_tpl->assign('title','管理员等级列表');
       $this->_tpl->assign('AllLevel',$this->_model->getAllLevel());
+      $this->_tpl->assign('Page',$_page->showPage());
     }
 
 }

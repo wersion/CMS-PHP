@@ -31,6 +31,10 @@
         case 'login':
           $this->login();
           break;
+        // 登出
+        case 'logout':
+          $this->logout();
+          break;
         default:
           Tool_inc::alertBack(':( 非法操作');
       }
@@ -42,10 +46,10 @@
       $this->_tpl->assign('title','添加管理员');
       $this->_tpl->assign('level',$this->_model->getLevel());
       if(isset($_POST['send'])){
-        $_admin_user = $_POST['admin_user'];
-        $_admin_pass = $_POST['admin_pass'];
-        $_level = $_POST['level'];
-        if($this->_model->addManage($_admin_user,$_admin_pass,$_level)){
+        $this->_model->admin_user = $_POST['admin_user'];
+        $this->_model->admin_pass = $_POST['admin_pass'];
+        $this->_model->_level = $_POST['level'];
+        if($this->_model->addManage()){
             Tool_inc::alertJump(':) 创建管理员成功','manage.php?action=show');
         }
         else{
@@ -57,7 +61,8 @@
     // 删
     private function delete(){
       if(isset($_GET['id'])){
-        if($this->_model->deleteManage($_GET['id'])){
+        $this->_model->_id = $_GET['id'];
+        if($this->_model->deleteManage()){
           Tool_inc::alertJump(':) 删除管理员成功','manage.php?action=show');
         }
         else{
@@ -74,18 +79,19 @@
       $this->_tpl->assign('update',true);
       $this->_tpl->assign('title','修改管理员');
       $date = array();
-      if($date = $this->_model->getOneManage($_GET['id'])){
-      $this->_tpl->assign('id',$date->id);
+      $this->_model->_id = $_GET['id'];
+      if($date = $this->_model->getOneManage()){
+        $this->_tpl->assign('id',$date->id);
         $this->_tpl->assign('name',$date->admin_user);
         $this->_tpl->assign('pass',$date->admin_pass);
         $this->_tpl->assign('lv',$date->level);  
         $this->_tpl->assign('level',$this->_model->getLevel());
         if(isset($_POST['send'])){
-          $_id = $_POST['userid'];
-          $_admin_user = $_POST['admin_user'];
-          $_admin_pass = $_POST['admin_pass'];
-          $_level = $_POST['level'];
-          if($this->_model->updateManage($_id,$_admin_user,$_admin_pass,$_level)){
+          $this->_model->_id = $_POST['userid'];
+          $this->_model->admin_user = $_POST['admin_user'];
+          $this->_model->admin_pass = $_POST['admin_pass'];
+          $this->_model->_level = $_POST['level'];
+          if($this->_model->updateManage()){
             Tool_inc::alertJump(':) 修改管理员成功','manage.php?action=show');
           }
           else{
@@ -101,26 +107,35 @@
     // 查
     private function read(){
       $_page = new Page_inc($this->_model->getTotalManage(),PAGE_SIZE);               //初始化分页类
+      $this->_model->_limit = $_page->limit;
       $this->_tpl->assign('show',true);
       $this->_tpl->assign('title','管理员列表');
-      $this->_tpl->assign('AllManage',$this->_model->getAllManage($_page->limit));
+      $this->_tpl->assign('AllManage',$this->_model->getAllManage());
       $this->_tpl->assign('Page',$_page->showPage());
     }
 
     // 登陆
     private function login(){
       if($_POST['send']){
-        $_login = $this->_model->getLoginManage($_POST['admin_user'],$_POST['admin_pass']);
+        $this->_model->admin_user = $_POST['admin_user'];
+        $this->_model->admin_pass = $_POST['admin_pass'];
+        $_login = $this->_model->getLoginManage();
         if($_login){
           echo"登陆成功";
-          $_SESSION['admin']['admin_id'] = $_login->id;
           $_SESSION['admin']['admin_user'] = $_login->admin_user;
+          $_SESSION['admin']['admin_level'] = $_login->level_name;
           Tool_inc::alertJump(null,'admin.php');
         }
         else{
           Tool_inc::alertBack(':( 用户名或密码错误');
         }
       }
+    }
+
+    // 登出
+    private function logout(){
+      Tool_inc::unSession();
+      Tool_inc::alertJump(null,'admin_login.php');
     }
 
 }

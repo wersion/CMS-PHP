@@ -22,6 +22,7 @@
     {/foreach}
   </table>
   <p class="crelink"><a class="crelink" href="level.php?action=create">[ 新增管理员等级 ]</a><p>
+  <div id="page">{$Page}</div>
   
   {elseif isset($create)&&$create == ture}
     <form method="post">
