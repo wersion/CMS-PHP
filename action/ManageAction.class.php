@@ -46,12 +46,8 @@
       $this->_tpl->assign('title','添加管理员');
       $this->_tpl->assign('level',$this->_model->getLevel());
       if(isset($_POST['send'])){
-        if(Validate_inc::checkForm($_POST['admin_user'],true,4,16,'用户名')){
-          $this->_model->admin_user = $_POST['admin_user'];
-        }
-        if(Validate_inc::checkForm($_POST['admin_pass'],true,4,16,'密码')){
-          $this->_model->admin_user = $_POST['admin_pass'];
-        }
+        $this->_model->admin_user = $_POST['admin_user'];
+        $this->_model->admin_pass = $_POST['admin_pass'];
         $this->_model->_level = $_POST['level'];
         if($this->_model->addManage()){
             Tool_inc::alertJump(':) 创建管理员成功','manage.php?action=show');

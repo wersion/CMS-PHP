@@ -1,33 +1,28 @@
-<?php /* Smarty version 3.1.24, created on 2015-06-23 15:55:21
-         compiled from "E:/develop/wamp/www/CMS/templates/top.tpl" */ ?>
+<?php /* Smarty version 3.1.24, created on 2015-06-18 10:33:18
+         compiled from "E:/develop/wamp/www/CMS_smarty/templates/top.tpl" */ ?>
 <?php
-/*%%SmartyHeaderCode:61845589654945ce30_77564603%%*/
+/*%%SmartyHeaderCode:12905582824eef2096_46742505%%*/
 if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
-    '59fdd649f4d0e4e6dc39ae4842e82f4177189f66' => 
+    'a09af65a97034406eaf8cb6fad5652e22c986fac' => 
     array (
-      0 => 'E:/develop/wamp/www/CMS/templates/top.tpl',
-      1 => 1435025974,
+      0 => 'E:/develop/wamp/www/CMS_smarty/templates/top.tpl',
+      1 => 1432775822,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '61845589654945ce30_77564603',
-  'variables' => 
-  array (
-    'admin_user' => 0,
-    'ueser_lever' => 0,
-  ),
+  'nocache_hash' => '12905582824eef2096_46742505',
   'has_nocache_code' => false,
   'version' => '3.1.24',
-  'unifunc' => 'content_558965494977c2_62325742',
+  'unifunc' => 'content_5582824ef3c426_58478235',
 ),false);
 /*/%%SmartyHeaderCode%%*/
-if ($_valid && !is_callable('content_558965494977c2_62325742')) {
-function content_558965494977c2_62325742 ($_smarty_tpl) {
+if ($_valid && !is_callable('content_5582824ef3c426_58478235')) {
+function content_5582824ef3c426_58478235 ($_smarty_tpl) {
 
-$_smarty_tpl->properties['nocache_hash'] = '61845589654945ce30_77564603';
+$_smarty_tpl->properties['nocache_hash'] = '12905582824eef2096_46742505';
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -51,9 +46,7 @@ $_smarty_tpl->properties['nocache_hash'] = '61845589654945ce30_77564603';
 </ul>
 
 <p>
-	您好，<strong><?php echo $_smarty_tpl->tpl_vars['admin_user']->value;?>
-</strong> [ <?php echo $_smarty_tpl->tpl_vars['ueser_lever']->value;?>
- ] [ <a href="../" target="_blank">去首页</a> ] [ <a href="manage.php?action=logout" target="_parent">退出</a> ]
+	您好，<strong>$admin_user</strong> [ 超级管理员 ] [ <a href="../" target="_blank">去首页</a> ] [ 退出 ]
 </p>
 
 </body>
