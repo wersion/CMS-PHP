@@ -2,11 +2,12 @@
   class ManageModel extends Model {
     
     private $_id,$admin_user,$admin_pass,$_level,$_limit;
-
+    
+    // 拦截器
     public function __set($_key,$_value){
       $this->$_key = $_value;
     }
-
+    // 拦截器
     public function __get($_key){
       return $this->$_key;
     }

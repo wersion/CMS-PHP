@@ -10,6 +10,8 @@
 
     // 业务流程控制器
     private function Action(){
+      if($_GET['action'] == 'login') $this->login();
+      Validate_inc::checkSession();
       switch ($_GET['action']) {
         // 增
         case 'create':
@@ -26,10 +28,6 @@
         // 查
         case 'show':
           $this->read();
-          break;
-        // 登陆
-        case 'login':
-          $this->login();
           break;
         // 登出
         case 'logout':
@@ -50,7 +48,7 @@
           $this->_model->admin_user = $_POST['admin_user'];
         }
         if(Validate_inc::checkForm($_POST['admin_pass'],true,4,16,'密码')){
-          $this->_model->admin_user = $_POST['admin_pass'];
+          $this->_model->admin_pass = $_POST['admin_pass'];
         }
         $this->_model->_level = $_POST['level'];
         if($this->_model->addManage()){
@@ -92,8 +90,12 @@
         $this->_tpl->assign('level',$this->_model->getLevel());
         if(isset($_POST['send'])){
           $this->_model->_id = $_POST['userid'];
-          $this->_model->admin_user = $_POST['admin_user'];
-          $this->_model->admin_pass = $_POST['admin_pass'];
+          if(Validate_inc::checkForm($_POST['admin_user'],true,4,16,'用户名')){
+            $this->_model->admin_user = $_POST['admin_user'];
+          }
+          if(Validate_inc::checkForm($_POST['admin_pass'],true,4,16,'密码')){
+            $this->_model->admin_pass = $_POST['admin_pass'];
+          }
           $this->_model->_level = $_POST['level'];
           if($this->_model->updateManage()){
             Tool_inc::alertJump(':) 修改管理员成功','manage.php?action=show');
@@ -121,8 +123,12 @@
     // 登陆
     private function login(){
       if($_POST['send']){
-        $this->_model->admin_user = $_POST['admin_user'];
-        $this->_model->admin_pass = $_POST['admin_pass'];
+        if(Validate_inc::checkForm($_POST['admin_user'],true,4,16,'用户名')){
+          $this->_model->admin_user = $_POST['admin_user'];
+        }
+        if(Validate_inc::checkForm($_POST['admin_pass'],true,4,16,'密码')){
+          $this->_model->admin_pass = $_POST['admin_pass'];
+        }
         $_login = $this->_model->getLoginManage();
         if($_login){
           echo"登陆成功";

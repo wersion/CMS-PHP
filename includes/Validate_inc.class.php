@@ -8,9 +8,9 @@
       }
     }
 
-
+    // 检查两个表单的数据是否一致
     static function checkEqual($date,$other_date){
-      if($date == $other_date){
+      if(trim($date) == trim($other_date)){
         return true;
       }
       else{

@@ -7,10 +7,11 @@
       $this->$_key = $_value;
     }
 
+    // 拦截器
     public function __get($_key){
       return $this->$_key;
     }
-
+    // 拦截器
     public function getTotalLevel(){
       $_sql = "SELECT COUNT(*) FROM cms_level";
       return parent::GetTotal($_sql);
