@@ -38,8 +38,12 @@
       $this->_tpl->assign('title','添加管理员');
       if(isset($_POST['send'])){
         $this->_model->_level = $_POST['level'];
-        $this->_model->_level_name = $_POST['level_name'];
-        $this->_model->_level_info = $_POST['level_info'];
+        if(Validate_inc::checkForm($_POST['level_name'],false,2,16,'等级名称')){
+          $this->_model->_level_name = $_POST['level_name'];
+        }
+        if(Validate_inc::checkForm($_POST['level_info'],false,2,200,'等级描述')){
+          $this->_model->_level_info = $_POST['level_info'];
+        }
         if($this->_model->addLevel()){
             Tool_inc::alertJump(':) 创建管理员等级成功','level.php?action=show');
         }
@@ -79,8 +83,12 @@
         if(isset($_POST['send'])){
           $this->_model->_id = $_POST['levelid'];
           $this->_model->_level = $_POST['level'];
-          $this->_model->_level_name = $_POST['level_name'];
-          $this->_model->_level_info = $_POST['level_info'];
+          if(Validate_inc::checkForm($_POST['level_name'],false,2,16,'等级名称')){
+            $this->_model->_level_name = $_POST['level_name'];
+          }
+          if(Validate_inc::checkForm($_POST['level_info'],false,2,200,'等级描述')){
+            $this->_model->_level_info = $_POST['level_info'];
+          }
           if($this->_model->updateLevel()){
             Tool_inc::alertJump(':) 修改管理员等级成功','level.php?action=show');
           }

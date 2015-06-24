@@ -1,7 +1,7 @@
-<?php /* Smarty version 3.1.24, created on 2015-06-24 04:09:41
+<?php /* Smarty version 3.1.24, created on 2015-06-24 04:36:34
          compiled from "E:/develop/wamp/www/CMS/templates/manage.tpl" */ ?>
 <?php
-/*%%SmartyHeaderCode:11783558a1165d28c82_36103706%%*/
+/*%%SmartyHeaderCode:27444558a17b25888e7_06687012%%*/
 if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
@@ -9,11 +9,11 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'bd6deb4a272b924aede19c3c334f81b444444fcc' => 
     array (
       0 => 'E:/develop/wamp/www/CMS/templates/manage.tpl',
-      1 => 1434579706,
+      1 => 1435113387,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '11783558a1165d28c82_36103706',
+  'nocache_hash' => '27444558a17b25888e7_06687012',
   'variables' => 
   array (
     'title' => 0,
@@ -31,13 +31,13 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
   'version' => '3.1.24',
-  'unifunc' => 'content_558a1165e65356_21749910',
+  'unifunc' => 'content_558a17b26c4fa3_21476976',
 ),false);
 /*/%%SmartyHeaderCode%%*/
-if ($_valid && !is_callable('content_558a1165e65356_21749910')) {
-function content_558a1165e65356_21749910 ($_smarty_tpl) {
+if ($_valid && !is_callable('content_558a17b26c4fa3_21476976')) {
+function content_558a17b26c4fa3_21476976 ($_smarty_tpl) {
 
-$_smarty_tpl->properties['nocache_hash'] = '11783558a1165d28c82_36103706';
+$_smarty_tpl->properties['nocache_hash'] = '27444558a17b25888e7_06687012';
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -102,6 +102,7 @@ $_smarty_tpl->tpl_vars['value'] = $foreach_value_Sav;
       <table class="create">
         <tr><td><p>用户名：</p></td><td><input type="text" name="admin_user" class="text" /></td></tr>
         <tr><td><p>密　码：</p></td><td><input type="text" name="admin_pass" class="text" /></td></tr>
+        <tr><td><p>密码确认：</p></td><td><input type="text" name="pass_confirm" class="text" /></td></tr>
         <tr><td><p>等　级：</p>
         <td>
           <select name="level">
@@ -140,6 +141,8 @@ $_smarty_tpl->tpl_vars['value'] = $foreach_value_Sav;
         <tr><td><p>用户名：</p></td><td><input type="text" name="admin_user" value="<?php echo $_smarty_tpl->tpl_vars['name']->value;?>
 " class="text" /></td></tr>
         <tr><td><p>密　码：</p></td><td><input type="text" name="admin_pass" value="<?php echo $_smarty_tpl->tpl_vars['pass']->value;?>
+" class="text" /></td></tr>
+        <tr><td><p>密码确认：</p></td><td><input type="text" name="pass_confirm" value="<?php echo $_smarty_tpl->tpl_vars['pass']->value;?>
 " class="text" /></td></tr>
         <tr><td><p>等　级：</p></td>
         <td>

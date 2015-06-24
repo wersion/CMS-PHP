@@ -44,11 +44,13 @@
       $this->_tpl->assign('title','添加管理员');
       $this->_tpl->assign('level',$this->_model->getLevel());
       if(isset($_POST['send'])){
-        if(Validate_inc::checkForm($_POST['admin_user'],true,4,16,'用户名')){
+        if(Validate_inc::checkForm($_POST['admin_user'],false,2,16,'用户名')){
           $this->_model->admin_user = $_POST['admin_user'];
         }
-        if(Validate_inc::checkForm($_POST['admin_pass'],true,4,16,'密码')){
-          $this->_model->admin_pass = $_POST['admin_pass'];
+        if(Validate_inc::checkForm($_POST['admin_pass'],false,2,16,'密码')){
+          if(Validate_inc::checkEqual($_POST['admin_pass'],$_POST['pass_confirm'])){
+            $this->_model->admin_pass = $_POST['admin_pass'];
+          }
         }
         $this->_model->_level = $_POST['level'];
         if($this->_model->addManage()){
@@ -90,11 +92,13 @@
         $this->_tpl->assign('level',$this->_model->getLevel());
         if(isset($_POST['send'])){
           $this->_model->_id = $_POST['userid'];
-          if(Validate_inc::checkForm($_POST['admin_user'],true,4,16,'用户名')){
+          if(Validate_inc::checkForm($_POST['admin_user'],false,2,16,'用户名')){
             $this->_model->admin_user = $_POST['admin_user'];
           }
-          if(Validate_inc::checkForm($_POST['admin_pass'],true,4,16,'密码')){
-            $this->_model->admin_pass = $_POST['admin_pass'];
+          if(Validate_inc::checkForm($_POST['admin_pass'],false,2,16,'密码')){
+            if(Validate_inc::checkEqual($_POST['admin_pass'],$_POST['pass_confirm'])){
+              $this->_model->admin_pass = $_POST['admin_pass'];
+            }
           }
           $this->_model->_level = $_POST['level'];
           if($this->_model->updateManage()){
@@ -123,10 +127,10 @@
     // 登陆
     private function login(){
       if($_POST['send']){
-        if(Validate_inc::checkForm($_POST['admin_user'],true,4,16,'用户名')){
+        if(Validate_inc::checkForm($_POST['admin_user'],false,2,16,'用户名')){
           $this->_model->admin_user = $_POST['admin_user'];
         }
-        if(Validate_inc::checkForm($_POST['admin_pass'],true,4,16,'密码')){
+        if(Validate_inc::checkForm($_POST['admin_pass'],false,2,16,'密码')){
           $this->_model->admin_pass = $_POST['admin_pass'];
         }
         $_login = $this->_model->getLoginManage();

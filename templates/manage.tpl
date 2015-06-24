@@ -34,6 +34,7 @@
       <table class="create">
         <tr><td><p>用户名：</p></td><td><input type="text" name="admin_user" class="text" /></td></tr>
         <tr><td><p>密　码：</p></td><td><input type="text" name="admin_pass" class="text" /></td></tr>
+        <tr><td><p>密码确认：</p></td><td><input type="text" name="pass_confirm" class="text" /></td></tr>
         <tr><td><p>等　级：</p>
         <td>
           <select name="level">
@@ -53,6 +54,7 @@
         <input type="hidden" id="userlv" value="{$lv}"/>       
         <tr><td><p>用户名：</p></td><td><input type="text" name="admin_user" value="{$name}" class="text" /></td></tr>
         <tr><td><p>密　码：</p></td><td><input type="text" name="admin_pass" value="{$pass}" class="text" /></td></tr>
+        <tr><td><p>密码确认：</p></td><td><input type="text" name="pass_confirm" value="{$pass}" class="text" /></td></tr>
         <tr><td><p>等　级：</p></td>
         <td>
           <select name="level">

@@ -10,18 +10,20 @@
 
     // 检查两个表单的数据是否一致
     static function checkEqual($date,$other_date){
-      if(trim($date) == trim($other_date)){
-        return true;
+      if(trim($date) != trim($other_date)){
+        Tool_inc::alertBack('两次密码输入必须相同');
+        return false;
       }
       else{
-        return false;
+        return true;
       }
     }
 
     // 检查长度（要检查的字符串，是否允许为空，最小长度，最大长度）
     static public function checkForm($date,$null,$min,$max,$info){
       switch ($null) {
-        case true:
+        // 内容不允许为空
+        case false:
           if(self::checknull($date,$info)&&self::checkLength($date,$min,$max,$info)){
             return true;
           }
@@ -29,7 +31,8 @@
             return false;
           }
           break;
-        case false:
+        // 内容允许为空
+        case true:
           if(self::checkLength($date,$min,$max,$info)){
             return true;
           }
