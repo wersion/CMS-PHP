@@ -7,5 +7,6 @@ define('DB_NAME','cms');                                  //数据库用名称
 
 // 系统配置
 define('PAGE_SIZE',10);                                   //分页数
+define('GPC',get_magic_quotes_gpc());                     //SQL字符转义功能
 
 ?>

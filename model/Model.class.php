@@ -16,7 +16,7 @@
       $_result = $_db->query($_sql);
       $_obj = $_result->fetch_object();
       DB_inc::unDB($_result,$_db);
-      return $_obj;     
+      return Tool_inc::htmlString($_obj);     
     }
 
     // 获取多条记录
@@ -28,7 +28,7 @@
         $_html[] = $_obj;
       }
       DB_inc::unDB($_result,$_db);
-      return $_html;
+      return Tool_inc::htmlString($_html);
     }
 
     // 增改删

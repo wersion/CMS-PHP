@@ -26,5 +26,25 @@
         session_destroy();
       }     
     }
+
+    // html特殊字符转义
+    static public function htmlString($date){
+      // new一个空的sting对象，最后返回对象
+      $string  = new stdClass();
+      if(is_array($date)) {
+        foreach ($date as $key => $value) {
+          $string->$key = self::htmlString($value);
+        }
+      }
+      elseif (is_object($date)) {
+        foreach ($date as $key => $value) {
+          $string->$key = self::htmlString($value);
+        }
+      }
+      else{
+        $string = htmlspecialchars($date);
+      }
+      return $string;
+    }
   }
 ?>
