@@ -83,8 +83,10 @@
       $this->_tpl->assign('update',true);
       $this->_tpl->assign('title','修改管理员');
       $date = array();
-      $this->_model->_id = $_GET['id'];
-      if($date = $this->_model->getOneManage()){
+      if(isset($_GET['id'])){
+        $this->_model->_id = $_GET['id'];
+        $date = $this->_model->getOneManage();
+        $this->_tpl->assign('pre_url',PRE_URL);
         $this->_tpl->assign('id',$date->id);
         $this->_tpl->assign('name',$date->admin_user);
         $this->_tpl->assign('pass',$date->admin_pass);
@@ -102,7 +104,7 @@
           }
           $this->_model->_level = $_POST['level'];
           if($this->_model->updateManage()){
-            Tool_inc::alertJump(':) 修改管理员成功','manage.php?action=show');
+            Tool_inc::alertJump(':) 修改管理员成功',$_POST['pre_url']);
           }
           else{
             Tool_inc::alertBack(':( 修改管理员失败');
@@ -116,12 +118,10 @@
 
     // 查
     private function read(){
-      $_page = new Page_inc($this->_model->getTotalManage(),PAGE_SIZE);               //初始化分页类
-      $this->_model->_limit = $_page->limit;
+      parent::page($this->_model->getTotalManage());
       $this->_tpl->assign('show',true);
       $this->_tpl->assign('title','管理员列表');
       $this->_tpl->assign('AllManage',$this->_model->getAllManage());
-      $this->_tpl->assign('Page',$_page->showPage());
     }
 
     // 登陆

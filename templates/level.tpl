@@ -11,10 +11,10 @@
   </div>
   {if isset($show)&&$show == true}
   <table class="list">
-    <tr><th>等级</th><th>等级名称</th><th>等级描述</th><th>操作</th></tr>
+    <tr><th>编号</th><th>等级名称</th><th>等级描述</th><th>操作</th></tr>
     {foreach $AllLevel as $key=>$value}
       <tr>
-        <td>{$value->level}</td>
+        <td>{$key+$num}</td>
         <td>{$value->level_name}</td>
         <td>{$value->level_info}</td>
         <td><a href="level.php?action=update&id={$value->id}">[ 修改 ]</a> | <a href="level.php?action=delete&id={$value->id}" onclick="return confirm('确定删除此管理员等级')?true:false">[ 删除 ]</a></td>
@@ -37,6 +37,7 @@
   {elseif isset($update)&&$update == true}
     <form method="post">
       <input type="hidden" id="uesrlevel" name="levelid" value="{$id}"/>
+      <input type="hidden" id="pre_url" name="pre_url" value="{$pre_url}">
       <table class="create">
         <tr><td><p>等级：</p></td><td><input type="text" name="level" class="text" value="{$level}" /></td></tr>
         <tr><td><p>等级名称：</p></td><td><input type="text" name="level_name" class="text" value="{$level_name}" /></td></tr>

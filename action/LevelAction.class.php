@@ -74,8 +74,11 @@
       $this->_tpl->assign('update',true);
       $this->_tpl->assign('title','修改管理员');
       $date = array();
-      $this->_model->_id = $_GET['id'];
-      if($date = $this->_model->getOneLevel()){
+      
+      if(isset($_GET['id'])){
+        $this->_model->_id = $_GET['id'];
+        $date = $this->_model->getOneLevel();
+        $this->_tpl->assign('pre_url',PRE_URL);
         $this->_tpl->assign('id',$date->id);        
         $this->_tpl->assign('level',$date->level);
         $this->_tpl->assign('level_name',$date->level_name);
@@ -90,7 +93,7 @@
             $this->_model->_level_info = $_POST['level_info'];
           }
           if($this->_model->updateLevel()){
-            Tool_inc::alertJump(':) 修改管理员等级成功','level.php?action=show');
+            Tool_inc::alertJump(':) 修改管理员等级成功',$_POST['pre_url']);
           }
           else{
             Tool_inc::alertBack(':( 修改管理员等级失败');
@@ -104,12 +107,10 @@
 
     // 查
     private function read(){
-      $_page = new Page_inc($this->_model->getTotalLevel(),PAGE_SIZE);               //初始化分页类
-      $this->_model->_limit = $_page->limit;
+      parent::page($this->_model->getTotalLevel());
       $this->_tpl->assign('show',true);
       $this->_tpl->assign('title','管理员等级列表');
       $this->_tpl->assign('AllLevel',$this->_model->getAllLevel());
-      $this->_tpl->assign('Page',$_page->showPage());
     }
 
 }

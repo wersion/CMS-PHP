@@ -12,10 +12,10 @@
 	</div>
   {if isset($show)&&$show == true}
 	<table class="list">
-		<tr><th>ID</th><th>用户名</th><th>权限等级</th><th>上次登录IP</th><th>上次登陆时间</th><th>登陆次数</th><th>注册时间</th><th>操作</th></tr>
+		<tr><th>编号</th><th>用户名</th><th>权限等级</th><th>上次登录IP</th><th>上次登陆时间</th><th>登陆次数</th><th>注册时间</th><th>操作</th></tr>
 		{foreach $AllManage as $key=>$value}
 			<tr>
-        <td>{$value->id}</td>
+        <td>{$key+1}</td>
         <td>{$value->admin_user}</td>
         <td>{$value->level_name}</td>
         <td>{$value->last_ip}</td>
@@ -51,7 +51,8 @@
     <form method="post">
       <table class="upeate">
         <input type="hidden" id="userid" name="userid" value="{$id}"/>
-        <input type="hidden" id="userlv" value="{$lv}"/>       
+        <input type="hidden" id="userlv" value="{$lv}"/>
+        <input type="hidden" id="pre_url" name="pre_url" value="{$pre_url}">
         <tr><td><p>用户名：</p></td><td><input type="text" name="admin_user" value="{$name}" class="text" /></td></tr>
         <tr><td><p>密　码：</p></td><td><input type="text" name="admin_pass" value="{$pass}" class="text" /></td></tr>
         <tr><td><p>密码确认：</p></td><td><input type="text" name="pass_confirm" value="{$pass}" class="text" /></td></tr>
