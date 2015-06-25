@@ -7,6 +7,4 @@ define('DB_NAME','cms');                                  //数据库用名称
 
 // 系统配置
 define('PAGE_SIZE',10);                                   //分页数
-define('PRE_URL',$_SERVER["HTTP_REFERER"]);
-
 ?>

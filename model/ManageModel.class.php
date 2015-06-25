@@ -1,7 +1,7 @@
 <?php
   class ManageModel extends Model {
     
-    private $_id,$admin_user,$admin_pass,$_level,$_limit;
+    private $_id,$admin_user,$admin_pass,$_level,$_limit,$last_ip;
     
     // 拦截器
     public function __set($_key,$_value){
@@ -31,6 +31,13 @@
                 WHERE m.level=l.level AND admin_user='$this->admin_user' AND admin_pass='$this->admin_pass'
                 LIMIT 1";
       return parent::GetOne($_sql);
+    }
+
+    public function updateLoginInfo(){
+      $_sql = "UPDATE cms_manage
+              SET login_count=login_count+1,last_ip='$this->last_ip',last_time=NOW()
+              WHERE admin_user='$this->admin_user'";
+      return parent::CUD($_sql);
     }
 
     public function getAllManage(){

@@ -10,6 +10,7 @@
 
     // 业务流程控制器
     private function Action(){
+      Validate_inc::checkSession();
       switch ($_GET['action']) {
         // 增
         case 'create':
@@ -58,7 +59,7 @@
       if(isset($_GET['id'])){
         $this->_model->_id = $_GET['id'];
         if($this->_model->deleteLevel()){
-          Tool_inc::alertJump(':) 删除管理员等级成功','level.php?action=show');
+          Tool_inc::alertJump(':) 删除管理员等级成功',$_SERVER['HTTP_REFERER']);
         }
         else{
           Tool_inc::alertBack(':( 删除管理员等级失败');
@@ -78,7 +79,7 @@
       if(isset($_GET['id'])){
         $this->_model->_id = $_GET['id'];
         $date = $this->_model->getOneLevel();
-        $this->_tpl->assign('pre_url',PRE_URL);
+        $this->_tpl->assign('pre_url',$_SERVER["HTTP_REFERER"]);
         $this->_tpl->assign('id',$date->id);        
         $this->_tpl->assign('level',$date->level);
         $this->_tpl->assign('level_name',$date->level_name);

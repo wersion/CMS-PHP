@@ -67,7 +67,7 @@
       if(isset($_GET['id'])){
         $this->_model->_id = $_GET['id'];
         if($this->_model->deleteManage()){
-          Tool_inc::alertJump(':) 删除管理员成功','manage.php?action=show');
+          Tool_inc::alertJump(':) 删除管理员成功',$_SERVER['HTTP_REFERER']);
         }
         else{
           Tool_inc::alertBack(':( 删除管理员失败');
@@ -86,7 +86,7 @@
       if(isset($_GET['id'])){
         $this->_model->_id = $_GET['id'];
         $date = $this->_model->getOneManage();
-        $this->_tpl->assign('pre_url',PRE_URL);
+        $this->_tpl->assign('pre_url',$_SERVER['HTTP_REFERER']);
         $this->_tpl->assign('id',$date->id);
         $this->_tpl->assign('name',$date->admin_user);
         $this->_tpl->assign('pass',$date->admin_pass);
@@ -135,7 +135,8 @@
         }
         $_login = $this->_model->getLoginManage();
         if($_login){
-          echo"登陆成功";
+          $this->_model->last_ip = $_SERVER['REMOTE_ADDR'];
+          $this->_model->updateLoginInfo();
           $_SESSION['admin']['admin_user'] = $_login->admin_user;
           $_SESSION['admin']['admin_level'] = $_login->level_name;
           Tool_inc::alertJump(null,'admin.php');

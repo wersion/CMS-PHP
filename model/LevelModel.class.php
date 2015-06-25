@@ -28,6 +28,7 @@
     public function getAllLevel(){
       $_sql = "SELECT * 
                 FROM cms_level
+                ORDER BY id DESC
                 $this->_limit;";
       return parent::GetAll($_sql);
     }
