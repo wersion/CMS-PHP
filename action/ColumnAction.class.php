@@ -1,0 +1,120 @@
+<?php
+  class ColumnAction extends Action {
+    
+    //构造方法，初始化
+    public function __construct(&$_tpl) {
+      parent::__construct($_tpl, new ColumnModel());
+      $this->Action();
+      $this->_tpl->display('column.tpl');
+    }
+
+    // 业务流程控制器
+    private function Action(){
+      Validate_inc::checkSession();
+      switch ($_GET['action']) {
+        // 增
+        case 'create':
+          $this->add();
+          break;
+        // 删
+        case 'delete':
+          $this->delete();
+          break;
+        // 改
+        case 'update':
+          $this->update();          
+          break;
+        // 查
+        case 'show':
+          $this->read();
+          break;
+        default:
+          Tool_inc::alertBack(':( 非法操作');
+      }
+    }
+
+    // 增
+    private function add(){
+      $this->_tpl->assign('create',true);
+      $this->_tpl->assign('title','添加栏目');
+      if(isset($_POST['send'])){
+        if(Validate_inc::checkForm($_POST['column_name'],false,2,16,'栏目名称')){
+          $this->_model->_column_name = $_POST['column_name'];
+        }
+        if(Validate_inc::checkForm($_POST['column_info'],false,2,200,'栏目描述')){
+          $this->_model->_column_info = $_POST['column_info'];
+        }
+        $this->_model->_pid = $_POST['pid'];
+        if($this->_model->addColumn()){
+            Tool_inc::alertJump(':) 创建栏目成功','column.php?action=show');
+        }
+        else{
+           Tool_inc::alertBack(':( 创建栏目失败');
+        }
+      }
+    }
+
+    // 删
+    private function delete(){
+      if(isset($_GET['id'])){
+        $this->_model->_id = $_GET['id'];
+        if($this->_model->deleteColumn()){
+          Tool_inc::alertJump(':) 删除栏目成功',$_SERVER['HTTP_REFERER']);
+        }
+        else{
+          Tool_inc::alertBack(':( 删除栏目失败');
+        }
+      }
+      else{
+        Tool_inc::alertBack(':( 非法操作');
+      }
+    }
+
+    // 改
+    private function update(){
+      $this->_tpl->assign('update',true);
+      $this->_tpl->assign('title','修改栏目');
+      $date = array();
+      if(isset($_GET['id'])){
+        $this->_model->_id = $_GET['id'];
+        $date = $this->_model->getOneColumn();
+        $this->_tpl->assign('pre_url',$_SERVER["HTTP_REFERER"]);
+        $this->_tpl->assign('id',$date->id);        
+        $this->_tpl->assign('column_name',$date->column_name);
+        $this->_tpl->assign('pid',$date->pid);
+        $this->_tpl->assign('sort',$date->sort);
+        $this->_tpl->assign('column_info',$date->column_info);
+        if(isset($_POST['send'])){
+          $this->_model->_id = $_POST['column_id'];
+          $this->_model->_pid = $_POST['pid'];
+          $this->_model->_sort = $_POST['sort'];
+          if(Validate_inc::checkForm($_POST['column_name'],false,2,16,'等级名称')){
+            $this->_model->_column_name = $_POST['column_name'];
+          }
+          if(Validate_inc::checkForm($_POST['column_info'],false,2,200,'等级描述')){
+            $this->_model->_column_info = $_POST['column_info'];
+          }
+          if($this->_model->updateColumn()){
+            Tool_inc::alertJump(':) 修改栏目成功',$_POST['pre_url']);
+          }
+          else{
+            Tool_inc::alertBack(':( 修改栏目失败');
+          }
+        }
+      } 
+      else{
+        Tool_inc::alertBack(':( 非法操作');
+      }
+    }
+
+    // 查
+    private function read(){
+      parent::page($this->_model->getTotalColumn());
+      $this->_tpl->assign('show',true);
+      $this->_tpl->assign('title','栏目列表');
+      $this->_tpl->assign('AllColumn',$this->_model->getAllColumn());
+    }
+
+}
+
+?>

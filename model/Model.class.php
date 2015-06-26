@@ -1,6 +1,12 @@
 <?php
   class Model {
 
+    protected function GetNextId($_table){
+      $_sql = "SHOW TABLE STATUS LIKE '$_table';"; 
+      $object = $this->GetOne($_sql);
+      return $object->Auto_increment;
+    }
+
     // 获取总记录条数
     protected function GetTotal($_sql){
       $_db = DB_inc::getDB();
