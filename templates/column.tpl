@@ -25,6 +25,16 @@
   </table>
   <p class="crelink"><a class="crelink" href="column.php?action=create">[ 新增栏目 ]</a><p>
   <div id="page">{$Page}</div>
+
+  {elseif isset($create)&&$create == ture}
+    <form method="post">
+      <table class="create">
+        <tr><td><p>栏目名称：</p></td><td><input type="text" name="column_name" class="text" /></td></tr>
+        <tr><td><p>父栏目ID：</p></td><td><input type="text" name="pid" class="text" /></td></tr>
+        <tr><td><p>栏目描述：</p><td><textarea rows="3" cols="20" name="column_info"></textarea></td></tr>
+      </table>
+      <div class="butt"><input type="submit" name="send" value="新增栏目" class="submit" /> [ <a href="column.php?action=show">返回列表</a> ]</div>
+    </form>
   
   {elseif isset($showC_Column)&&$showC_Column == ture}
   <table class="list">
@@ -34,25 +44,24 @@
         <td>{$value->id}</td>
         <td>{$value->column_name}</td>
         <td>{$value->column_info}</td>
-        <td>{$value->pid}</td>
+        <td>{$f_column}</td>
         <td>{$value->sort}</td>
-        <td><a href="column.php?action=showc_Column&pid={$value->id}">[ 子栏目 ]</a> | <a href="column.php?action=update&id={$value->id}">[ 修改 ]</a> | <a href="column.php?action=delete&id={$value->id}" onclick="return confirm('确定删除此栏目')?true:false">[ 删除 ]</a></td>
+        <td><a href="column.php?action=showC_Column&pid={$value->id}">[ 子栏目 ]</a> | <a href="column.php?action=update&id={$value->id}">[ 修改 ]</a> | <a href="column.php?action=delete&id={$value->id}" onclick="return confirm('确定删除此栏目')?true:false">[ 删除 ]</a></td>
       </tr>
     {/foreach}
   </table>
-  <p class="crelink"><a class="crelink" href="column.php?action=create">[ 新增栏目 ]</a><p>
+  <p class="crelink"><a class="crelink" href="column.php?action=createC_Column&pid={$pid}">[ 新增"{$f_column}"子栏目 ]</a><a href="column.php?action=show">[ 返回上一层栏目列表 ]</a><p>
   <div id="page">{$Page}</div>
 
-  {elseif isset($create)&&$create == ture}
+  {elseif isset($createC_Column)&&$createC_Column == ture}
     <form method="post">
       <table class="create">
         <tr><td><p>栏目名称：</p></td><td><input type="text" name="column_name" class="text" /></td></tr>
-        <tr><td><p>父栏目ID：</p></td><td><input type="text" name="pid" class="text" /></td></tr>
         <tr><td><p>栏目描述：</p><td><textarea rows="3" cols="20" name="column_info"></textarea></td></tr>
       </table>
-      <div class="butt"><input type="submit" name="send" value="新增栏目" class="submit" /> [ <a href="level.php?action=show">返回列表</a> ]</div>
+      <div class="butt"><input type="submit" name="send" value="新增栏目" class="submit" /> [ <a href="column.php?action=show">返回列表</a> ]</div>
     </form>
-  
+
   {elseif isset($update)&&$update == true}
     <form method="post">
       <input type="hidden" id="id" name="column_id" value="{$id}"/>

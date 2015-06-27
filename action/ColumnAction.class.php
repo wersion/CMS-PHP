@@ -28,8 +28,12 @@
         case 'show':
           $this->read();
           break;
+        // 查询子栏目
         case 'showC_Column':
           $this->showC_Column();
+          break;
+        case 'createC_Column':
+          $this->createC_Column();
           break;
         default:
           Tool_inc::alertBack(':( 非法操作');
@@ -120,11 +124,36 @@
 
     // 查询子栏目
     private function showC_Column(){
-      $this->_model->_pid = $_GET['pid'];
+      $_pid = $_GET['pid'];
+      $this->_model->_pid = $_pid;
+      $this->_model->_id = $_pid;
+      $date = $this->_model->getOneColumn();
       parent::page($this->_model->getTotalC_Column());
       $this->_tpl->assign('showC_Column',true);
-      $this->_tpl->assign('title','栏目列表');
+      $this->_tpl->assign('pid',$_pid);
+      $this->_tpl->assign('f_column',$date->column_name);
+      $this->_tpl->assign('title',$date->column_name.'子栏目列表');
       $this->_tpl->assign('AllColumn',$this->_model->getAllC_Column());
+    }
+
+    private function createC_Column(){
+      $this->_tpl->assign('createC_Column',true);
+      $this->_tpl->assign('title','添加栏目');
+      if(isset($_POST['send'])){
+        if(Validate_inc::checkForm($_POST['column_name'],false,2,16,'栏目名称')){
+          $this->_model->_column_name = $_POST['column_name'];
+        }
+        if(Validate_inc::checkForm($_POST['column_info'],false,2,200,'栏目描述')){
+          $this->_model->_column_info = $_POST['column_info'];
+        }
+        $this->_model->_pid = $_GET['pid'];
+        if($this->_model->addColumn()){
+            Tool_inc::alertJump(':) 创建栏目成功','column.php?action=show');
+        }
+        else{
+           Tool_inc::alertBack(':( 创建栏目失败');
+        }
+      }
     }
 
 }
