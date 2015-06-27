@@ -43,7 +43,7 @@
     // 增
     private function add(){
       $this->_tpl->assign('create',true);
-      $this->_tpl->assign('title','添加栏目');
+      $this->_tpl->assign('title','添加顶级栏目');
       if(isset($_POST['send'])){
         if(Validate_inc::checkForm($_POST['column_name'],false,2,16,'栏目名称')){
           $this->_model->_column_name = $_POST['column_name'];
@@ -118,7 +118,7 @@
     private function read(){
       parent::page($this->_model->getTotalF_Column());
       $this->_tpl->assign('show',true);
-      $this->_tpl->assign('title','父级栏目列表');
+      $this->_tpl->assign('title','顶级栏目列表');
       $this->_tpl->assign('AllColumn',$this->_model->getAllF_Column());
     }
 
@@ -132,12 +132,14 @@
       $this->_tpl->assign('showC_Column',true);
       $this->_tpl->assign('pid',$_pid);
       $this->_tpl->assign('f_column',$date->column_name);
-      $this->_tpl->assign('title',$date->column_name.'子栏目列表');
+      $this->_tpl->assign('title','"'.$date->column_name.'"子栏目列表');
       $this->_tpl->assign('AllColumn',$this->_model->getAllC_Column());
     }
 
+    // 添加子栏目
     private function createC_Column(){
       $this->_tpl->assign('createC_Column',true);
+      $this->_tpl->assign('pre_url',$_SERVER["HTTP_REFERER"]);
       $this->_tpl->assign('title','添加栏目');
       if(isset($_POST['send'])){
         if(Validate_inc::checkForm($_POST['column_name'],false,2,16,'栏目名称')){
@@ -148,7 +150,7 @@
         }
         $this->_model->_pid = $_GET['pid'];
         if($this->_model->addColumn()){
-            Tool_inc::alertJump(':) 创建栏目成功','column.php?action=show');
+            Tool_inc::alertJump(':) 创建栏目成功',$_POST['pre_url']);
         }
         else{
            Tool_inc::alertBack(':( 创建栏目失败');

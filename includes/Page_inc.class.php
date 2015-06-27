@@ -51,15 +51,15 @@
     }
 
     private function pageList() {
-      for ($i=$this->bothnum;$i>=1;$i--) {
+      for($i=$this->bothnum;$i>=1;$i--) {
         $_page = $this->page-$i;
-        if ($_page < 1) continue;
+        if($_page < 1) continue;
         $this->_pagelist .= ' <a href="'.$this->url.'&page='.$_page.'">'.$_page.'</a> ';
       }
       $this->_pagelist .= ' <span class="me">'.$this->page.'</span> ';
-      for ($i=1;$i<=$this->bothnum;$i++) {
+      for($i=1;$i<=$this->bothnum;$i++) {
         $_page = $this->page+$i;
-        if ($_page > $this->pagetotal) break;
+        if($_page > $this->pagetotal) break;
         $this->_pagelist .= ' <a href="'.$this->url.'&page='.$_page.'">'.$_page.'</a> ';
       }
       return $this->_pagelist;
@@ -67,14 +67,14 @@
     
     //首页
     private function first() {
-      if ($this->page > $this->bothnum+1) {
+      if($this->page > $this->bothnum+1) {
         return ' <a href="'.$this->url.'">1</a> ...';
       }
     }
     
     //上一页
     private function prev() {
-      if ($this->page == 1) {
+      if($this->page == 1) {
         return '<span class="disabled">上一页</span>';
       }
       return ' <a href="'.$this->url.'&page='.($this->page-1).'">上一页</a> ';
@@ -82,7 +82,10 @@
     
     //下一页
     private function next() {
-      if ($this->page == $this->pagetotal) {
+      if($this->total ==0){
+        return '<span class="disabled">下一页</span>';
+      }
+      elseif($this->page == $this->pagetotal) {
         return '<span class="disabled">下一页</span>';
       }
       return ' <a href="'.$this->url.'&page='.($this->page+1).'">下一页</a> ';
@@ -90,7 +93,7 @@
     
     //尾页
     private function last() {
-      if ($this->pagetotal - $this->page > $this->bothnum) {
+      if($this->pagetotal - $this->page > $this->bothnum) {
         return ' ...<a href="'.$this->url.'&page='.$this->pagetotal.'">'.$this->pagetotal .'</a> ';
       }
     }  
