@@ -1,7 +1,7 @@
-<?php /* Smarty version 3.1.24, created on 2015-06-24 09:54:42
+<?php /* Smarty version 3.1.24, created on 2015-06-25 14:09:03
          compiled from "E:/develop/wamp/www/CMS/templates/manage.tpl" */ ?>
 <?php
-/*%%SmartyHeaderCode:13848558a6242548828_36348222%%*/
+/*%%SmartyHeaderCode:18195558bef5fd59726_80107288%%*/
 if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
@@ -9,16 +9,17 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'bd6deb4a272b924aede19c3c334f81b444444fcc' => 
     array (
       0 => 'E:/develop/wamp/www/CMS/templates/manage.tpl',
-      1 => 1435113387,
+      1 => 1435234141,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '13848558a6242548828_36348222',
+  'nocache_hash' => '18195558bef5fd59726_80107288',
   'variables' => 
   array (
     'title' => 0,
     'show' => 0,
     'AllManage' => 0,
+    'key' => 0,
     'value' => 0,
     'Page' => 0,
     'create' => 0,
@@ -26,18 +27,19 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'update' => 0,
     'id' => 0,
     'lv' => 0,
+    'pre_url' => 0,
     'name' => 0,
     'pass' => 0,
   ),
   'has_nocache_code' => false,
   'version' => '3.1.24',
-  'unifunc' => 'content_558a6242684ef8_57840160',
+  'unifunc' => 'content_558bef5fe575e6_86986731',
 ),false);
 /*/%%SmartyHeaderCode%%*/
-if ($_valid && !is_callable('content_558a6242684ef8_57840160')) {
-function content_558a6242684ef8_57840160 ($_smarty_tpl) {
+if ($_valid && !is_callable('content_558bef5fe575e6_86986731')) {
+function content_558bef5fe575e6_86986731 ($_smarty_tpl) {
 
-$_smarty_tpl->properties['nocache_hash'] = '13848558a6242548828_36348222';
+$_smarty_tpl->properties['nocache_hash'] = '18195558bef5fd59726_80107288';
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -56,7 +58,7 @@ $_smarty_tpl->properties['nocache_hash'] = '13848558a6242548828_36348222';
 	</div>
   <?php if (isset($_smarty_tpl->tpl_vars['show']->value) && $_smarty_tpl->tpl_vars['show']->value == true) {?>
 	<table class="list">
-		<tr><th>ID</th><th>用户名</th><th>权限等级</th><th>上次登录IP</th><th>上次登陆时间</th><th>登陆次数</th><th>注册时间</th><th>操作</th></tr>
+		<tr><th>编号</th><th>用户名</th><th>权限等级</th><th>上次登录IP</th><th>上次登陆时间</th><th>登陆次数</th><th>注册时间</th><th>操作</th></tr>
 		<?php
 $_from = $_smarty_tpl->tpl_vars['AllManage']->value;
 if (!is_array($_from) && !is_object($_from)) {
@@ -70,7 +72,7 @@ $_smarty_tpl->tpl_vars['value']->_loop = true;
 $foreach_value_Sav = $_smarty_tpl->tpl_vars['value'];
 ?>
 			<tr>
-        <td><?php echo $_smarty_tpl->tpl_vars['value']->value->id;?>
+        <td><?php echo $_smarty_tpl->tpl_vars['key']->value+1;?>
 </td>
         <td><?php echo $_smarty_tpl->tpl_vars['value']->value->admin_user;?>
 </td>
@@ -137,7 +139,9 @@ $_smarty_tpl->tpl_vars['value'] = $foreach_value_Sav;
         <input type="hidden" id="userid" name="userid" value="<?php echo $_smarty_tpl->tpl_vars['id']->value;?>
 "/>
         <input type="hidden" id="userlv" value="<?php echo $_smarty_tpl->tpl_vars['lv']->value;?>
-"/>       
+"/>
+        <input type="hidden" id="pre_url" name="pre_url" value="<?php echo $_smarty_tpl->tpl_vars['pre_url']->value;?>
+">
         <tr><td><p>用户名：</p></td><td><input type="text" name="admin_user" value="<?php echo $_smarty_tpl->tpl_vars['name']->value;?>
 " class="text" /></td></tr>
         <tr><td><p>密　码：</p></td><td><input type="text" name="admin_pass" value="<?php echo $_smarty_tpl->tpl_vars['pass']->value;?>

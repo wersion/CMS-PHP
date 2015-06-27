@@ -1,7 +1,7 @@
-<?php /* Smarty version 3.1.24, created on 2015-06-24 09:54:40
+<?php /* Smarty version 3.1.24, created on 2015-06-25 14:04:39
          compiled from "E:/develop/wamp/www/CMS/templates/admin.tpl" */ ?>
 <?php
-/*%%SmartyHeaderCode:5450558a6240670f47_63183651%%*/
+/*%%SmartyHeaderCode:1111558bee57598919_25971271%%*/
 if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
@@ -13,16 +13,16 @@ $_valid = $_smarty_tpl->decodeProperties(array (
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '5450558a6240670f47_63183651',
+  'nocache_hash' => '1111558bee57598919_25971271',
   'has_nocache_code' => false,
   'version' => '3.1.24',
-  'unifunc' => 'content_558a62406a3bd6_30757227',
+  'unifunc' => 'content_558bee576ec6e5_86382749',
 ),false);
 /*/%%SmartyHeaderCode%%*/
-if ($_valid && !is_callable('content_558a62406a3bd6_30757227')) {
-function content_558a62406a3bd6_30757227 ($_smarty_tpl) {
+if ($_valid && !is_callable('content_558bee576ec6e5_86382749')) {
+function content_558bee576ec6e5_86382749 ($_smarty_tpl) {
 
-$_smarty_tpl->properties['nocache_hash'] = '5450558a6240670f47_63183651';
+$_smarty_tpl->properties['nocache_hash'] = '1111558bee57598919_25971271';
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">

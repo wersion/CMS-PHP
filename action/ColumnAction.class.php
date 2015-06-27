@@ -28,6 +28,9 @@
         case 'show':
           $this->read();
           break;
+        case 'showC_Column':
+          $this->showC_Column();
+          break;
         default:
           Tool_inc::alertBack(':( 非法操作');
       }
@@ -107,12 +110,21 @@
       }
     }
 
-    // 查
+    // 查父级栏目
     private function read(){
-      parent::page($this->_model->getTotalColumn());
+      parent::page($this->_model->getTotalF_Column());
       $this->_tpl->assign('show',true);
+      $this->_tpl->assign('title','父级栏目列表');
+      $this->_tpl->assign('AllColumn',$this->_model->getAllF_Column());
+    }
+
+    // 查询子栏目
+    private function showC_Column(){
+      $this->_model->_pid = $_GET['pid'];
+      parent::page($this->_model->getTotalC_Column());
+      $this->_tpl->assign('showC_Column',true);
       $this->_tpl->assign('title','栏目列表');
-      $this->_tpl->assign('AllColumn',$this->_model->getAllColumn());
+      $this->_tpl->assign('AllColumn',$this->_model->getAllC_Column());
     }
 
 }
