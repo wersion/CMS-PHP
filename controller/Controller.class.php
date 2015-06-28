@@ -1,6 +1,6 @@
 <?php
   //控制器基类
-  class Action {
+  class Controller {
     protected $_tpl;
     protected $_model;
     

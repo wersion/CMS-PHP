@@ -1,16 +1,13 @@
 <?php
-  class ColumnAction extends Action {
+  class ColumnController extends Controller {
     
     //构造方法，初始化
     public function __construct(&$_tpl) {
       parent::__construct($_tpl, new ColumnModel());
-      $this->Action();
-      $this->_tpl->display('column.tpl');
     }
 
     // 业务流程控制器
-    private function Action(){
-      Validate_inc::checkSession();
+    public function Action(){
       switch ($_GET['action']) {
         // 增
         case 'create':

@@ -1,16 +1,13 @@
 <?php
-  class LevelAction extends Action {
+  class LevelController extends Controller {
     
     //构造方法，初始化
     public function __construct(&$_tpl) {
       parent::__construct($_tpl, new LevelModel());
-      $this->Action();
-      $this->_tpl->display('level.tpl');
     }
 
     // 业务流程控制器
-    private function Action(){
-      Validate_inc::checkSession();
+    public function Action(){
       switch ($_GET['action']) {
         // 增
         case 'create':

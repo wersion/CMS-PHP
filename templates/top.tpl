@@ -18,7 +18,7 @@
 </ul>
 
 <p>
-	您好，<strong>{$admin_user}</strong> [ {$ueser_lever} ] [ <a href="../" target="_blank">去首页</a> ] [ <a href="manage.php?action=logout" target="_parent">退出</a> ]
+	您好，<strong>{$admin_user}</strong> [ {$ueser_lever} ] [ <a href="../" target="_blank">去首页</a> ] [ <a href="admin_login.php?action=logout" target="_parent">退出</a> ]
 </p>
 
 </body>

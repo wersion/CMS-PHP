@@ -9,8 +9,8 @@
   session_start();
   //自动加载类
   function __autoload($_className) {
-    if (substr($_className, -6) == 'Action') {
-      require ROOT_PATH.'/action/'.$_className.'.class.php';
+    if (substr($_className, -10) == 'Controller') {
+      require ROOT_PATH.'/controller/'.$_className.'.class.php';
     } elseif (substr($_className, -5) == 'Model') {
       require ROOT_PATH.'/model/'.$_className.'.class.php';
     } elseif (substr($_className, -4) == '_inc') {
