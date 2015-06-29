@@ -10,7 +10,7 @@
     内容管理 &gt;&gt; <strong>{$title}</strong>
   </div>
   {if isset($show)&&$show == true}
-  <table class="list">
+  <table class="list" id="show">
     <tr><th>ID</th><th>栏目名称</th><th>栏目描述</th><th>父栏目ID</th><th>排序</th><th>操作</th></tr>
     {foreach $AllColumn as $key=>$value}
       <tr>
@@ -18,7 +18,7 @@
         <td>{$value->column_name}</td>
         <td>{$value->column_info}</td>
         <td>{$value->pid}</td>
-        <td>{$value->sort}</td>
+        <td><input type="text" class="sort"  name="sort_id" value="{$value->sort}"></td>
         <td><a href="column.php?action=showC_Column&pid={$value->id}">[ 子栏目 ]</a> | <a href="column.php?action=update&id={$value->id}">[ 修改 ]</a> | <a href="column.php?action=delete&id={$value->id}" onclick="return confirm('确定删除此栏目')?true:false">[ 删除 ]</a></td>
       </tr>
     {/foreach}
@@ -37,7 +37,7 @@
     </form>
   
   {elseif isset($showC_Column)&&$showC_Column == ture}
-  <table class="list">
+  <table class="list" id="show">
     <tr><th>ID</th><th>栏目名称</th><th>栏目描述</th><th>父栏目</th><th>排序</th><th>操作</th></tr>
     {foreach $AllColumn as $key=>$value}
       <tr>
@@ -45,8 +45,8 @@
         <td>{$value->column_name}</td>
         <td>{$value->column_info}</td>
         <td>{$f_column}</td>
-        <td>{$value->sort}</td>
-        <td><a href="column.php?action=showC_Column&pid={$value->id}">[ 子栏目 ]</a> | <a href="column.php?action=update&id={$value->id}">[ 修改 ]</a> | <a href="column.php?action=delete&id={$value->id}" onclick="return confirm('确定删除此栏目')?true:false">[ 删除 ]</a></td>
+        <td><input type="text" class="sort"  name="sort_id" value="{$value->sort}"></td>
+        <td><a href="column.php?action=showC_Column&pid={$value->id}">[ 子栏目 ]</a> | <a href="column.php?action=update&id={$value->id}">[ 修改 ]</a> | <a href="column.php?action=delete&id={$value->id}" onclick="return confirm('确定删除此栏目')?true:false">[ 删除 ]</a></td>   
       </tr>
     {/foreach}
   </table>

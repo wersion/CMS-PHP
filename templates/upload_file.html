@@ -2,16 +2,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>sidebar</title>
+<title>上传缩略图</title>
 <link rel="stylesheet" type="text/css" href="../style/admin.css" />
 </head>
-<body id="sidebar">
+<body id="main">
 
-<dl>
-	<dt>内容管理</dt>
-	<dd><a href="../admin/column.php?action=show" target="main">栏目管理</a></dd>
-	<dd><a href="../admin/content.php?action=show" target="main">文章管理</a></dd>
-</dl>
+<form method="post" action="../configs/upload.php" enctype="multipart/form-data" style="text-align:center;margin:30px;">
+  <input type="hidden" name="MAX_FILE_SIZE" value="204800" />
+  <input type="file" name="pic" />
+  <input type="submit" name="send" value="确定上传" />
+</form>
 
 </body>
 </html>

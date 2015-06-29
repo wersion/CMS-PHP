@@ -5,6 +5,8 @@
   define('ROOT_PATH',dirname(__FILE__));
   //引入配置信息
   require ROOT_PATH.'/configs/profile.inc.php';
+  //设置中国时区
+  date_default_timezone_set('Asia/Shanghai');
   //开启SESSION
   session_start();
   //自动加载类
