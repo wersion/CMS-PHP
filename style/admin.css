@@ -228,6 +228,13 @@ ul {
 #main div.map strong {
 	color:green;
 }
+.content{
+	padding: 20px 0 0 0;
+	width: 95%;
+	margin: 0 auto;
+	font-size: 15px;
+	border-collapse: collapse;
+}
 #main table.content td {
 	text-align:left;
 	padding-left:5px;
@@ -240,7 +247,7 @@ ul {
 }
 #main table.content td select {
 	width:150px;
-	height:22px;
+	height:30px;
 }
 #main table.content td textarea {
 	margin:0;
@@ -250,6 +257,10 @@ ul {
 }
 #main table.content td span.middle {
 	vertical-align:30px;
+}
+#main table.content td li{
+	width: 200px;
+	float: left;
 }
 
 

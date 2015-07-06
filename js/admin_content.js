@@ -1,4 +1,5 @@
 window.onload = function () {
+
   var title = document.getElementById('title');
   var ol = document.getElementsByTagName('ol');
   var a = ol[0].getElementsByTagName('a');

@@ -67,6 +67,7 @@
       return parent::CUD($_sql);
     }
 
+    //增加一条记录
     public function addColumn(){
       $_sql = "INSERT INTO cms_column(column_name,column_info,pid,sort) 
                 VALUES ('$this->_column_name','$this->_column_info','$this->_pid',".parent::GetNextId('cms_column').")";

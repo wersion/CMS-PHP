@@ -4,7 +4,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>main</title>
 <link rel="stylesheet" type="text/css" href="../style/admin.css" />
-<script type="text/javascript" src="../js/admin_manage.js"></script>
 </head>
 <body id="manage">
 	<div class="map">
@@ -48,6 +47,7 @@
     </form>
 
   {elseif isset($update)&&$update == true}
+  <script type="text/javascript" src="../js/admin_manage.js"></script>
     <form method="post">
       <table class="upeate">
         <input type="hidden" id="userid" name="userid" value="{$id}"/>

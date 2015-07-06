@@ -22,7 +22,7 @@
       $_result = $_db->query($_sql);
       $_obj = $_result->fetch_object();
       DB_inc::unDB($_result,$_db);
-      return Tool_inc::htmlString($_obj);     
+      return $_obj;     
     }
 
     // 获取多条记录
