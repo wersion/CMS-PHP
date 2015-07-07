@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>CMS内容管理系统</title>
-<link rel="stylesheet" type="text/css" href="../style/index.css" />
+<link rel="stylesheet" type="text/css" href="style/index.css" />
 </head>
 <body>
 {include file='header.tpl'}

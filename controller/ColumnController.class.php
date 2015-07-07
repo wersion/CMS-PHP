@@ -111,7 +111,7 @@
       }
     }
 
-    // 查父级栏目
+    // 查顶级栏目
     private function read(){
       parent::page($this->_model->getTotalF_Column());
       $this->_tpl->assign('show',true);
