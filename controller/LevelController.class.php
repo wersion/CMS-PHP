@@ -72,7 +72,6 @@
       $this->_tpl->assign('update',true);
       $this->_tpl->assign('title','修改管理员');
       $date = array();
-      
       if(isset($_GET['id'])){
         $this->_model->_id = $_GET['id'];
         $date = $this->_model->getOneLevel();

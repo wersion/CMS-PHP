@@ -60,5 +60,13 @@
                 WHERE id = '$this->_id'";
       return parent::CUD($_sql);
     }
+
+    // 获取所有栏目
+    public function getAllColumn(){
+      $_sql = "SELECT id,column_name
+                FROM cms_column
+                ORDER BY id ASC,column_name DESC";
+      return parent::GetAll($_sql);
+    }
   }
 ?>
