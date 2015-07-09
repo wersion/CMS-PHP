@@ -1,3 +1,4 @@
+//获取并设置管理员修改页面的level下拉菜单
 window.onload = function(){
   var level = document.getElementById('userlv').value;
   var option = document.getElementsByTagName('option');
