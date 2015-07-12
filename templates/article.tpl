@@ -32,13 +32,14 @@
   <div id="page">{$Page}</div>
 
 {elseif isset($update)&&$update == true}
-<script type="text/javascript" charset="utf-8" src="../js/admin_content.js"></script>
+<script type="text/javascript" charset="utf-8" src="../js/admin_article.js"></script>
   <form method="post">
   <input type="hidden" id="articleid" name="a_id" value="{$a_id}"/>
+  <input type="hidden" id="c_id" value="{$c_id}">
   <table cellspacing="0" class="content">
     <tr><td>文档标题：<input type="text" name="title" class="text" value="{$title}" /></td></tr>
-    <tr><td>栏目：<select name="nav">
-                    {foreach $column as $key=>$value}
+    <tr><td>栏目：<select name="column">
+                    {foreach $columnlist as $key=>$value}
                     <option value="{$value->id}">{$value->column_name}</option>
                     {/foreach}
                   </select></td></tr>
@@ -94,8 +95,8 @@
   <table cellspacing="0" class="content">
     <tr><th><strong>发布一篇文章</strong></th></tr>
     <tr><td>文档标题：<input type="text" name="title" class="text" /></td></tr>
-    <tr><td>栏目：<select name="nav">
-                    {foreach $column as $key=>$value}
+    <tr><td>栏目：<select name="column">
+                    {foreach $columnlist as $key=>$value}
                     <option value="{$value->id}">{$value->column_name}</option>
                     {/foreach}
                   </select></td></tr>

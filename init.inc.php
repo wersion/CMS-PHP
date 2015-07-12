@@ -36,6 +36,8 @@
   $_tpl->config_dir = ROOT_PATH.'\configs';
   // 缓存目录
   $_tpl->cache_dir = ROOT_PATH.'\cache';
+  // 增加一个插件目录，模板标签专用
+  $_tpl->addPluginsDir(ROOT_PATH.'\tag');
   // 关闭缓存
   $_tpl->caching = false;
 ?>

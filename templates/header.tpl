@@ -1,5 +1,4 @@
 <div id="top">
-	{$name}
 	<a href="###">这里可以放置文字广告1</a>
 	<a href="###">这里可以放置文字广告2</a>
 </div>
@@ -9,18 +8,11 @@
 </div>
 <div id="nav">
 	<ul>
-		<li><a href="###">首页</a></li>
-		<li><a href="###">军事动态</a></li>
-		<li><a href="###">八卦娱乐</a></li>
-		<li><a href="###">时尚女人</a></li>
-		<li><a href="###">科技频道</a></li>
-		<li><a href="###">智能手机</a></li>
-		<li><a href="###">美容护肤</a></li>
-		<li><a href="###">热门汽车</a></li>
-		<li><a href="###">房产家居</a></li>
-		<li><a href="###">读书教育</a></li>
-		<li><a href="###">股票基金</a></li>
-	</ul>
+		{GetTopColumn assign="column" url="list.php" limit="10"}
+		{foreach from=$column key=key item=item}
+			<li><a href="{$item.url}">{$item.column_name}</a></li>
+		{/foreach}
+ </ul>
 </div>
 <div id="search">
 	<form>

@@ -46,5 +46,16 @@
       return $_affected;
     }
 
-}
+    // 获取多条记录,返回数组
+    protected function GetAll_array($_sql){
+      $_db = DB_inc::getDB();
+      $_result = $_db->query($_sql);
+      $_html = array();
+      while(!!$_obj = $_result->fetch_array(MYSQL_ASSOC)){
+        $_html[] = $_obj;
+      }
+      DB_inc::unDB($_result,$_db);
+      return $_html;
+    }
+} 
 ?>

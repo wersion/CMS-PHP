@@ -39,10 +39,10 @@
     private function add() {
       $this->_tpl->assign('add',true);
       $this->_tpl->assign('title','新增文章');
-      $this->_tpl->assign('column',$this->_model->getAllColumn());
+      $this->_tpl->assign('columnlist',$this->_model->getAllColumn());
       if(isset($_POST['send'])){
         $this->_model->_title = $_POST['title'];
-        $this->_model->_c_id = $_POST['c_id'];
+        $this->_model->_c_id = $_POST['column'];
         $this->_model->_info = $_POST['info'];
         $this->_model->_content = $_POST['editor'];
         if($this->_model->addArticle()){
@@ -62,7 +62,7 @@
       if(isset($_GET['id'])){
         $this->_model->_id = $_GET['id'];
         $date = $this->_model->getOneArticle();
-        $this->_tpl->assign('column',$this->_model->getAllColumn());
+        $this->_tpl->assign('columnlist',$this->_model->getAllColumn());
         $this->_tpl->assign('a_id',$_GET['id']);
         $this->_tpl->assign('title',$date->title);
         $this->_tpl->assign('c_id',$date->c_id);
@@ -71,7 +71,7 @@
         if(isset($_POST['send'])){
           $this->_model->_id = $_POST['a_id'];
           $this->_model->_title = $_POST['title'];
-          $this->_model->_c_id = $_POST['c_id'];
+          $this->_model->_c_id = $_POST['column'];
           $this->_model->_info = $_POST['info'];
           $this->_model->_content = $_POST['editor'];
           if($this->_model->updateArticle()){
