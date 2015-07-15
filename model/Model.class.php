@@ -57,5 +57,14 @@
       DB_inc::unDB($_result,$_db);
       return $_html;
     }
+
+    // 获取一条记录,以数组形式返回
+    protected function GetOne_array($_sql){
+      $_db = DB_inc::getDB();
+      $_result = $_db->query($_sql);
+      $_arr = $_result->fetch_array(MYSQL_ASSOC);
+      DB_inc::unDB($_result,$_db);
+      return $_arr;      
+    }
 } 
 ?>

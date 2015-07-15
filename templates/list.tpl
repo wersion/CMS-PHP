@@ -9,46 +9,29 @@
 <body>
 {include file='header.tpl'}
 <div id="list">
-  <h2>当前位置 &gt; 军事动态</h2>
+  {GetThisColumn assign="thiscolumn"}
+  <h2>当前位置 &gt;&gt;{$thiscolumn.column_name}</h2>
+
+  {GetAllArticleList assign="articlelist" url="article.php" limit="5"}
+  {foreach from=$articlelist key=key item=item}
   <dl>
     <dt><img src="images/none.jpg" alt="" /></dt>
-    <dd>[<strong>军事动态</strong>] <a href="###">联合利华因散布涨价信息被罚200万</a></dd>
-    <dd>日期：2011年10月10日 17:17:17 点击率：224 好评：0</dd>
-    <dd>核心提示：国家发改委发布公告称，3月下旬，联合利华(中国)有限公司有关负责人多次接受采访发表日化产品涨价言论。此行为导致日化产品涨价的信息广泛传播，增强了消费者涨价预此行为导致日化产品涨价的信息广泛传播，增强了消费者涨价预...</dd>
+    <dd>[<strong>{$item.column_name}</strong>] <a href="{$item.url}">{$item.article_title}</a></dd>
+    <dd>日期：{$item.article_updatetime} 点击率：224 好评：0</dd>
+    <dd>文章摘要：{$item.article_info}...</dd>
   </dl>
-  <dl>
-    <dt><img src="images/none.jpg" alt="" /></dt>
-    <dd>[<strong>军事动态</strong>] <a href="###">联合利华因散布涨价信息被罚200万</a></dd>
-    <dd>日期：2011年10月10日 17:17:17 点击率：224 好评：0</dd>
-    <dd>核心提示：国家发改委发布公告称，3月下旬，联合利华(中国)有限公司有关负责人多次接受采访发表日化产品涨价言论。此行为导致日化产品涨价的信息广泛传播，增强了消费者涨价预此行为导致日化产品涨价的信息广泛传播，增强了消费者涨价预...</dd>
-  </dl>
-  <dl>
-    <dt><img src="images/none.jpg" alt="" /></dt>
-    <dd>[<strong>军事动态</strong>] <a href="###">联合利华因散布涨价信息被罚200万</a></dd>
-    <dd>日期：2011年10月10日 17:17:17 点击率：224 好评：0</dd>
-    <dd>核心提示：国家发改委发布公告称，3月下旬，联合利华(中国)有限公司有关负责人多次接受采访发表日化产品涨价言论。此行为导致日化产品涨价的信息广泛传播，增强了消费者涨价预此行为导致日化产品涨价的信息广泛传播，增强了消费者涨价预...</dd>
-  </dl>
-  <dl>
-    <dt><img src="images/none.jpg" alt="" /></dt>
-    <dd>[<strong>军事动态</strong>] <a href="###">联合利华因散布涨价信息被罚200万</a></dd>
-    <dd>日期：2011年10月10日 17:17:17 点击率：224 好评：0</dd>
-    <dd>核心提示：国家发改委发布公告称，3月下旬，联合利华(中国)有限公司有关负责人多次接受采访发表日化产品涨价言论。此行为导致日化产品涨价的信息广泛传播，增强了消费者涨价预此行为导致日化产品涨价的信息广泛传播，增强了消费者涨价预...</dd>
-  </dl>
-  <dl>
-    <dt><img src="images/none.jpg" alt="" /></dt>
-    <dd>[<strong>军事动态</strong>] <a href="###">联合利华因散布涨价信息被罚200万</a></dd>
-    <dd>日期：2011年10月10日 17:17:17 点击率：224 好评：0</dd>
-    <dd>核心提示：国家发改委发布公告称，3月下旬，联合利华(中国)有限公司有关负责人多次接受采访发表日化产品涨价言论。此行为导致日化产品涨价的信息广泛传播，增强了消费者涨价预此行为导致日化产品涨价的信息广泛传播，增强了消费者涨价预...</dd>
-  </dl>
-  <div id="page">分页</div>
+  {/foreach}
+  <div id="page">{$Page}</div>
 </div>
 <div id="sidebar">
   <div class="nav">
     <h2>子栏目列表</h2>
-    <strong><a href="###">中国军事</a></strong>
-    <strong><a href="###">美国军事</a></strong>
-    <strong><a href="###">日本军事</a></strong>
-    <strong><a href="###">德国军事</a></strong>
+    {GetSubColumn assign="subcolumn" url="list.php" limit="4"}
+    {if isset($subcolumn)}
+    {foreach from=$subcolumn key=key item=item}
+      <strong><a href="{$item.url}">{$item.column_name}</a></strong>
+    {/foreach}
+    {/if}
   </div>
   <div class="right">
     <h2>本类推荐</h2>

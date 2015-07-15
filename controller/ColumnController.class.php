@@ -10,27 +10,27 @@
     public function Action(){
       switch ($_GET['action']) {
         // 增
-        case 'create':
-          $this->add();
+        case 'Add':
+          $this->Add();
           break;
         // 删
-        case 'delete':
-          $this->delete();
+        case 'Delete':
+          $this->Delete();
           break;
         // 改
-        case 'update':
-          $this->update();          
+        case 'Update':
+          $this->Update();          
           break;
         // 查
-        case 'show':
-          $this->read();
+        case 'Show':
+          $this->Show();
           break;
         // 查询子栏目
-        case 'showC_Column':
-          $this->showC_Column();
+        case 'ShowSubColumn':
+          $this->ShowSubColumn();
           break;
-        case 'createC_Column':
-          $this->createC_Column();
+        case 'AddSubColumn':
+          $this->AddSubColumn();
           break;
         default:
           Tool_inc::alertBack(':( 非法操作');
@@ -38,8 +38,8 @@
     }
 
     // 增
-    private function add(){
-      $this->_tpl->assign('create',true);
+    private function Add(){
+      $this->_tpl->assign('Add',true);
       $this->_tpl->assign('title','添加顶级栏目');
       if(isset($_POST['send'])){
         if(Validate_inc::checkForm($_POST['column_name'],false,2,16,'栏目名称')){
@@ -48,8 +48,8 @@
         if(Validate_inc::checkForm($_POST['column_info'],false,2,200,'栏目描述')){
           $this->_model->_column_info = $_POST['column_info'];
         }
-        $this->_model->_pid = $_POST['pid'];
-        if($this->_model->addColumn()){
+        $this->_model->_parent_id = $_POST['parent_id'];
+        if($this->_model->AddColumn()){
             Tool_inc::alertJump(':) 创建栏目成功','column.php?action=show');
         }
         else{
@@ -59,10 +59,10 @@
     }
 
     // 删
-    private function delete(){
+    private function Delete(){
       if(isset($_GET['id'])){
         $this->_model->_id = $_GET['id'];
-        if($this->_model->deleteColumn()){
+        if($this->_model->DeleteColumn()){
           Tool_inc::alertJump(':) 删除栏目成功',$_SERVER['HTTP_REFERER']);
         }
         else{
@@ -75,30 +75,31 @@
     }
 
     // 改
-    private function update(){
-      $this->_tpl->assign('update',true);
+    private function Update(){
+      $this->_tpl->assign('Update',true);
       $this->_tpl->assign('title','修改栏目');
       $date = array();
       if(isset($_GET['id'])){
         $this->_model->_id = $_GET['id'];
-        $date = $this->_model->getOneColumn();
+        $date = $this->_model->GetOneColumn();
         $this->_tpl->assign('pre_url',$_SERVER["HTTP_REFERER"]);
         $this->_tpl->assign('id',$date->id);        
         $this->_tpl->assign('column_name',$date->column_name);
-        $this->_tpl->assign('pid',$date->pid);
+        $this->_tpl->assign('parent_id',$date->parent_id);
         $this->_tpl->assign('sort',$date->sort);
         $this->_tpl->assign('column_info',$date->column_info);
         if(isset($_POST['send'])){
           $this->_model->_id = $_POST['column_id'];
-          $this->_model->_pid = $_POST['pid'];
+          $this->_model->_parent_id = $_POST['parent_id'];
           $this->_model->_sort = $_POST['sort'];
+          $this->_model->_column_info = $_POST['column_info'];
           if(Validate_inc::checkForm($_POST['column_name'],false,2,16,'等级名称')){
             $this->_model->_column_name = $_POST['column_name'];
           }
           if(Validate_inc::checkForm($_POST['column_info'],false,2,200,'等级描述')){
             $this->_model->_column_info = $_POST['column_info'];
           }
-          if($this->_model->updateColumn()){
+          if($this->_model->UpdateColumn()){
             Tool_inc::alertJump(':) 修改栏目成功',$_POST['pre_url']);
           }
           else{
@@ -112,30 +113,30 @@
     }
 
     // 查顶级栏目
-    private function read(){
-      parent::page($this->_model->getTotalF_Column());
-      $this->_tpl->assign('show',true);
+    private function Show(){
+      parent::page($this->_model->GetParentColumnTotal());
+      $this->_tpl->assign('Show',true);
       $this->_tpl->assign('title','顶级栏目列表');
-      $this->_tpl->assign('AllColumn',$this->_model->getAllF_Column());
+      $this->_tpl->assign('AllColumn',$this->_model->GetAllParentColumn());
     }
 
     // 查询子栏目
-    private function showC_Column(){
-      $_pid = $_GET['pid'];
-      $this->_model->_pid = $_pid;
-      $this->_model->_id = $_pid;
-      $date = $this->_model->getOneColumn();
-      parent::page($this->_model->getTotalC_Column());
-      $this->_tpl->assign('showC_Column',true);
-      $this->_tpl->assign('pid',$_pid);
-      $this->_tpl->assign('f_column',$date->column_name);
+    private function ShowSubColumn(){
+      $_parent_id = $_GET['p_id'];
+      $this->_model->_parent_id = $_parent_id;
+      $this->_model->_id = $_parent_id;
+      $date = $this->_model->GetOneColumn();
+      parent::page($this->_model->GetSubColumnTotal());
+      $this->_tpl->assign('ShowSubColumn',true);
+      $this->_tpl->assign('parent_id',$_parent_id);
+      $this->_tpl->assign('parent_column',$date->column_name);
       $this->_tpl->assign('title','"'.$date->column_name.'"子栏目列表');
-      $this->_tpl->assign('AllColumn',$this->_model->getAllC_Column());
+      $this->_tpl->assign('AllColumn',$this->_model->GetAllSubColumn());
     }
 
     // 添加子栏目
-    private function createC_Column(){
-      $this->_tpl->assign('createC_Column',true);
+    private function AddSubColumn(){
+      $this->_tpl->assign('AddSubColumn',true);
       $this->_tpl->assign('pre_url',$_SERVER["HTTP_REFERER"]);
       $this->_tpl->assign('title','添加栏目');
       if(isset($_POST['send'])){
@@ -145,8 +146,8 @@
         if(Validate_inc::checkForm($_POST['column_info'],false,2,200,'栏目描述')){
           $this->_model->_column_info = $_POST['column_info'];
         }
-        $this->_model->_pid = $_GET['pid'];
-        if($this->_model->addColumn()){
+        $this->_model->_parent_id = $_GET['p_id'];
+        if($this->_model->AddColumn()){
             Tool_inc::alertJump(':) 创建栏目成功',$_POST['pre_url']);
         }
         else{

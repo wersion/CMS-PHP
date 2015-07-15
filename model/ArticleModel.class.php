@@ -2,7 +2,7 @@
   //内容实体类
   class ArticleModel extends Model {
     
-    private $_limit,$_id,$_title,$_c_id,$_info,$_content;
+    private $_limit,$_id,$_column_id,$_article_title,$_article_updatetime,$_article_info,$_article_content;
 
     // 拦截器
     public function __set($_key,$_value){
@@ -15,54 +15,54 @@
     }
 
     // 获取文章记录条数
-    public function getTotalArticle(){
+    public function GetArticleTotal(){
       $_sql = "SELECT COUNT(*) FROM cms_article";
       return parent::GetTotal($_sql);
     }
 
     // 获取文章列表
-    public function getAllArticle(){
-      $_sql = "SELECT a.id,c.column_name,a.title,a.info,a.updatetime
+    public function GetAllArticle(){
+      $_sql = "SELECT a.id,c.column_name,a.article_title,LEFT(a.article_info,25) as article_info,a.article_updatetime
                 FROM cms_article a,cms_column c 
-                WHERE a.c_id=c.id
-                ORDER BY c.id ASC,a.updatetime ASC
+                WHERE a.column_id=c.id
+                ORDER BY c.id ASC,a.article_updatetime ASC
                 $this->_limit;";
       return parent::GetAll($_sql);
     }
 
     // 新增一条文章
-    public function addArticle(){
-      $_sql = "INSERT INTO cms_article(title,c_id,updatetime,info,content)
-                VALUES ('$this->_title','$this->_c_id',NOW(),'$this->_info','$this->_content')";
+    public function AddArticle(){
+      $_sql = "INSERT INTO cms_article(article_title,column_id,article_updatetime,article_info,article_content)
+                VALUES ('$this->_article_title','$this->_column_id',NOW(),'$this->_article_info','$this->_article_content')";
       return parent::CUD($_sql);
     }
 
     // 获取一条文章数据
-    public function getOneArticle(){
-      $_sql = "SELECT id,title,c_id,info,content
+    public function GetOneArticle(){
+      $_sql = "SELECT id,article_title,column_id,article_info,article_content
                 FROM cms_article
                 WHERE id='$this->_id'";
       return parent::GetOne($_sql);
     }
     
     // 更新一条数据
-    public function updateArticle(){
+    public function UpdateArticle(){
       $_sql = "UPDATE cms_article
-                SET title='$this->_title',c_id='$this->_c_id',info='$this->_info',content='$this->_content'
+                SET article_title='$this->_article_title',column_id='$this->_column_id',article_info='$this->_article_info',article_content='$this->_article_content'
                 WHERE id='$this->_id'
                 LIMIT 1";
       return parent::CUD($_sql);
     }
 
     // 删除一条数据
-    public function deleteArticle(){
+    public function DeleteArticle(){
       $_sql = "DELETE FROM cms_article
                 WHERE id = '$this->_id'";
       return parent::CUD($_sql);
     }
 
     // 获取所有栏目
-    public function getAllColumn(){
+    public function GetAllColumn(){
       $_sql = "SELECT id,column_name
                 FROM cms_column
                 ORDER BY id ASC,column_name DESC";

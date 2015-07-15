@@ -8,7 +8,7 @@
 </div>
 <div id="nav">
 	<ul>
-		{GetTopColumn assign="column" url="list.php" limit="10"}
+		{GetAllTopColumn assign="column" url="list.php" limit="10"}
 		{foreach from=$column key=key item=item}
 			<li><a href="{$item.url}">{$item.column_name}</a></li>
 		{/foreach}

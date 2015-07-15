@@ -9,7 +9,7 @@
   <div class="map">
     内容管理 &gt;&gt; <strong>{$title}</strong>
   </div>
-  {if isset($show)&&$show == true}
+  {if isset($Show)&&$Show == true}
   <table class="list" id="show">
     <tr><th>ID</th><th>栏目名称</th><th>栏目描述</th><th>父栏目ID</th><th>排序</th><th>操作</th></tr>
     {foreach $AllColumn as $key=>$value}
@@ -17,26 +17,26 @@
         <td>{$value->id}</td>
         <td>{$value->column_name}</td>
         <td>{$value->column_info}</td>
-        <td>{$value->pid}</td>
+        <td>{$value->parent_id}</td>
         <td><input type="text" class="sort"  name="sort_id" value="{$value->sort}"></td>
-        <td><a href="column.php?action=showC_Column&pid={$value->id}">[ 子栏目 ]</a> | <a href="column.php?action=update&id={$value->id}">[ 修改 ]</a> | <a href="column.php?action=delete&id={$value->id}" onclick="return confirm('确定删除此栏目')?true:false">[ 删除 ]</a></td>
+        <td><a href="column.php?action=ShowSubColumn&p_id={$value->id}">[ 子栏目 ]</a> | <a href="column.php?action=Update&id={$value->id}">[ 修改 ]</a> | <a href="column.php?action=Delete&id={$value->id}" onclick="return confirm('确定删除此栏目')?true:false">[ 删除 ]</a></td>
       </tr>
     {/foreach}
   </table>
-  <p class="crelink"><a class="crelink" href="column.php?action=create">[ 新增顶级栏目 ]</a><p>
+  <p class="crelink"><a class="crelink" href="column.php?action=Add">[ 新增顶级栏目 ]</a><p>
   <div id="page">{$Page}</div>
 
-  {elseif isset($create)&&$create == ture}
+  {elseif isset($Add)&&$Add == ture}
     <form method="post">
       <table class="create">
         <tr><td><p>栏目名称：</p></td><td><input type="text" name="column_name" class="text" /></td></tr>
-        <tr><td><p>父栏目ID：</p></td><td><input type="text" name="pid" class="text" /></td></tr>
+        <tr><td><p>父栏目ID：</p></td><td><input type="text" name="parent_id" class="text" /></td></tr>
         <tr><td><p>栏目描述：</p><td><textarea rows="3" cols="20" name="column_info"></textarea></td></tr>
       </table>
       <div class="butt"><input type="submit" name="send" value="新增栏目" class="submit" /> [ <a href="javascript:history.go(-1);location.reload()">返回列表</a> ]</div>
     </form>
   
-  {elseif isset($showC_Column)&&$showC_Column == ture}
+  {elseif isset($ShowSubColumn)&&$ShowSubColumn == ture}
   <table class="list" id="show">
     <tr><th>ID</th><th>栏目名称</th><th>栏目描述</th><th>父栏目</th><th>排序</th><th>操作</th></tr>
     {foreach $AllColumn as $key=>$value}
@@ -44,16 +44,16 @@
         <td>{$value->id}</td>
         <td>{$value->column_name}</td>
         <td>{$value->column_info}</td>
-        <td>{$f_column}</td>
+        <td>{$parent_column}</td>
         <td><input type="text" class="sort"  name="sort_id" value="{$value->sort}"></td>
-        <td><a href="column.php?action=showC_Column&pid={$value->id}">[ 子栏目 ]</a> | <a href="column.php?action=update&id={$value->id}">[ 修改 ]</a> | <a href="column.php?action=delete&id={$value->id}" onclick="return confirm('确定删除此栏目')?true:false">[ 删除 ]</a></td>   
+        <td><a href="column.php?action=ShowSubColumn&p_id={$value->id}">[ 子栏目 ]</a> | <a href="column.php?action=Update&id={$value->id}">[ 修改 ]</a> | <a href="column.php?action=Delete&id={$value->id}" onclick="return confirm('确定删除此栏目')?true:false">[ 删除 ]</a></td>   
       </tr>
     {/foreach}
   </table>
-  <p class="crelink"><a class="crelink" href="column.php?action=createC_Column&pid={$pid}">[ 新增"{$f_column}"子栏目 ]</a><a href="javascript:history.go(-1);location.reload()">[ 返回上一层栏目列表 ]</a><p>
+  <p class="crelink"><a class="crelink" href="column.php?action=AddSubColumn&p_id={$parent_id}">[ 新增"{$parent_column}"子栏目 ]</a><a href="javascript:history.go(-1);location.reload()">[ 返回上一层栏目列表 ]</a><p>
   <div id="page">{$Page}</div>
 
-  {elseif isset($createC_Column)&&$createC_Column == ture}
+  {elseif isset($AddSubColumn)&&$AddSubColumn == ture}
     <form method="post">
       <table class="create">
         <input type="hidden" id="pre_url" name="pre_url" value="{$pre_url}">
@@ -63,13 +63,13 @@
       <div class="butt"><input type="submit" name="send" value="新增栏目" class="submit" /> [ <a href="javascript:history.go(-1);location.reload()">返回列表</a> ]</div>
     </form>
 
-  {elseif isset($update)&&$update == true}
+  {elseif isset($Update)&&$Update == true}
     <form method="post">
       <input type="hidden" id="id" name="column_id" value="{$id}"/>
       <input type="hidden" id="pre_url" name="pre_url" value="{$pre_url}">
       <table class="create">
         <tr><td><p>栏目名称：</p></td><td><input type="text" name="column_name" class="text" value="{$column_name}" /></td></tr>
-        <tr><td><p>父栏目ID：</p></td><td><input type="text" name="pid" class="text" value="{$pid}" /></td></tr>
+        <tr><td><p>父栏目ID：</p></td><td><input type="text" name="parent_id" class="text" value="{$parent_id}" /></td></tr>
         <tr><td><p>排序：</p></td><td><input type="text" name="sort" class="text" value="{$sort}" /></td></tr>
         <tr><td><p>栏目描述：</p><td><textarea rows="3" cols="20" name="column_info">{$column_info}</textarea></td></tr>
       </table>
