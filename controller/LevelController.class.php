@@ -26,7 +26,7 @@
           $this->read();
           break;
         default:
-          Tool_inc::alertBack(':( 非法操作');
+          Tool_public::alertBack(':( 非法操作');
       }
     }
 
@@ -36,17 +36,17 @@
       $this->_tpl->assign('title','添加管理员');
       if(isset($_POST['send'])){
         $this->_model->_level = $_POST['level'];
-        if(Validate_inc::checkForm($_POST['level_name'],false,2,16,'等级名称')){
+        if(Validate_public::checkForm($_POST['level_name'],false,2,16,'等级名称')){
           $this->_model->_level_name = $_POST['level_name'];
         }
-        if(Validate_inc::checkForm($_POST['level_info'],false,2,200,'等级描述')){
+        if(Validate_public::checkForm($_POST['level_info'],false,2,200,'等级描述')){
           $this->_model->_level_info = $_POST['level_info'];
         }
         if($this->_model->addLevel()){
-            Tool_inc::alertJump(':) 创建管理员等级成功','level.php?action=show');
+            Tool_public::alertJump(':) 创建管理员等级成功','level.php?action=show');
         }
         else{
-           Tool_inc::alertBack(':( 创建管理员等级失败');
+           Tool_public::alertBack(':( 创建管理员等级失败');
         }
       }
     }
@@ -56,14 +56,14 @@
       if(isset($_GET['id'])){
         $this->_model->_id = $_GET['id'];
         if($this->_model->deleteLevel()){
-          Tool_inc::alertJump(':) 删除管理员等级成功',$_SERVER['HTTP_REFERER']);
+          Tool_public::alertJump(':) 删除管理员等级成功',$_SERVER['HTTP_REFERER']);
         }
         else{
-          Tool_inc::alertBack(':( 删除管理员等级失败');
+          Tool_public::alertBack(':( 删除管理员等级失败');
         }
       }
       else{
-        Tool_inc::alertBack(':( 非法操作');
+        Tool_public::alertBack(':( 非法操作');
       }
     }
 
@@ -83,22 +83,22 @@
         if(isset($_POST['send'])){
           $this->_model->_id = $_POST['levelid'];
           $this->_model->_level = $_POST['level'];
-          if(Validate_inc::checkForm($_POST['level_name'],false,2,16,'等级名称')){
+          if(Validate_public::checkForm($_POST['level_name'],false,2,16,'等级名称')){
             $this->_model->_level_name = $_POST['level_name'];
           }
-          if(Validate_inc::checkForm($_POST['level_info'],false,2,200,'等级描述')){
+          if(Validate_public::checkForm($_POST['level_info'],false,2,200,'等级描述')){
             $this->_model->_level_info = $_POST['level_info'];
           }
           if($this->_model->updateLevel()){
-            Tool_inc::alertJump(':) 修改管理员等级成功',$_POST['pre_url']);
+            Tool_public::alertJump(':) 修改管理员等级成功',$_POST['pre_url']);
           }
           else{
-            Tool_inc::alertBack(':( 修改管理员等级失败');
+            Tool_public::alertBack(':( 修改管理员等级失败');
           }
         }
       } 
       else{
-        Tool_inc::alertBack(':( 非法操作');
+        Tool_public::alertBack(':( 非法操作');
       }
     }
 

@@ -1,6 +1,6 @@
 <?php
 //图像处理类
-class Image_inc {
+class Image_public {
   private $file;        //图片地址
   private $width;     //图片长度
   private $height;      //图片长度
@@ -118,7 +118,7 @@ class Image_inc {
         $img = imagecreatefrompng($_file);
         break;
       default:
-        Tool_inc::alertBack('警告：此图片类型本系统不支持！');
+        Tool_public::alertBack('警告：此图片类型本系统不支持！');
     }
     return $img;
   }

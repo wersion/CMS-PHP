@@ -1,5 +1,5 @@
 <?php
-  class ValidateCode_inc{
+  class ValidateCode_public{
       private $charset='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
       private $code;
       private $codelen = 4;                                       //验证码长度

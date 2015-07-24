@@ -63,7 +63,7 @@
 
     // 获取所有栏目
     public function GetAllColumn(){
-      $_sql = "SELECT id,column_name
+      $_sql = "SELECT id,column_name,pid,level
                 FROM cms_column
                 ORDER BY id ASC,column_name DESC";
       return parent::GetAll($_sql);

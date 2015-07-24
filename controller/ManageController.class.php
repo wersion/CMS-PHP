@@ -26,7 +26,7 @@
           $this->read();
           break;
         default:
-          Tool_inc::alertBack(':( 非法操作');
+          Tool_public::alertBack(':( 非法操作');
       }
     }
 
@@ -36,20 +36,20 @@
       $this->_tpl->assign('title','添加管理员');
       $this->_tpl->assign('level',$this->_model->getLevel());
       if(isset($_POST['send'])){
-        if(Validate_inc::checkForm($_POST['admin_user'],false,2,16,'用户名')){
+        if(Validate_public::checkForm($_POST['admin_user'],false,2,16,'用户名')){
           $this->_model->admin_user = $_POST['admin_user'];
         }
-        if(Validate_inc::checkForm($_POST['admin_pass'],false,2,16,'密码')){
-          if(Validate_inc::checkEqual($_POST['admin_pass'],$_POST['pass_confirm'])){
+        if(Validate_public::checkForm($_POST['admin_pass'],false,2,16,'密码')){
+          if(Validate_public::checkEqual($_POST['admin_pass'],$_POST['pass_confirm'])){
             $this->_model->admin_pass = $_POST['admin_pass'];
           }
         }
         $this->_model->_level = $_POST['level'];
         if($this->_model->addManage()){
-            Tool_inc::alertJump(':) 创建管理员成功','manage.php?action=show');
+            Tool_public::alertJump(':) 创建管理员成功','manage.php?action=show');
         }
         else{
-           Tool_inc::alertBack(':( 创建管理员失败');
+           Tool_public::alertBack(':( 创建管理员失败');
         }
       }
     }
@@ -59,14 +59,14 @@
       if(isset($_GET['id'])){
         $this->_model->_id = $_GET['id'];
         if($this->_model->deleteManage()){
-          Tool_inc::alertJump(':) 删除管理员成功',$_SERVER['HTTP_REFERER']);
+          Tool_public::alertJump(':) 删除管理员成功',$_SERVER['HTTP_REFERER']);
         }
         else{
-          Tool_inc::alertBack(':( 删除管理员失败');
+          Tool_public::alertBack(':( 删除管理员失败');
         }
       }
       else{
-        Tool_inc::alertBack(':( 非法操作');
+        Tool_public::alertBack(':( 非法操作');
       }
     }
 
@@ -86,25 +86,25 @@
         $this->_tpl->assign('level',$this->_model->getLevel());
         if(isset($_POST['send'])){
           $this->_model->_id = $_POST['userid'];
-          if(Validate_inc::checkForm($_POST['admin_user'],false,2,16,'用户名')){
+          if(Validate_public::checkForm($_POST['admin_user'],false,2,16,'用户名')){
             $this->_model->admin_user = $_POST['admin_user'];
           }
-          if(Validate_inc::checkForm($_POST['admin_pass'],false,2,16,'密码')){
-            if(Validate_inc::checkEqual($_POST['admin_pass'],$_POST['pass_confirm'])){
+          if(Validate_public::checkForm($_POST['admin_pass'],false,2,16,'密码')){
+            if(Validate_public::checkEqual($_POST['admin_pass'],$_POST['pass_confirm'])){
               $this->_model->admin_pass = $_POST['admin_pass'];
             }
           }
           $this->_model->_level = $_POST['level'];
           if($this->_model->updateManage()){
-            Tool_inc::alertJump(':) 修改管理员成功',$_POST['pre_url']);
+            Tool_public::alertJump(':) 修改管理员成功',$_POST['pre_url']);
           }
           else{
-            Tool_inc::alertBack(':( 修改管理员失败');
+            Tool_public::alertBack(':( 修改管理员失败');
           }
         }
       } 
       else{
-        Tool_inc::alertBack(':( 非法操作');
+        Tool_public::alertBack(':( 非法操作');
       }
     }
 

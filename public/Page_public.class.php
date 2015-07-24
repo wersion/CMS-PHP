@@ -1,6 +1,6 @@
 <?php
   // 分页类
-  class Page_inc{
+  class Page_public{
     private $total;                       //总记录条数
     private $limit;                       //数据库查询limit
     private $pagesize;                    //每页显示数

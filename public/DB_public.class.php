@@ -1,6 +1,7 @@
 <?php
   // 数据库链接类
-  class DB_inc{
+  class DB_public
+  {
 
     // 获取对象句柄
   	static public function getDB(){

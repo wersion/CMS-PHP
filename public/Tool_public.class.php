@@ -1,6 +1,6 @@
 <?php
   // 通用提示
-  class Tool_inc{
+  class Tool_public{
 
     // 弹窗+跳转
     static public function alertJump($_info,$_url){

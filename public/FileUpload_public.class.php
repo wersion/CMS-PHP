@@ -2,7 +2,7 @@
 /**
 * 文件上传类
 */
-class FileUpload_inc{
+class FileUpload_public{
   private $error;                 //错误代码
   private $maxsize;               //文件大小
   private $file_type;             //文件类型
@@ -34,10 +34,10 @@ class FileUpload_inc{
   private function MoveTmp_File(){
     if (is_uploaded_file($this->tmp)) {
       if (!move_uploaded_file($this->tmp,$this->SetFileName())) {
-        Tool_inc::alertBack('警告：上传失败！');
+        Tool_public::alertBack('警告：上传失败！');
       }
     } else {
-      Tool_inc::alertBack('警告：临时文件不存在！');
+      Tool_public::alertBack('警告：临时文件不存在！');
     }
   }
 
@@ -51,12 +51,12 @@ class FileUpload_inc{
   private function CheckPath(){
     if(!is_dir($this->path)||!is_writeable($this->path)){
       if(!mkdir($this->path)){
-        Tool_inc::alertBack('文件上传主路径创建失败');
+        Tool_public::alertBack('文件上传主路径创建失败');
       }
     }
     if(!is_dir($this->date_path)||!is_writeable($this->date_path)){
       if(!mkdir($this->date_path)){
-        Tool_inc::alertBack('文件上传子路径创建失败');
+        Tool_public::alertBack('文件上传子路径创建失败');
       }
     }
 
@@ -64,7 +64,7 @@ class FileUpload_inc{
 
   private function CheckFile_Type(){
     if(!in_array($this->file_type,$this->file_type_array)){
-      Tool_inc::alertBack('文件格式错误');
+      Tool_public::alertBack('文件格式错误');
     }
   }
 
@@ -72,19 +72,19 @@ class FileUpload_inc{
     if(!empty($this->error)){
       switch($this->error){
         case '1':
-          Tool_inc::alertBack('上传文件大小超过限制');
+          Tool_public::alertBack('上传文件大小超过限制');
           break;
         case '2':
-          Tool_inc::alertBack('上传文件大小超过'.$this->maxsize.'kb');
+          Tool_public::alertBack('上传文件大小超过'.$this->maxsize.'kb');
           break;
         case '3':
-          Tool_inc::alertBack('文件未被完整上传');
+          Tool_public::alertBack('文件未被完整上传');
           break;
         case '4':
-          Tool_inc::alertBack('文件未被上传');
+          Tool_public::alertBack('文件未被上传');
           break;
         default:
-          Tool_inc::alertBack('未知错误');
+          Tool_public::alertBack('未知错误');
       }
     }
   }

@@ -1,17 +1,17 @@
 <?php
-  class Validate_inc{
+  class Validate_public{
 
     // 检查Session
     static function checkSession(){
       if(!isset($_SESSION['admin'])){
-        Tool_inc::alertJump('非法登陆','admin_login.php');
+        Tool_public::alertJump('非法登陆','admin_login.php');
       }
     }
 
     // 检查两个表单的数据是否一致
     static function checkEqual($date,$other_date){
       if(trim($date) != trim($other_date)){
-        Tool_inc::alertBack('两次密码输入必须相同');
+        Tool_public::alertBack('两次密码输入必须相同');
         return false;
       }
       else{
@@ -49,7 +49,7 @@
     // 检查表单数据是否为空
     static private function checknull($date,$info){
       if(trim($date) == ''){
-        Tool_inc::alertBack($info.'不能为空！');
+        Tool_public::alertBack($info.'不能为空！');
         return false;
       }
       else{
@@ -59,11 +59,11 @@
     // 检查表单数据是否符合指定长度
     static private function checkLength($date,$min,$max,$info){
       if (mb_strlen(trim($date),'utf-8') > $max){
-        Tool_inc::alertBack($info.'不能大于'.$max.'位');
+        Tool_public::alertBack($info.'不能大于'.$max.'位');
         return false;
       }
       elseif(mb_strlen(trim($date),'utf-8') < $min){
-        Tool_inc::alertBack($info.'不能小于'.$min.'位');
+        Tool_public::alertBack($info.'不能小于'.$min.'位');
         return false;
       }
       else{

@@ -1,5 +1,5 @@
 <?php
-/*获取当前栏目下的文章列表（不包含子栏目）
+/*获取当前栏目下的文章列表（只包含下一层子栏目）
 **
 **参数：assign（返回数据的变量名，必填）、url（需要生产的链接，可选）、limit（取出数据的条数，可选）
 **可返回的数据：id（栏目id）、column_name（栏目名）、url（链接）
@@ -29,7 +29,7 @@
         //判断用户是否设置limit，有则获取
         if(isset($params['limit'])){
           $limit = $params['limit'];
-          $_page = new Page_inc($_model->GetArticleListTotal(),$limit);
+          $_page = new Page_public($_model->GetArticleListTotal(),$limit);
           $_model->_limit = $_page->limit;
           $smarty->assign('Page',$_page->showPage());
           $smarty->assign('num',(($_page->page-1)*$limit)+1);

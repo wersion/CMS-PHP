@@ -1,6 +1,6 @@
 <?php
 require substr(dirname(__FILE__),0,-6).'/init.inc.php';
-Validate_inc::checkSession();
+Validate_public::checkSession();
 global $_tpl;
 $_content = new ArticleController($_tpl);   //入口
 $_content->Action();

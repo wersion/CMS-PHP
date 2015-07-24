@@ -17,10 +17,10 @@
           $assign = $params['assign'];
           // 判断是否设置参数cid，如没有则从url中获取
           if (isset($params['parent_id'])) {
-            $_model->_parent_id = $params['parent_id'];
+            $_model->_pid = $params['p_id'];
           }
           else{
-            $_model->_parent_id = $_GET['cid'];
+            $_model->_pid = $_GET['cid'];
           }
           // 判断用户是否设置limit，有则获取
           if(isset($params['limit'])){

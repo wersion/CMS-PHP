@@ -22,7 +22,7 @@
           $this->Delete();
           break;
         default:
-          Tool_inc::alertBack('非法操作！');
+          Tool_public::alertBack('非法操作！');
 
       }
     }
@@ -39,17 +39,18 @@
     private function Add() {
       $this->_tpl->assign('Add',true);
       $this->_tpl->assign('title','新增文章');
-      $this->_tpl->assign('columnlist',$this->_model->GetAllColumn());
+      $column = $this->_model->GetAllColumn();
+      $this->_tpl->assign('ColumnList',Tree_public::Create($column));
       if(isset($_POST['send'])){
         $this->_model->_article_title = $_POST['title'];
         $this->_model->_column_id = $_POST['column'];
         $this->_model->_article_info = $_POST['info'];
         $this->_model->_article_content = $_POST['editor'];
         if($this->_model->AddArticle()){
-          Tool_inc::alertJump(':) 新增文章成功','article.php?action=Show');
+          Tool_public::alertJump(':) 新增文章成功','article.php?action=Show');
         }
         else{
-          Tool_inc::alertJump(':( 新增文章失败','article.php?action=Show');
+          Tool_public::alertJump(':( 新增文章失败','article.php?action=Show');
         }
       }
     }
@@ -58,17 +59,18 @@
     private function Update() {
       $this->_tpl->assign('Update',true);
       $this->_tpl->assign('title','修改文章');
+      $column = $this->_model->GetAllColumn();
+      $this->_tpl->assign('ColumnList',Tree_public::Create($column));
       $date = array();
       if(isset($_GET['id'])){
         $article_id = $_GET['id'];
         $this->_model->_id = $article_id;
         $date = $this->_model->GetOneArticle();
-        $this->_tpl->assign('columnliat',$this->_model->GetAllColumn());
         $this->_tpl->assign('article_id',$article_id);
-        $this->_tpl->assign('article_title',$date->article_title);
-        $this->_tpl->assign('column_id',$date->column_id);
-        $this->_tpl->assign('article_info',$date->article_info);
-        $this->_tpl->assign('article_content',$date->article_content);
+        $this->_tpl->assign('article_title',$date['article_title']);
+        $this->_tpl->assign('column_id',$date['column_id']);
+        $this->_tpl->assign('article_info',$date['article_info']);
+        $this->_tpl->assign('article_content',$date['article_content']);
         if(isset($_POST['send'])){
           $this->_model->_id = $_POST['article_id'];
           $this->_model->_article_title = $_POST['article_title'];
@@ -76,10 +78,10 @@
           $this->_model->_article_info = $_POST['article_info'];
           $this->_model->_article_content = $_POST['article_content'];
           if($this->_model->UpdateArticle()){
-            Tool_inc::alertJump(':) 修改文章成功','article.php?action=Show');
+            Tool_public::alertJump(':) 修改文章成功','article.php?action=Show');
           }
           else{
-              Tool_inc::alertJump(':( 修改文章失败','article.php?action=Show');
+              Tool_public::alertJump(':( 修改文章失败','article.php?action=Show');
           }
         }
       }
@@ -90,14 +92,14 @@
       if(isset($_GET['id'])){
         $this->_model->_id = $_GET['id'];
         if($this->_model->DeleteArticle()){
-          Tool_inc::alertJump(':) 删除文章成功',$_SERVER['HTTP_REFERER']);
+          Tool_public::alertJump(':) 删除文章成功',$_SERVER['HTTP_REFERER']);
         }
         else{
-          Tool_inc::alertBack(':( 删除文章失败');
+          Tool_public::alertBack(':( 删除文章失败');
         }
       }
       else{
-        Tool_inc::alertBack(':( 非法操作');
+        Tool_public::alertBack(':( 非法操作');
       }
     }
     
