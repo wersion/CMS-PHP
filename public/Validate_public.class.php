@@ -8,6 +8,16 @@
       }
     }
 
+    //检查是否拥有响应的权限的权限
+    static function checkNode($action){
+      $userNode = $_SESSION['rbacNode'];
+      if(in_array($action,$userNode)){
+        return true;
+      }else{
+        Tool_public::alertBack(':( 当前用户没有该权限');
+      }
+    }
+
     // 检查两个表单的数据是否一致
     static function checkEqual($date,$other_date){
       if(trim($date) != trim($other_date)){

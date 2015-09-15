@@ -1,7 +1,7 @@
 <?php
   class RbacRoleModel extends Model {
     
-    private $_id,$_role_id,$_name,$_pid,$_status,$_info;
+    private $roleID,$nodeID,$roleName,$parentID,$status,$roleInfo;
     
     // 拦截器
     public function __set($_key,$_value){
@@ -13,86 +13,86 @@
     }
 
     // 获取用户组记录条数
-    public function GetTotalRole(){
+    public function getTotalRole(){
       $_sql="SELECT COUNT(*) FROM rbac_role";
       return parent::GetTotal($_sql);
     }
 
     // 获取所有用户组记录条数
-    public function GatAllRole(){
-      $_sql="SELECT id,name,type,status,info
+    public function getAllRole(){
+      $_sql="SELECT roleID,roleName,roleType,status,roleInfo
                 FROM rbac_role
-                ORDER BY id ASC
+                ORDER BY roleID ASC
                 $this->_limit;";
       return parent::GetAll($_sql);
     }
 
     // 新增一条用户组记录
-    public function AddRole(){
-      $_sql = "INSERT INTO rbac_role(name,status,info) 
-                VALUES ('$this->_name','$this->_status','$this->_info')";
+    public function addRole(){
+      $_sql = "INSERT INTO rbac_role(roleName,status,roleInfo) 
+                VALUES ('$this->roleName','$this->status','$this->roleInfo')";
       return parent::CUD($_sql);
     }
 
     // 删除
-    public function DeleteRole(){
+    public function deleteRole(){
       $_sql = "DELETE FROM rbac_role 
-                WHERE id = '$this->_id'";
+                WHERE roleID = '$this->roleID'";
       return parent::CUD($_sql);
     }
 
     // 获取一条用户组记录
-    public function GetOneRole(){
-      $_sql = "SELECT name,status,info
+    public function getOneRole(){
+      $_sql = "SELECT roleName,status,roleInfo
                 FROM rbac_role 
-                WHERE id='$this->_id' LIMIT 1;"; 
+                WHERE roleID='$this->roleID' LIMIT 1;"; 
       return parent::GetOne($_sql);
     }
 
     // 修改一条记录
-    public function UpdateRole(){
+    public function updateRole(){
       $_sql = "UPDATE rbac_role
-                SET name='$this->_name',info='$this->_info',status='$this->_status'
-                WHERE id='$this->_id'
+                SET roleName='$this->roleName',roleInfo='$this->roleInfo',status='$this->status'
+                WHERE roleID='$this->roleID'
                 LIMIT 1";
       return parent::CUD($_sql);
     }
 
     // 获取当前正在配置权限的用户组名
-    public function GetThisRoleName(){
-      $_sql = "SELECT name
+    public function getThisRoleName(){
+      $_sql = "SELECT roleName
                 FROM rbac_role
-                WHERE id='$this->_id'";
+                WHERE roleID='$this->roleID'";
       return parent::GetOne($_sql);
     }
 
     // 获取所有权限记录
-    public function GetAllNode(){
-      $_sql="SELECT id,title,pid,level
+    public function getAllNode(){
+      $_sql="SELECT nodeID,nodeNameCH,parentID,level
                 FROM rbac_node
                 ORDER BY sort ASC";
       return parent::GetAll($_sql);
     }
 
     // 获取当前用户组所拥有的权限
-    public function GetRoleNode(){
-      $_sql="SELECT node_id 
+    public function getRoleNode(){
+      $_sql="SELECT nodeID 
               FROM rbac_role_node 
-              WHERE role_id = $this->_id";
+              WHERE roleID = '$this->roleID'";
       return parent::GetAll($_sql);
     }
 
     //删除权限
-    public function DeleteNode(){
+    public function deleteNode(){
       $_sql="DELETE 
               FROM rbac_role_node 
-              WHERE role_id='$this->_id'";
+              WHERE roleID='$this->roleID'";
       return parent::CUD($_sql);
     }
 
     //添加权限
-    public function AddNode(){
-      $_sql="INSERT INTO rbac_role_node(role_id,node_id) VALUES ('$this->_id','$this->_role_id')";
+    public function addNode(){
+      $_sql="INSERT INTO rbac_role_node(roleID,nodeID) VALUES ('$this->roleID','$this->nodeID')";
       return parent::CUD($_sql);
     }
   }

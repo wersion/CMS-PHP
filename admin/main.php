@@ -1,6 +1,6 @@
 <?php
 require substr(dirname(__FILE__),0,-6).'/init.inc.php';
-global $_tpl;
+global $_smarty;
 Validate_public::checkSession();
-$_tpl->display('main.tpl');
+$_smarty->display('admin/Main.tpl');
 ?>

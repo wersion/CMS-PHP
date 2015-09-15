@@ -10,20 +10,20 @@
     public function Action(){
       switch ($_GET['action']) {
         // 增
-        case 'create':
-          $this->add();
+        case 'addNode':
+          $this->addNode();
           break;
         // 删
-        case 'delete':
-          $this->delete();
+        case 'deleteNode':
+          $this->deleteNode();
           break;
         // 改
-        case 'update':
-          $this->update();          
+        case 'updateNode':
+          $this->updateNode();          
           break;
         // 查
-        case 'show':
-          $this->read();
+        case 'showNode':
+          $this->showNode();
           break;
         default:
           Tool_public::alertBack(':( 非法操作');
@@ -31,21 +31,22 @@
     }
 
     // 增
-    private function add(){
-      $this->_tpl->assign('create',true);
+    private function addNode(){
+      $node = Validate_public::checkNode('addNode');
+      $this->_tpl->assign('addNode',true);
       $this->_tpl->assign('title','添加权限');
-      $parent_node = $this->_model->GetParentNode();
-      $this->_tpl->assign('Parent_Node',Tree_public::Create($parent_node));
+      $parent_node = $this->_model->getParentNode();
+      $this->_tpl->assign('Parent_Node',Tree_public::createTreeStruct($parent_node,0,'nodeID'));
       if(isset($_POST['send'])){
-        $this->_model->_name = $_POST['node_name'];
-        $this->_model->_title = $_POST['node_title'];
-        $this->_model->_status = $_POST['node_status'];
-        $this->_model->_sort = $_POST['node_sort'];
-        $this->_model->_pid = $_POST['parent_node'];
-        $this->_model->_level = $_POST['node_level'];
-        $this->_model->_info = $_POST['node_info'];
+        $this->_model->nodeNameEN = $_POST['nodeNameEN'];
+        $this->_model->nodeNameCH = $_POST['nodeNameCH'];
+        $this->_model->satatus = $_POST['nodeSatatus'];
+        $this->_model->sort = $_POST['nodeSort'];
+        $this->_model->parentID = $_POST['parentID'];
+        $this->_model->level = $_POST['nodeLevel'];
+        $this->_model->nodeInfo = $_POST['nodeInfo'];
         if($this->_model->AddNode()){
-            Tool_public::alertJump(':) 创建权限成功','rbac_node.php?action=show');
+            Tool_public::alertJump(':) 创建权限成功','RbacNode.php?action=showNode');
         }
         else{
            Tool_public::alertBack(':( 创建权限失败');
@@ -54,68 +55,71 @@
     }
 
     // 删
-    private function delete(){
+    private function deleteNode(){
+      $node = Validate_public::checkNode('deleteNode');
+      $this->showNode();
+      $this->_tpl->assign('delete',true);
+      $this->_tpl->assign('title','删除用户');
       if(isset($_GET['id'])){
-        $this->_model->_id = $_GET['id'];
-        if($this->_model->DeleteNode()){
+        $this->_model->nodeID = $_GET['id'];
+        if($this->_model->deleteNode()){
           Tool_public::alertJump(':) 删除权限成功',$_SERVER['HTTP_REFERER']);
         }
         else{
           Tool_public::alertBack(':( 删除权限失败');
         }
       }
-      else{
-        Tool_public::alertBack(':( 非法操作');
-      }
     }
 
     // 改
-    private function update(){
+    private function updateNode(){
+     $node = Validate_public::checkNode('updateNode');
+      $this->showNode();
       $this->_tpl->assign('update',true);
-      $this->_tpl->assign('title','修改权限');
-      $parent_node = $this->_model->GetParentNode();
-      $this->_tpl->assign('Parent_Node',Tree_public::Create($parent_node));
-      $date = array();
       if(isset($_GET['id'])){
-        $this->_model->_id = $_GET['id'];
-        $date = $this->_model->GetOneNode();
-        $this->_tpl->assign('pre_url',$_SERVER['HTTP_REFERER']);
-        $this->_tpl->assign('name',$date['name']);
-        $this->_tpl->assign('title',$date['title']);
+        $this->_tpl->assign('showNode',false);
+        $this->_tpl->assign('updateNode',true);
+        $this->_tpl->assign('title','修改权限');
+        $parent_node = $this->_model->getParentNode();
+        $this->_tpl->assign('Parent_Node',Tree_public::createTreeStruct($parent_node,0,'nodeID'));
+        $date = array();        
+        $this->_model->nodeID = $_GET['id'];
+        $date = $this->_model->getOneNode();
+        $this->_tpl->assign('preUrl',$_SERVER['HTTP_REFERER']);
+        $this->_tpl->assign('nodeNameCH',$date['nodeNameCH']);
+        $this->_tpl->assign('nodeNameEN',$date['nodeNameEN']);
         $this->_tpl->assign('status',$date['status']);
         $this->_tpl->assign('sort',$date['sort']);
-        $this->_tpl->assign('pid',$date['pid']);
+        $this->_tpl->assign('parentID',$date['parentID']);
         $this->_tpl->assign('level',$date['level']);
-        $this->_tpl->assign('info',$date['info']);
+        $this->_tpl->assign('nodeInfo',$date['nodeInfo']);
         if(isset($_POST['send'])){
-          $this->_model->_name = $_POST['node_name'];
-          $this->_model->_title = $_POST['node_title'];
-          $this->_model->_status = $_POST['node_status'];
-          $this->_model->_sort = $_POST['node_sort'];
-          $this->_model->_pid = $_POST['parent_node'];
-          $this->_model->_level = $_POST['node_level'];
-          $this->_model->_info = $_POST['node_info'];
+          $this->_model->nodeNameCH = $_POST['nodeNameCH'];
+          $this->_model->nodeNameEN = $_POST['nodeNameEN'];
+          $this->_model->status = $_POST['status'];
+          $this->_model->sort = $_POST['sort'];
+          $this->_model->parentID = $_POST['parentID'];
+          $this->_model->level = $_POST['nodeLevel'];
+          $this->_model->nodeInfo = $_POST['nodeInfo'];
           if($this->_model->UpdateNode()){
-            Tool_public::alertJump(':) 修改权限成功',$_POST['pre_url']);
+            Tool_public::alertJump(':) 修改权限成功',$_POST['preUrl']);
           }
           else{
             Tool_public::alertBack(':( 修改权限失败');
           }
         }
       } 
-      else{
-        Tool_public::alertBack(':( 非法操作');
-      }
     }
 
     // 查
-    private function read(){
-      parent::page($this->_model->GetTotalNode());
-      $this->_tpl->assign('show',true);
-      $this->_tpl->assign('title','管理员列表');
-      $node = $this->_model->GetAllNode();
-      $this->_tpl->assign('AllNode',Tree_public::Create($node));
+    private function showNode(){
+      $node = Validate_public::checkNode('showNode');
+      $this->_tpl->assign('showNode',true);
+      $this->_tpl->assign('title','权限列表');
+      $node = $this->_model->getAllNode();
+      $this->_tpl->assign('AllNode',Tree_public::createTreeStruct($node,0,'nodeID'));
     }
+    
 }
 
 ?>
