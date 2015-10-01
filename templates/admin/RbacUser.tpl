@@ -43,7 +43,11 @@
             {/foreach}
           </select></td></tr>
       </table>
+<<<<<<< HEAD
       <div class="butt"><input type="submit" name="send" value="新增用户" class="submit" /> [ <a href="RbacUser.php?action=showUser">返回列表</a> ]</div>
+=======
+      <div class="butt"><input type="submit" name="send" value="新增用户" class="submit" /> [ <a href="rbac_user.php?action=show">返回列表</a> ]</div>
+>>>>>>> origin/master
     </form>
 
   {elseif isset($updateUser)&&$update == true}
@@ -60,7 +64,11 @@
             {/foreach}
           </select></td></tr>
       </table>
+<<<<<<< HEAD
       <div class="butt"><input type="submit" name="send" value="修改用户" class="submit" /> [ <a href="RbacUser.php?action=showUser">返回列表</a> ]</div>
+=======
+      <div class="butt"><input type="submit" name="send" value="修改用户" class="submit" /> [ <a href="rbac_user.php?action=show">返回列表</a> ]</div>
+>>>>>>> origin/master
     </form>
   {/if}
 </body>

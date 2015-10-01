@@ -35,11 +35,18 @@
       <table class="create">
         <tr><td><p>权限方法名：</p></td><td><input type="text" name="nodeNameEN" class="text" /></td></tr>
         <tr><td><p>权限中文描述：</p></td><td><input type="text" name="nodeNameCH" class="text" /></td></tr>
+<<<<<<< HEAD
         <tr><td><p>权限状态：</p></td><td><label><input type="radio" name="nodeStatus" value="1" />开启</label><label><input type="radio" name="nodeSatatus" value="0" />停用</label></td></tr>
         <tr><td><p>排序：</p></td><td><input type="text" name="nodeSort" class="text" /></td></tr>
         <tr><td><p>父级：</p></td><td>
           <select name="parentID">
             <option value="0">---顶级----</option>
+=======
+        <tr><td><p>权限状态：</p></td><td><label><input type="radio" name="nodeSatatus" value="1" />开启</label><label><input type="radio" name="nodeSatatus" value="0" />停用</label></td></tr>
+        <tr><td><p>排序：</p></td><td><input type="text" name="nodeSort" class="text" /></td></tr>
+        <tr><td><p>父级：</p></td><td>
+          <select name="parentID">
+>>>>>>> origin/master
             {foreach from=$Parent_Node key=key item=item}
             <option value="{$item.nodeID}">{if $item.level ==1}{elseif $item.level ==2}&nbsp&nbsp{elseif $item.level==3}&nbsp&nbsp&nbsp&nbsp{/if}{$item.nodeNameCH}</option>
             {/foreach}
@@ -65,7 +72,10 @@
         <tr><td><p>排序：</p></td><td><input type="text" name="sort" class="text" value="{$sort}" /></td></tr>
         <tr><td><p>父级：</p></td><td>
           <select name="parentID">
+<<<<<<< HEAD
             <option value="0">---顶级----</option>
+=======
+>>>>>>> origin/master
             {foreach from=$Parent_Node key=key item=item}
             <option value="{$item.nodeID}">{if $item.level ==1}{elseif $item.level ==2}&nbsp&nbsp{elseif $item.level==3}&nbsp&nbsp&nbsp&nbsp{/if}{$item.nodeNameCH}</option>
             {/foreach}

@@ -18,7 +18,11 @@
 </ul>
 
 <p>
+<<<<<<< HEAD
 	您好，<strong>{$admin_user}</strong> [ {$ueser_lever} ] [ <a href="../" target="_blank">去首页</a> ] [ <a href="AdminLogin.php?action=adminLogout" target="_parent">退出</a> ]
+=======
+	您好，<strong>{$admin_user}</strong> [ {$ueser_lever} ] [ <a href="../" target="_blank">去首页</a> ] [ <a href="AdminLogin.php?action=logout" target="_parent">退出</a> ]
+>>>>>>> origin/master
 </p>
 
 </body>

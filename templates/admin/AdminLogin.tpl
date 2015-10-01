@@ -7,7 +7,11 @@
 </head>
 <body>
 
+<<<<<<< HEAD
 <form id="adminLogin" method="post" action="AdminLogin.php?action=adminLogin">
+=======
+<form id="adminLogin" method="post" action="AdminLogin.php?action=login">
+>>>>>>> origin/master
 	<fieldset>
 		<legend>登录CMS后台管理系统</legend>
 		<label>账　号：<input type="text" name="admin_user" class="text" /></label>

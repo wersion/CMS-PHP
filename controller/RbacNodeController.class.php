@@ -40,7 +40,11 @@
       if(isset($_POST['send'])){
         $this->_model->nodeNameEN = $_POST['nodeNameEN'];
         $this->_model->nodeNameCH = $_POST['nodeNameCH'];
+<<<<<<< HEAD
         $this->_model->status = $_POST['nodeStatus'];
+=======
+        $this->_model->satatus = $_POST['nodeSatatus'];
+>>>>>>> origin/master
         $this->_model->sort = $_POST['nodeSort'];
         $this->_model->parentID = $_POST['parentID'];
         $this->_model->level = $_POST['nodeLevel'];
