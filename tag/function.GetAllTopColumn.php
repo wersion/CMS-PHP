@@ -26,14 +26,14 @@
           $_model->_limit = 'LIMIT 0,'.$limit;
         }
         // 获取数据
-        $ColumnInfo = $_model->GetAllTopColumn();
+        $ColumnInfo = $_model->getAllTopColumn();
         // 判断用户是否设置url，有则获取,并重组数组
         if(isset($params['url'])){
           $url = $params['url'];
-          $data = array('id','column_name','url');
+          $data = array('columnID','columnName','url');
           //根据用户传入的参数和id生成url字段，并执行入栈操作
           for ($i=0; $i < count($ColumnInfo); $i++) { 
-            $c_url = $url.'?cid='.$ColumnInfo[$i]['id'];
+            $c_url = $url.'?cid='.$ColumnInfo[$i]['columnID'];
             array_push($ColumnInfo[$i],$c_url);
           }
           //重组数组，修改数组键值

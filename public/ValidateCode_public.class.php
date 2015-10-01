@@ -12,7 +12,7 @@
 
       //构造方法初始化字体
       public function __construct() {
-        $this->font = ROOT_PATH.'/font/elephant.ttf';
+        $this->font = ROOT_PATH.'/public/font/elephant.ttf';
       }
 
       // 生产随机码

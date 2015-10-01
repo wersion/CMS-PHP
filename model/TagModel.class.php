@@ -3,7 +3,7 @@
 
   class TagModel extends Model {
     
-    private $_column_id,$_pid,$_limit;
+    private $articleID,$columnID,$parentID,$limit;
     
     // 拦截器
     public function __set($_key,$_value){
@@ -16,56 +16,73 @@
     }
 
     // 获取所有父级栏目
-    public function GetAllTopColumn(){
-      $_sql = "SELECT id,column_name 
-                FROM cms_column
-                WHERE pid=0
+    public function getAllTopColumn(){
+      $_sql = "SELECT columnID,columnName 
+                FROM content_column
+                WHERE parentID=0
                 ORDER BY sort ASC
-                $this->_limit;";
+                $this->limit;";
       return parent::GetAll($_sql);
     }
 
     //获取单一栏目信息
-    public function GetOneColumn(){
-      $_sql = "SELECT id,column_name,column_info,pid,sort
-                FROM cms_column
-                WHERE id='$this->_column_id'
+    public function getOneColumn(){
+      $_sql = "SELECT columnID,columnName,columnInfo,parentID,sort
+                FROM content_column
+                WHERE columnID='$this->columnID'
                 LIMIT 1";
       return parent::GetOne($_sql);
     }
 
     //获取子栏目信息
-    public function GetSubColumn(){
-      $_sql = "SELECT id,column_name
-                FROM cms_column
-                WHERE pid='$this->_pid'
-                $this->_limit;";
+    public function getSubColumn(){
+      $_sql = "SELECT columnID,columnName
+                FROM content_column
+                WHERE parentID='$this->parentID'
+                $this->limit;";
       return parent::GetAll($_sql);
     }
 
-    public function GetArticleListTotal(){
+    public function getArticleListTotal(){
       $_sql = "SELECT COUNT(*)
-                FROM cms_article
-                WHERE (column_id in (SELECT id FROM cms_column WHERE pid='$this->_column_id') OR column_id = '$this->_column_id')";
+                FROM content_article
+                WHERE (columnID in (SELECT columnID FROM content_column WHERE parentID='$this->columnID') OR columnID = '$this->columnID')";
       return parent::GetTotal($_sql);
     }
+    
 
     //获取当前栏目文章列表（不包含子栏目）
-    public function GetArticleList(){
-      $_sql = "SELECT a.id,c.column_name,a.article_title,a.article_updatetime,a.article_info
-                FROM cms_article a,cms_column c
-                WHERE a.column_id = c.id AND a.column_id='$this->_column_id'
-                $this->_limit;";
+    public function getArticleList(){
+      $_sql = "SELECT a.articleID,c.columnName,a.articleTitle,a.articleUpdatetime,a.articleInfo
+                FROM content_article a,content_column c
+                WHERE a.columnID = c.columnID AND a.columnID='$this->columnID'
+                $this->limit;";
       return parent::GetAll($_sql);
     }
 
     //获取当前栏目文章列表（只包含下一层子栏目）
-    public function GetAllArticleList(){
-      $_sql = "SELECT a.id,c.column_name,a.article_title,a.article_updatetime,a.article_info
-                FROM cms_article a,cms_column c
-                WHERE a.column_id = c.id 
-                AND (a.column_id in (SELECT id FROM cms_column WHERE pid='$this->_column_id') OR a.column_id = '$this->_column_id')
-                $this->_limit;";
+    public function getAllArticleList(){
+      $_sql = "SELECT a.articleID,c.columnName,a.articleTitle,a.articleUpdatetime,a.articleInfo
+                FROM content_article a,content_column c
+                WHERE a.columnID = c.columnID 
+                AND (a.columnID in (SELECT columnID FROM content_column WHERE parentID='$this->columnID') OR a.columnID = '$this->columnID')
+                $this->limit;";
+      return parent::GetAll($_sql);
+    }
+    
+    //获取当前文章的内容
+    public function getContent(){
+      $_sql = "SELECT a.articleID,a.articleTitle,a.articleUpdatetime,a.articleContent,c.columnName
+                FROM content_article a,content_column c
+                WHERE a.columnID=c.columnID AND a.articleID='$this->articleID'";
+      return parent::GetOne($_sql);
+    }
+    
+    //获取当前文章的评论
+    public function getComment(){
+      $_sql = "SELECT c.commentID,a.accountNickName,c.commentUpdatetime,c.commentUpdatetime,c.commentContent,c.commentAgree
+                FROM member_comment c,member_account a
+                WHERE c.commentAccountID=a.accountID AND c.articleID='$this->articleID'";
       return parent::GetAll($_sql);
     }
   }

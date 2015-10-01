@@ -21,28 +21,28 @@
           exit();
         }
         //判断用户是否设定栏目ID
-        if(isset($params['column_id'])){
-          $_model->_column_id = $params['column_id'];
+        if(isset($params['columnID'])){
+          $_model->columnID = $params['columnID'];
         }else{
-          $_model->_column_id = $_GET['cid'];
+          $_model->columnID = $_GET['cid'];
         }
         //判断用户是否设置limit，有则获取
         if(isset($params['limit'])){
           $limit = $params['limit'];
-          $_page = new Page_public($_model->GetArticleListTotal(),$limit);
-          $_model->_limit = $_page->limit;
+          $_page = new Page_public($_model->getArticleListTotal(),$limit);
+          $_model->limit = $_page->limit;
           $smarty->assign('Page',$_page->showPage());
           $smarty->assign('num',(($_page->page-1)*$limit)+1);
         }
         // 获取数据
-        $ArticleInfo = $_model->GetAllArticleList();
+        $ArticleInfo = $_model->getAllArticleList();
         // 判断用户是否设置url，有则获取,并重组数组
         if(isset($params['url'])){
           $url = $params['url'];
-          $data = array('id','column_name','article_title','article_updatetime','article_info','url');
+          $data = array('columnID','columnName','articleTitle','articleUpdatetime','articleInfo','url');
           //根据用户传入的参数和id生成url字段，并执行入栈操作
           for ($i=0; $i < count($ArticleInfo); $i++) { 
-            $c_url = $url.'?aid='.$ArticleInfo[$i]['id'];
+            $c_url = $url.'?aid='.$ArticleInfo[$i]['articleID'];
             array_push($ArticleInfo[$i],$c_url);
           }
           //重组数组，修改数组键值

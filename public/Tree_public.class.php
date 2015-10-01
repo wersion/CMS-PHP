@@ -1,17 +1,17 @@
 <?php
-  // 重组数组，显示无限级分类
+  // 重组数组，生成树形结果
   class Tree_public{
     static public $TreeList=array();
 
-    static public function Create($data,$pid=0){
+    static public function createTreeStruct($data,$pid,$idName){
       foreach ($data as $key => $value) {
-        if($value['pid']==$pid){
+        if($value['parentID']==$pid){
           self::$TreeList[]=$value;
           unset($data[$key]);
-          self::Create($data,$value['id']);
+          self::createTreeStruct($data,$value[$idName],$idName);
         }
       }
       return self::$TreeList;
     }
-  }
+}
 ?>

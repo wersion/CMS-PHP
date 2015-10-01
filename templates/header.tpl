@@ -1,16 +1,13 @@
 <div id="top">
-	<a href="###">这里可以放置文字广告1</a>
-	<a href="###">这里可以放置文字广告2</a>
+
 </div>
 <div id="header">
-	<h1><a href="###">瓢城Web俱乐部</a></h1>
-	<div class="adver"><a href="###"><img src="images/adver.png" alt="广告图" /></a></div>
 </div>
 <div id="nav">
 	<ul>
-		{GetAllTopColumn assign="column" url="list.php" limit="10"}
+		{GetAllTopColumn assign="column" url="List.php" limit="10"}
 		{foreach from=$column key=key item=item}
-			<li><a href="{$item.url}">{$item.column_name}</a></li>
+			<li><a href="{$item.url}">{$item.columnName}</a></li>
 		{/foreach}
  </ul>
 </div>
@@ -24,17 +21,4 @@
 		<input type="text" name="keyword" class="text" />
 		<input type="submit" name="send" class="submit" value="搜索" />
 	</form>
-	<strong>TAG标签：</strong>
-	<ul>
-		<li><a href="###">基金(3)</a></li>
-		<li><a href="###">美女(1)</a></li>
-		<li><a href="###">白兰地(3)</a></li>
-		<li><a href="###">音乐(1)</a></li>
-		<li><a href="###">体育(1)</a></li>
-		<li><a href="###">直播(1)</a></li>
-		<li><a href="###">会晤(1)</a></li>
-		<li><a href="###">韩日(1)</a></li>
-		<li><a href="###">警方(1)</a></li>
-		<li><a href="###">广州(1)</a></li>
-	</ul>
 </div>

@@ -32,7 +32,7 @@
           $_model->_column_id = $_GET['cid'];
         }
         // 获取数据
-        $ArticleInfo = $_model->GetArticleList();
+        $ArticleInfo = $_model->getArticleList();
         // 判断用户是否设置url，有则获取,并重组数组
         if(isset($params['url'])){
           $url = $params['url'];

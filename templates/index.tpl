@@ -3,44 +3,23 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>CMS内容管理系统</title>
-<link rel="stylesheet" type="text/css" href="style/index.css" />
+<link rel="stylesheet" type="text/css" href="../style/index.css" />
 </head>
 <body>
 {include file='header.tpl'}
 <div id="user">
 	<h2>会员信息</h2>
-	<form>
-		<label>用户名：<input type="text" name="username" class="text" /></label>
-		<label>密　码：<input type="password" name="password" class="text" /></label>
-		<label>验证码：<input type="text" name="code" class="text code" /></label>
-		<img src="images/vdimgck.png" alt="验证码" />
-		<p><input type="submit" name="send" value="登录" class="submit" /> <a href="###">注册会员</a> <a href="###">忘记密码?</a></p>
+	<form method="post" action="MemberLogin.php?action=memberLogin">
+		<label>用户名：<input type="text" name="accountEmail" class="text" /></label>
+		<label>密　码：<input type="password" name="accountPassword" class="text" /></label>
+		<label>验证码：<input type="text" name="code" class="text code" /></label><br/>
+		<p><img src="../configs/code.php" onclick="javascript:this.src='../configs/code.php?tm='+Math.random();" /></p>
+		<input type="submit" value="登录" class="submit" name="send" />
+		<a href="###">注册会员</a> <a href="###">忘记密码?</a>
 	</form>
-	<h3>最近登录会员 <span>────────────</span></h3>
-	<dl>
-		<dt><img src="images/01.gif" alt="头像" /></dt>
-		<dd>樱桃小丸子</dd>
 	</dl>
-	<dl>
-		<dt><img src="images/04.gif" alt="头像" /></dt>
-		<dd>蜡笔小新</dd>
-	</dl>
-	<dl>
-		<dt><img src="images/12.gif" alt="头像" /></dt>
-		<dd>圣斗士星矢</dd>
-	</dl>
-	<dl>
-		<dt><img src="images/17.gif" alt="头像" /></dt>
-		<dd>黑崎一护</dd>
-	</dl>
-	<dl>
-		<dt><img src="images/22.gif" alt="头像" /></dt>
-		<dd>我叫MT</dd>
-	</dl>
-	<dl>
-		<dt><img src="images/14.gif" alt="头像" /></dt>
-		<dd>海贼王路飞</dd>
-	</dl>
+	
+	<a href="MemberLogin.php?action=memberLogout" target="_parent">退出</a>
 </div>
 <div id="news">
 	<h3><a href="###">联合利华因散布涨价信息被罚</a></h3>

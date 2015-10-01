@@ -1,7 +1,7 @@
 <?php
   class RbacUserModel extends Model {
     
-    private $_limit,$_id,$_username,$_password,$_logintime,$_loginip,$_status,$_role_id,$_user_id;
+    private $limit,$userID,$userName,$password,$loginTime,$loginIP,$status,$ruRoleID;
     
     // 拦截器
     public function __set($_key,$_value){
@@ -13,71 +13,61 @@
     }
 
     //查询用户总条数
-    public function GetTotalUser(){
+    public function getTotalUser(){
       $_sql="SELECT COUNT(*) FROM rbac_user";
       return parent::GetTotal($_sql);
     }
 
     //查询所有用户记录
-    public function GetAllUser(){
-      $_sql="SELECT u.id,u.username,r.`name` as user_role,u.logintime,u.loginip,u.`status` 
+    public function getAllUser(){
+      $_sql="SELECT u.userID,u.userName,r.`roleName` as userRole,u.loginTime,u.loginIP,u.`status` 
               FROM rbac_user u, rbac_role r,rbac_role_user ru 
-              WHERE u.id=ru.user_id AND r.id=ru.role_id";
+              WHERE u.userID=ru.userID AND r.roleID=ru.roleID";
       return parent::GetAll($_sql);
     }
 
     // 查询所有用户组
-    public function GetAllRole(){
-      $_sql="SELECT id,name
+    public function getAllRole(){
+      $_sql="SELECT roleID,roleName
                 FROM rbac_role
-                ORDER BY id ASC
-                $this->_limit;";
+                ORDER BY roleID ASC
+                $this->limit;";
       return parent::GetAll($_sql);
     }
 
     // 新增用户
-    public function AddUser(){
-      $_sql = "INSERT INTO rbac_user(username,password,logintime,loginip,status)
-                VALUES ('$this->_username','$this->_password',NOW(),'$this->_loginip','$this->_status')";
+    public function addUser(){
+      $_sql = "INSERT INTO rbac_user(userName,password,loginTime,loginIP,status)
+                VALUES ('$this->userName','$this->password',NOW(),'$this->loginIP','$this->status')";
       return parent::CUD($_sql);
     } 
 
-    public function AddUserRole(){
-      $_sql = "INSERT INTO rbac_role_user(user_id,role_id)
-                VALUES (".parent::GetNextId('rbac_user')."-1,'$this->_role_id')";
+    public function addUserRole(){
+      $_sql = "INSERT INTO rbac_role_user(userID,roleID)
+                VALUES (".parent::GetNextID('rbac_user')."-1,'$this->ruRoleID')";
       return parent::CUD($_sql);
     }
 
     // 删除用户
-    public function DeleteUser(){
+    public function deleteUser(){
       $_sql = "DELETE FROM rbac_user 
-                WHERE id = '$this->_id'";
+                WHERE userID = '$this->userID'";
       return parent::CUD($_sql);
     }
 
     // 获取一条用户数据
-    public function GetOneUser(){
-      $_sql = "SELECT username,password,status
+    public function getOneUser(){
+      $_sql = "SELECT userName,password,status
                 FROM rbac_user 
-                WHERE id='$this->_id' LIMIT 1;"; 
+                WHERE userID='$this->userID' LIMIT 1;"; 
       return parent::GetOne($_sql);
     }
 
-    // 修改一条用户数据
-    public function  UpdateUser(){
-      $_sql = "UPDATE rbac_user
-                SET username='$this->_username',password='$this->_password',status='$this->_status'
-                WHERE id='$this->_id'
-                LIMIT 1";
-      return parent::CUD($_sql);
-    }
-
-    //修改用户所对应的用户组信息
-    public function UpdateUserRole(){
-      $_sql = "UPDATE rbac_role_user
-                SET role_id='$this->_role_id'
-                WHERE user_id='$this->_id'
-                LIMIT 1";
+    // 修改用户数据
+    public function  updateUser(){
+      $_sql = "UPDATE rbac_user u,rbac_role_user ru
+                SET u.userName='$this->userName',u.password='$this->password',u.status='$this->status',ru.RoleID='$this->ruRoleID'
+                WHERE u.userID = ru.userID AND u.userID='$this->userID'";
       return parent::CUD($_sql);
     }
   }

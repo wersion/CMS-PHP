@@ -266,6 +266,17 @@ ul {
 	text-align: left;
 	text-indent: 50px;
 }
+.secondStage{
+	width: 100px;
+	height: 20px;
+	cursor: pointer;
+}
+.secondStage:hover{
+	text-decoration: underline;
+}
+.thirdStage{
+	text-indent: 2em;
+}
 
 
 

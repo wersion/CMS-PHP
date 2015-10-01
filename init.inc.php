@@ -27,17 +27,17 @@
   // 解决Smarty与_atuoload函数的冲突
   spl_autoload_register("__autoload");
   // 声明Smarty对象
-  $_tpl = new Smarty();
+  $_smarty = new Smarty();
   // 模板目录
-  $_tpl->template_dir = ROOT_PATH.'\templates';
+  $_smarty->template_dir = ROOT_PATH.'\templates';
   // 编译目录
-  $_tpl->compile_dir = ROOT_PATH.'\templates_c';
+  $_smarty->compile_dir = ROOT_PATH.'\templates_c';
   // 配置目录
-  $_tpl->config_dir = ROOT_PATH.'\configs';
+  $_smarty->config_dir = ROOT_PATH.'\configs';
   // 缓存目录
-  $_tpl->cache_dir = ROOT_PATH.'\cache';
+  $_smarty->cache_dir = ROOT_PATH.'\cache';
   // 增加一个插件目录，模板标签专用
-  $_tpl->addPluginsDir(ROOT_PATH.'\tag');
+  $_smarty->addPluginsDir(ROOT_PATH.'\tag');
   // 关闭缓存
-  $_tpl->caching = false;
+  $_smarty->caching = false;
 ?>

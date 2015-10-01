@@ -2,7 +2,7 @@
 <?php
   class Model {
 
-    protected function GetNextId($_table){
+    protected function GetNextID($_table){
       $_sql = "SHOW TABLE STATUS LIKE '$_table';"; 
       $arr = $this->GetOne($_sql);
       return $arr['Auto_increment'];

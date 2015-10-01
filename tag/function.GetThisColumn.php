@@ -15,19 +15,17 @@
         if (isset($params['assign'])){
           $assign = $params['assign'];
           // 判断是否设置参数cid，如没有则从url中获取
-          if (isset($params['cid'])) {
-            $_model->_column_id = $params['cid'];
-          }
-          else{
-            $_model->_column_id = $_GET['cid'];
-          }
-          if($ColumnInfo = $_model->GetOneColumn()){
-            //将数据注入到模板
-            $smarty->assign($assign,$ColumnInfo);
+          if (isset($params['cid'])||isset($_GET['cid'])) {
+            $_model->columnID = isset($params['cid'])?$params['cid']:$_GET['cid'];
+            $ColumnInfo = $_model->GetOneColumn();
+          }elseif(isset($_GET['aid'])){
+              $_model->articleID = $_GET['aid'];
+              $ColumnInfo = $_model->getArticleColumn();
           }else{
             echo"没有获取到指定的栏目";
             exit();
           }
+          $smarty->assign($assign,$ColumnInfo);
         }else{
           echo"没有设置返回数据的变量名！";
           exit();

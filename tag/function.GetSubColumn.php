@@ -16,11 +16,11 @@
         if (isset($params['assign'])){
           $assign = $params['assign'];
           // 判断是否设置参数cid，如没有则从url中获取
-          if (isset($params['parent_id'])) {
-            $_model->_pid = $params['p_id'];
+          if (isset($params['parentID'])) {
+            $_model->parentID = $params['parentID'];
           }
           else{
-            $_model->_pid = $_GET['cid'];
+            $_model->parentID = $_GET['cid'];
           }
           // 判断用户是否设置limit，有则获取
           if(isset($params['limit'])){
@@ -28,14 +28,14 @@
             $_model->_limit = 'LIMIT 0,'.$limit;
           }
           //获取数据
-          if($ColumnInfo = $_model->GetSubColumn()){
+          if($ColumnInfo = $_model->getSubColumn()){
             // 判断用户是否设置url，有则获取url,并重组数组
             if(isset($params['url'])){
               $url = $params['url'];
-              $data = array('id','column_name','url');
+              $data = array('columnID','columnName','url');
               //根据用户传入的参数和id生成url字段，并执行入栈操作
               for ($i=0; $i < count($ColumnInfo); $i++) { 
-                $c_url = $url.'?cid='.$ColumnInfo[$i]['id'];
+                $c_url = $url.'?cid='.$ColumnInfo[$i]['columnID'];
                 array_push($ColumnInfo[$i],$c_url);
               }
               //重组数组，修改数组键值
