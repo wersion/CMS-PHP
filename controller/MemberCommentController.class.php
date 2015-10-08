@@ -84,6 +84,7 @@
     // 查
     private function showComment(){
       Validate_public::checkNode('showComment');
+      parent::page($this->_model->getTotalComment());
       $this->_tpl->assign('showComment',true);
       $this->_tpl->assign('title','网站评论列表');
       $this->_tpl->assign('AllComment',$this->_model->getAllComment());

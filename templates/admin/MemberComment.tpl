@@ -1,16 +1,17 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>main</title>
-<link rel="stylesheet" type="text/css" href="../style/admin.css" />
-</head>
-<body id="manage">
-  <div class="map">
-    管理首页 &gt;&gt; 管理员管理&gt;&gt;<strong>{$title}</strong>
-  </div>
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Template</title>
+    <link href="../style/admin.css" rel="stylesheet">
+    <link href="../style/bootstrap.min.css" rel="stylesheet">
+  </head>
+  <body class="background">
+  <div class="container min-height wite">
   {if isset($showComment)&&$showComment == true}
-  <table class="list">
+  <table class="table table-hover">
     <tr><th>ID</th><th>评论所属文章</th><th>评论会员ID</th><th>评论时间</th><th>评论内容</th><th>赞</th>{if isset($delete)||isset($update)}<th>操作</th>{/if}</tr>
     {foreach from=$AllComment key=key item=item}
       <tr>
@@ -21,26 +22,49 @@
         <td>{$item.commentContent}</td>
         <td>{$item.commentAgree}</td>
         <td>
-          {if isset($update)&&$update == true}<a href="MemberComment.php?action=updateComment&id={$item.commentID}">[ 修改 ]</a>
-          {elseif isset($delete)&&$delete == true}<a href="MemberComment.php?action=deleteComment&id={$item.commentID}" onclick="return confirm('确定删除此评论')?true:false">[ 删除 ]</a>
+          {if isset($update)&&$update == true}<a href="MemberComment.php?action=updateComment&id={$item.commentID}"><button type="button" class="btn btn-primary btn-sm">修改</button></a>
+          {elseif isset($delete)&&$delete == true}<a href="MemberComment.php?action=deleteComment&id={$item.commentID}" onclick="return confirm('确定删除此评论')?true:false"><button type="button" class="btn btn-primary btn-sm">删除</button></a>
           {/if}
         </td>
       </tr>
     {/foreach}
   </table>
+    <div class="page">
+      <ul class="pagination">
+        {$Page}
+      </ul>
+    </div>
 
   {elseif isset($updateComment)&&$updateComment == true}
-    <form method="post">
-      <table class="create">
-        <input type="hIDden" id="pre_url" name="preUrl" value="{$preUrl}">
-          <tr><td><p>评论所属文章：</p></td><td><input type="text" name="articleID" class="text" value="{$articleID}"/></td></tr>
-          <tr><td><p>评论会员ID：</p></td><td><input type="text" name="commentAccountID" class="text" value="{$commentAccountID}"/></td></tr>
-          <tr><td><p>评论时间：</p></td><td><input type="text" name="commentUpdatetime" class="text" value="{$commentUpdatetime}"/></td></tr>
-          <tr><td><p>评论内容：</p></td><td><input type="text" name="commentContent" class="text" value="{$commentContent}"/></td></tr>
-          <tr><td><p>赞：</p></td><td><input type="text" name="commentAgree" class="text" value="{$commentAgree}"/></td></tr>
-      </table>
-      <div class="butt"><input type="submit" name="send" value="修改评论" class="submit" /> [ <a href="MemberComment.php?action=updateComment">返回列表</a> ]</div>
-    </form>
+      <form method="post">
+        <div class="form-group">
+          <label for="userName">评论所属文章：</label>
+          <input input type="text" name="articleID" class="form-control" placeholder="评论所属文章" value="{$articleID}"/>
+        </div>
+        <div class="form-group">
+          <label for="userName">评论会员ID：</label>
+          <input input type="text" name="commentAccountID" class="form-control" placeholder="评论会员ID" value="{$commentAccountID}"/>
+        </div>
+        <div class="form-group">
+          <label for="userName">评论时间：</label>
+          <input input type="text" name="commentUpdatetime" class="form-control" placeholder="评论时间" value="{$commentUpdatetime}"/>
+        </div>
+        <div class="form-group">
+          <label for="userName">评论内容：</label>
+          <input input type="text" name="commentContent" class="form-control" placeholder="评论内容" value="{$commentContent}"/>
+        </div>
+        <div class="form-group">
+          <label for="userName">赞：</label>
+          <input input type="text" name="commentAgree" class="form-control" placeholder="赞：" value="{$commentAgree}"/>
+        </div>
+        <div class="form-group">  
+          <input name="send" type="submit" class="btn btn-primary btn-lg" value="修改用户" />
+          <a href="MemberComment.php?action=updateComment"><button type="button" class="btn btn-primary btn-lg">返回列表</button></a>
+        </div>
+      </form>
   {/if}
-</body>
+  </div>
+	<script src="../js/jq/jquery-1.11.3.min.js"></script>
+	<script src="../js/bootstrap/bootstrap.min.js"></script>
+  </body>
 </html>

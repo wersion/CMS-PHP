@@ -1,13 +1,12 @@
 <div id="top">
-
 </div>
 <div id="header">
 </div>
 <div id="nav">
 	<ul>
-		{GetAllTopColumn assign="column" url="List.php" limit="10"}
-		{foreach from=$column key=key item=item}
-			<li><a href="{$item.url}">{$item.columnName}</a></li>
+		{GetNav assign="nav" url="List.php" limit="10"}
+		{foreach from=$nav key=key item=item}
+			<li><a href="{$item.url}">{$item.navName}</a></li>
 		{/foreach}
  </ul>
 </div>

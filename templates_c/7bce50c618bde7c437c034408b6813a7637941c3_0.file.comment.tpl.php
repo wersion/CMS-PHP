@@ -1,7 +1,7 @@
-<?php /* Smarty version 3.1.24, created on 2015-10-01 10:25:16
+<?php /* Smarty version 3.1.24, created on 2015-10-08 12:46:31
          compiled from "C:/wamp/www/CMS-PHP/templates/comment.tpl" */ ?>
 <?php
-/*%%SmartyHeaderCode:4131560c998c548705_58510911%%*/
+/*%%SmartyHeaderCode:35405615f5274932f1_16571852%%*/
 if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
@@ -9,27 +9,28 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '7bce50c618bde7c437c034408b6813a7637941c3' => 
     array (
       0 => 'C:/wamp/www/CMS-PHP/templates/comment.tpl',
-      1 => 1443666312,
+      1 => 1444220563,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '4131560c998c548705_58510911',
+  'nocache_hash' => '35405615f5274932f1_16571852',
   'variables' => 
   array (
     'comment' => 0,
     'item' => 0,
-    'content' => 0,
+    'article' => 0,
+    'page' => 0,
   ),
   'has_nocache_code' => false,
   'version' => '3.1.24',
-  'unifunc' => 'content_560c998c586449_46276915',
+  'unifunc' => 'content_5615f527515c60_93129770',
 ),false);
 /*/%%SmartyHeaderCode%%*/
-if ($_valid && !is_callable('content_560c998c586449_46276915')) {
-function content_560c998c586449_46276915 ($_smarty_tpl) {
+if ($_valid && !is_callable('content_5615f527515c60_93129770')) {
+function content_5615f527515c60_93129770 ($_smarty_tpl) {
 if (!is_callable('smarty_function_GetComment')) require_once 'C:/wamp/www/CMS-PHP/tag/function.GetComment.php';
 
-$_smarty_tpl->properties['nocache_hash'] = '4131560c998c548705_58510911';
+$_smarty_tpl->properties['nocache_hash'] = '35405615f5274932f1_16571852';
 ?>
   <?php echo smarty_function_GetComment(array('assign'=>"comment"),$_smarty_tpl);?>
 
@@ -67,8 +68,9 @@ $_smarty_tpl->tpl_vars['item'] = $foreach_item_Sav;
  <div>
 	发表评论：
 	<form id="comment">
-		<input type="hidden" id="articleID" name="articleID" value="<?php echo $_smarty_tpl->tpl_vars['content']->value['articleID'];?>
-"/>
+		<input type="hidden" id="articleID" name="articleID" <?php if (isset($_smarty_tpl->tpl_vars['article']->value)) {?>value="<?php echo $_smarty_tpl->tpl_vars['article']->value['articleID'];?>
+" <?php } elseif (isset($_smarty_tpl->tpl_vars['page']->value)) {?>value="<?php echo $_smarty_tpl->tpl_vars['page']->value['pageID'];?>
+ <?php }?>"/>
 		<textarea name="commentContent" id="comment" cols="40" rows="2" placeholder="请输入评论"></textarea>
 	
 		<input id="subButton" type="button" url='123' value="提交评论"/>

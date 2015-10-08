@@ -14,7 +14,7 @@
     }
 
     public function getTotalComment(){
-      $_sql="SELECT COUNT(*) FROM memberComment";
+      $_sql="SELECT COUNT(*) FROM member_Comment";
       return parent::GetTotal($_sql);
     }
 

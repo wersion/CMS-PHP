@@ -1,7 +1,7 @@
-<?php /* Smarty version 3.1.24, created on 2015-10-01 15:53:25
+<?php /* Smarty version 3.1.24, created on 2015-10-08 12:46:24
          compiled from "C:/wamp/www/CMS-PHP/templates/admin/MemberAccount.tpl" */ ?>
 <?php
-/*%%SmartyHeaderCode:10026560ce675175711_91827915%%*/
+/*%%SmartyHeaderCode:321975615f5204e3a99_44514440%%*/
 if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
@@ -9,50 +9,49 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '513436890bf394cee25e9be2ba1f4ba04986a9d0' => 
     array (
       0 => 'C:/wamp/www/CMS-PHP/templates/admin/MemberAccount.tpl',
-      1 => 1443686002,
+      1 => 1444117670,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '10026560ce675175711_91827915',
+  'nocache_hash' => '321975615f5204e3a99_44514440',
   'variables' => 
   array (
-    'title' => 0,
     'showAccount' => 0,
     'delete' => 0,
     'update' => 0,
     'AllAccount' => 0,
     'item' => 0,
+    'Page' => 0,
     'addAccount' => 0,
     'updateAccount' => 0,
-    'preUrl' => 0,
     'accountEmail' => 0,
     'accountNickName' => 0,
     'password' => 0,
   ),
   'has_nocache_code' => false,
   'version' => '3.1.24',
-  'unifunc' => 'content_560ce67527d919_85720399',
+  'unifunc' => 'content_5615f5205cccf6_56586537',
 ),false);
 /*/%%SmartyHeaderCode%%*/
-if ($_valid && !is_callable('content_560ce67527d919_85720399')) {
-function content_560ce67527d919_85720399 ($_smarty_tpl) {
+if ($_valid && !is_callable('content_5615f5205cccf6_56586537')) {
+function content_5615f5205cccf6_56586537 ($_smarty_tpl) {
 
-$_smarty_tpl->properties['nocache_hash'] = '10026560ce675175711_91827915';
+$_smarty_tpl->properties['nocache_hash'] = '321975615f5204e3a99_44514440';
 ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>main</title>
-<link rel="stylesheet" type="text/css" href="../style/admin.css" />
-</head>
-<body id="manage">
-  <div class="map">
-    管理首页 &gt;&gt; 管理员管理&gt;&gt;<strong><?php echo $_smarty_tpl->tpl_vars['title']->value;?>
-</strong>
-  </div>
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Template</title>
+    <link href="../style/admin.css" rel="stylesheet">
+    <link href="../style/bootstrap.min.css" rel="stylesheet">
+  </head>
+  <body class="background">
+  <div class="container min-height wite">
   <?php if (isset($_smarty_tpl->tpl_vars['showAccount']->value) && $_smarty_tpl->tpl_vars['showAccount']->value == true) {?>
-  <table class="list">
+  <table class="table table-hover">
     <tr><th>ID</th><th>注册邮箱</th><th>会员昵称</th><th>会员密码</th><th>注册时间</th><th>状态</th><?php if (isset($_smarty_tpl->tpl_vars['delete']->value) || isset($_smarty_tpl->tpl_vars['update']->value)) {?><th>操作</th><?php }?></tr>
     <?php
 $_from = $_smarty_tpl->tpl_vars['AllAccount']->value;
@@ -79,9 +78,9 @@ $foreach_item_Sav = $_smarty_tpl->tpl_vars['item'];
         <td><?php if ($_smarty_tpl->tpl_vars['item']->value['status'] == 0) {?>禁言<?php } elseif ($_smarty_tpl->tpl_vars['item']->value['status'] == 1) {?>正常<?php }?></td>
         <td>
           <?php if (isset($_smarty_tpl->tpl_vars['update']->value) && $_smarty_tpl->tpl_vars['update']->value == true) {?><a href="MemberAccount.php?action=updateAccount&id=<?php echo $_smarty_tpl->tpl_vars['item']->value['accountID'];?>
-">[ 修改 ]</a>
+"><button type="button" class="btn btn-primary btn-sm">修改</button></a>
           <?php } elseif (isset($_smarty_tpl->tpl_vars['delete']->value) && $_smarty_tpl->tpl_vars['delete']->value == true) {?><a href="MemberAccount.php?action=deleteAccount&id=<?php echo $_smarty_tpl->tpl_vars['item']->value['accountID'];?>
-" onclick="return confirm('确定删除此用户')?true:false">[ 删除 ]</a>
+" onclick="return confirm('确定删除此用户')?true:false"><button type="button" class="btn btn-primary btn-sm">删除</button></a>
           <?php }?>
         </td>
       </tr>
@@ -90,35 +89,82 @@ $_smarty_tpl->tpl_vars['item'] = $foreach_item_Sav;
 }
 ?>
   </table>
+    <div class="page">
+        <ul class="pagination">
+          <?php echo $_smarty_tpl->tpl_vars['Page']->value;?>
+
+        </ul>
+    </div>
 
   <?php } elseif (isset($_smarty_tpl->tpl_vars['addAccount']->value) && $_smarty_tpl->tpl_vars['addAccount']->value == true) {?>
     <form method="post">
-      <table class="create">
-        <tr><td><p>注册邮箱：</p></td><td><input type="text" name="accountEmail" class="text" /></td></tr>
-        <tr><td><p>用户昵称：</p></td><td><input type="text" name="accountNickName" class="text" /></td></tr>
-        <tr><td><p>密码：</p></td><td><input type="text" name="password" class="text" /></td></tr>
-        <tr><td><p>用户状态：</p></td><td><label><input type="radio" name="status" value="1" />开启</label><label><input type="radio" name="userStatus" value="0" />禁言</label></td></tr>
-      </table>
-      <div class="butt"><input type="submit" name="send" value="新增用户" class="submit" /> [ <a href="MemberAccount.php?action=showAccount">返回列表</a> ]</div>
+        <div class="form-group">
+          <label for="userName">注册邮箱：</label>
+          <input input type="text" name="accountEmail" class="form-control" placeholder="注册邮箱"/>
+        </div>
+        <div class="form-group">
+          <label for="userName">用户昵称：</label>
+          <input input type="text" name="accountNickName" class="form-control" placeholder="用户昵称："/>
+        </div>
+        <div class="form-group">
+          <label for="userName">密码：</label>
+          <input input type="password" name="password" class="form-control" placeholder="密码"/>
+        </div>
+        <div class="form-group">
+          用户状态：
+          <label class="radio-inline">
+            <input type="radio" name="status" value="1"> 开启
+          </label>
+          <label class="radio-inline">
+            <input type="radio" name="status" value="0"> 停用
+          </label>
+        </div>
+        <div class="form-group">  
+          <input name="send" type="submit" class="btn btn-primary btn-lg" value="修改用户" />
+          <a href="MemberAccount.php?action=showAccount"><button type="button" class="btn btn-primary btn-lg">返回列表</button></a>
+        </div>
     </form>
 
   <?php } elseif (isset($_smarty_tpl->tpl_vars['updateAccount']->value) && $_smarty_tpl->tpl_vars['updateAccount']->value == true) {?>
     <form method="post">
-      <table class="create">
-        <input type="hIDden" id="pre_url" name="preUrl" value="<?php echo $_smarty_tpl->tpl_vars['preUrl']->value;?>
-">
-        <tr><td><p>注册邮箱：</p></td><td><input type="text" name="accountEmail" class="text" value="<?php echo $_smarty_tpl->tpl_vars['accountEmail']->value;?>
-" /></td></tr>
-        <tr><td><p>用户昵称：</p></td><td><input type="text" name="accountNickName" class="text" value="<?php echo $_smarty_tpl->tpl_vars['accountNickName']->value;?>
-" /></td></tr>
-        <tr><td><p>密码：</p></td><td><input type="text" name="password" class="text" value="<?php echo $_smarty_tpl->tpl_vars['password']->value;?>
-" /></td></tr>
-        <tr><td><p>用户状态：</p></td><td><label><input type="radio" name="status" value="1" />开启</label><label><input type="radio" name="userStatus" value="0" />禁言</label></td></tr>
-      </table>
-      <div class="butt"><input type="submit" name="send" value="新增用户" class="submit" /> [ <a href="MemberAccount.php?action=updateAccount">返回列表</a> ]</div>
+        <div class="form-group">
+          <label for="userName">注册邮箱：</label>
+          <input input type="text" name="accountEmail" class="form-control" placeholder="注册邮箱" value="<?php echo $_smarty_tpl->tpl_vars['accountEmail']->value;?>
+"/>
+        </div>
+        <div class="form-group">
+          <label for="userName">用户昵称：</label>
+          <input input type="text" name="accountNickName" class="form-control" placeholder="用户昵称：" value="<?php echo $_smarty_tpl->tpl_vars['accountNickName']->value;?>
+"/>
+        </div>
+        <div class="form-group">
+          <label for="userName">密码：</label>
+          <input input type="password" name="password" class="form-control" placeholder="密码" value="<?php echo $_smarty_tpl->tpl_vars['password']->value;?>
+"/>
+        </div>
+        <div class="form-group">
+          用户状态：
+          <label class="radio-inline">
+            <input type="radio" name="status" value="1"> 开启
+          </label>
+          <label class="radio-inline">
+            <input type="radio" name="status" value="0"> 停用
+          </label>
+        </div>
+        <div class="form-group">  
+          <input name="send" type="submit" class="btn btn-primary btn-lg" value="修改用户" />
+          <a href="MemberAccount.php?action=updateAccount"><button type="button" class="btn btn-primary btn-lg">返回列表</button></a>
+        </div>
     </form>
   <?php }?>
-</body>
+  </div>
+	<?php echo '<script'; ?>
+ src="../js/jq/jquery-1.11.3.min.js"><?php echo '</script'; ?>
+>
+	<?php echo '<script'; ?>
+ src="../js/bootstrap/bootstrap.min.js"><?php echo '</script'; ?>
+>
+  </body>
 </html><?php }
 }
 ?>

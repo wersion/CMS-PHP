@@ -1,7 +1,7 @@
 <?php
   class RbacRoleModel extends Model {
     
-    private $roleID,$nodeID,$roleName,$parentID,$status,$roleInfo;
+    private $roleID,$nodeID,$roleName,$parentID,$status,$roleInfo,$limit;
     
     // 拦截器
     public function __set($_key,$_value){
@@ -23,7 +23,7 @@
       $_sql="SELECT roleID,roleName,roleType,status,roleInfo
                 FROM rbac_role
                 ORDER BY roleID ASC
-                $this->_limit;";
+                $this->limit;";
       return parent::GetAll($_sql);
     }
 

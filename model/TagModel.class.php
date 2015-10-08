@@ -3,7 +3,7 @@
 
   class TagModel extends Model {
     
-    private $articleID,$columnID,$parentID,$limit;
+    private $articleID,$columnID,$pageID,$parentID,$limit;
     
     // 拦截器
     public function __set($_key,$_value){
@@ -15,11 +15,21 @@
       return $this->$_key;
     }
 
-    // 获取所有父级栏目
+    //获取所有顶级单页
+    public function getAllTopPage(){
+      $_sql = "SELECT pageID,pageName,sort
+                FROM content_page
+                WHERE parentID=0 AND status=1
+                ORDER BY sort ASC
+                $this->limit;";
+     return parent::GetAll($_sql);
+    }
+
+    // 获取所有顶级栏目
     public function getAllTopColumn(){
-      $_sql = "SELECT columnID,columnName 
+      $_sql = "SELECT columnID,columnName,sort
                 FROM content_column
-                WHERE parentID=0
+                WHERE parentID=0 AND status=1
                 ORDER BY sort ASC
                 $this->limit;";
       return parent::GetAll($_sql);
@@ -71,10 +81,18 @@
     }
     
     //获取当前文章的内容
-    public function getContent(){
+    public function getArticle(){
       $_sql = "SELECT a.articleID,a.articleTitle,a.articleUpdatetime,a.articleContent,c.columnName
                 FROM content_article a,content_column c
                 WHERE a.columnID=c.columnID AND a.articleID='$this->articleID'";
+      return parent::GetOne($_sql);
+    }
+    
+    public function getPage(){
+      $_sql = "SELECT p.pageID,c.columnName,p.pageName,p.pageInfo,p.pageContent
+                FROM content_page p,content_column c 
+                WHERE p.parentID=c.columnID
+                AND pageID='$this->pageID'";
       return parent::GetOne($_sql);
     }
     

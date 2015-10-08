@@ -1,7 +1,7 @@
-<?php /* Smarty version 3.1.24, created on 2015-10-01 10:15:10
+<?php /* Smarty version 3.1.24, created on 2015-10-08 12:46:28
          compiled from "C:/wamp/www/CMS-PHP/templates/footer.tpl" */ ?>
 <?php
-/*%%SmartyHeaderCode:25988560c972e07e209_24464964%%*/
+/*%%SmartyHeaderCode:126095615f5245f5315_92320737%%*/
 if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
@@ -9,27 +9,23 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '174e87b1d424e6a14784f8b1f8feeef5423041ff' => 
     array (
       0 => 'C:/wamp/www/CMS-PHP/templates/footer.tpl',
-      1 => 1443428501,
+      1 => 1444129845,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '25988560c972e07e209_24464964',
+  'nocache_hash' => '126095615f5245f5315_92320737',
   'has_nocache_code' => false,
   'version' => '3.1.24',
-  'unifunc' => 'content_560c972e081633_85004361',
+  'unifunc' => 'content_5615f524607749_57865188',
 ),false);
 /*/%%SmartyHeaderCode%%*/
-if ($_valid && !is_callable('content_560c972e081633_85004361')) {
-function content_560c972e081633_85004361 ($_smarty_tpl) {
+if ($_valid && !is_callable('content_5615f524607749_57865188')) {
+function content_5615f524607749_57865188 ($_smarty_tpl) {
 
-$_smarty_tpl->properties['nocache_hash'] = '25988560c972e07e209_24464964';
+$_smarty_tpl->properties['nocache_hash'] = '126095615f5245f5315_92320737';
 ?>
-<div id="link">
-	<h2><span><a href="###">所有链接</a> | <a href="###">申请加入</a></span>友情链接</h2>
-</div>
 <div id="footer">
-	<p>Powered by <span>YC60.COM</span> (C) 2004-2011 DesDev Inc.</p>
-	<p>Copyright (C) 2004-2011 YC60CMS. <span>瓢城Web俱乐部</span> 版权所有</p>
+
 </div><?php }
 }
 ?>

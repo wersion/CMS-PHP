@@ -40,11 +40,7 @@
         $_login = $this->_model->getLoginUser();
         if($_login){
           $this->_model->loginIP = $_SERVER['REMOTE_ADDR'];
-<<<<<<< HEAD
           $this->_model->updateUserInfo();
-=======
-          $this->_model->updateLoginInfo();
->>>>>>> origin/master
           $this->_model->userID=$_login['userID'];
           $_node = $this->_model->getUserNode();
           $_node = Tree_public::createTreeStruct($_node,0,'nodeID');
@@ -56,8 +52,8 @@
               }
             }
           }
-          $_SESSION['admin']['admin_user'] = $_login['username'];
-          $_SESSION['admin']['admin_level'] = $_login['password'];
+          $_SESSION['user'] = $_login['userName'];
+          $_SESSION['role'] = $_login['roleName'];
           $_SESSION['nodeList']=$_node;
           $_SESSION['rbacNode']=$nodeArray;
           Tool_public::alertJump(null,'Admin.php');
@@ -100,11 +96,7 @@
     
     private function memberLogout(){
       Tool_public::unSession();
-<<<<<<< HEAD
       Tool_public::alertJump('退出成功','Index.php');
-=======
-      Tool_public::alertJump(null,'AdminLogin.php');
->>>>>>> origin/master
     }
 
 }

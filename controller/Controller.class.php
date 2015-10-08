@@ -11,9 +11,8 @@
 
     protected function page($GetTotal){
       $_page = new Page_public($GetTotal,PAGE_SIZE);               //初始化分页类
-      $this->_model->_limit = $_page->limit;
+      $this->_model->limit = $_page->limit;
       $this->_tpl->assign('Page',$_page->showPage());
-      $this->_tpl->assign('num',(($_page->page-1)*PAGE_SIZE)+1);
     }
     
   }

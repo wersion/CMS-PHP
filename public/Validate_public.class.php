@@ -3,7 +3,7 @@
 
     // 检查Session
     static function checkSession(){
-      if(!isset($_SESSION['admin'])){
+      if(!isset($_SESSION['user'])){
         Tool_public::alertJump('非法登陆','admin_login.php');
       }
     }

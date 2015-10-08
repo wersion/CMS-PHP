@@ -24,7 +24,12 @@
         if(isset($params['articleID'])){
           $_model->articleID = $params['articleID'];
         }else{
-          $_model->articleID = $_GET['aid'];
+          if(isset($_GET['aid'])){
+              $_model->articleID = $_GET['aid'];
+          }elseif(isset($_GET['cid'])){
+              $_model->articleID = $_GET['cid'];
+          }
+          
         }
         // 获取数据
         $comment = $_model->getComment();

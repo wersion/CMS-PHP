@@ -20,7 +20,7 @@
       $this->limitpage = ($this->page-1)*$_pagesize;
       $this->limit = 'LIMIT '.$this->limitpage.','.$this->pagesize;
       $this->url = $this->setUrl();
-      $this->bothnum = 1;
+      $this->bothnum = 5;
     }
 
     public function __get($_key){
@@ -54,56 +54,40 @@
       for($i=$this->bothnum;$i>=1;$i--) {
         $_page = $this->page-$i;
         if($_page < 1) continue;
-        $this->_pagelist .= ' <a href="'.$this->url.'&page='.$_page.'">'.$_page.'</a> ';
+        $this->_pagelist .= '<li><a href="'.$this->url.'&page='.$_page.'">'.$_page.'</a></li>';
       }
-      $this->_pagelist .= ' <span class="me">'.$this->page.'</span> ';
+      $this->_pagelist .= '<li class="active"><a href="'.$this->url.'&page='.$_page.'">'.$this->page.'<span class="sr-only">(current)</span></a></li>';
       for($i=1;$i<=$this->bothnum;$i++) {
         $_page = $this->page+$i;
         if($_page > $this->pagetotal) break;
-        $this->_pagelist .= ' <a href="'.$this->url.'&page='.$_page.'">'.$_page.'</a> ';
+        $this->_pagelist .= '<li><a href="'.$this->url.'&page='.$_page.'">'.$_page.'</a></li>';
       }
       return $this->_pagelist;
-    }
-    
-    //首页
-    private function first() {
-      if($this->page > $this->bothnum+1) {
-        return ' <a href="'.$this->url.'">1</a> ...';
-      }
     }
     
     //上一页
     private function prev() {
       if($this->page == 1) {
-        return '<span class="disabled">上一页</span>';
+        return '<li class="disabled"><a href="#" aria-label="Previous"><span aria-hidden="true">&laquo</span></a></li>';
       }
-      return ' <a href="'.$this->url.'&page='.($this->page-1).'">上一页</a> ';
+      return '<li><a href="'.$this->url.'&page='.($this->page-1).'" aria-label="Previous"><span aria-hidden="true">&laquo</span></a></li>';
     }
     
     //下一页
     private function next() {
       if($this->total ==0){
-        return '<span class="disabled">下一页</span>';
+        return '<li class="disabled"><a href="#" aria-label="Previous"><span aria-hidden="true">&raquo</span></a></li>';
       }
       elseif($this->page == $this->pagetotal) {
-        return '<span class="disabled">下一页</span>';
+        return '<li class="disabled"><a href="#" aria-label="Previous"><span aria-hidden="true">&raquo</span></a></li>';
       }
-      return ' <a href="'.$this->url.'&page='.($this->page+1).'">下一页</a> ';
+      return '<li><a href="'.$this->url.'&page='.($this->page+1).'" aria-label="Next"><span aria-hidden="true">&raquo</span></a></li>';
     }
-    
-    //尾页
-    private function last() {
-      if($this->pagetotal - $this->page > $this->bothnum) {
-        return ' ...<a href="'.$this->url.'&page='.$this->pagetotal.'">'.$this->pagetotal .'</a> ';
-      }
-    }  
 
     //分页信息
     public function showPage() {
-      $this->_page .=$this->first();
+      $this->_page .=$this->prev(); 
       $this->_page .=$this->pageList();
-      $this->_page .=$this->last();
-      $this->_page .=$this->prev();     
       $this->_page .=$this->next();
       return $this->_page;
     }

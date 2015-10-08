@@ -5,9 +5,9 @@
 <title>欢迎光临CMS内容管理系统后台操作</title>
 <link rel="stylesheet" type="text/css" href="../style/index.css" />
 </head>
-<frameset rows="80px,*" border="0">
+<frameset rows="100px,*" border="0">
 	<frame src="AdminTop.php" noresize="true" scrolling="no" />
-	<frameset cols="150px,*" border="0">
+	<frameset cols="120px,*" border="0">
 		<frame src="NodeList.php" name="sidebar" noresize="true" scrolling="no" />
 		<frame src="Main.php" name="main" noresize="true" />
 	</frameset>

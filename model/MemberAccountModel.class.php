@@ -13,7 +13,7 @@
     }
 
     public function getTotalAccount(){
-      $_sql="SELECT COUNT(*) FROM memberAccount";
+      $_sql="SELECT COUNT(*) FROM member_Account";
       return parent::GetTotal($_sql);
     }
 

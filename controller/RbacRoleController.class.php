@@ -91,7 +91,7 @@
           $this->_model->roleInfo = $_POST['roleInfo'];
           $this->_model->status = $_POST['roleStatus'];
           if($this->_model->UpdateRole()){
-            Tool_public::alertJump(':) 修改用户组成功',$_POST['preUrl']);
+            Tool_public::alertJump(':) 修改用户组成功','RbacRole.php?action=updateRole');
           }
           else{
             Tool_public::alertBack(':( 修改用户组失败');
@@ -128,7 +128,7 @@
            array_push($NodeID, $value['nodeID']);       //提取当前用户所拥有的权限的ID，组成新数组NodeId
         }
         foreach ($NodeList as $value){
-          if(in_array($value['nodeID'],$NodeID)){            //遍历权限列表，判断是否拥有权限，并添加一个新字段（access）到权限列表中
+        if(in_array($value['nodeID'],$NodeID)){         //遍历权限列表，判断是否拥有权限，并添加一个新字段（access）到权限列表中
             $value['access'] = 1;
           }
           else{
@@ -147,7 +147,7 @@
             $this->_model->AddNode();
             $count++;
           }
-          echo '成功配置'.$count.'条权限';
+          Tool_public::alertJump('成功配置'.$count.'条权限','rbacRole.php?action=setRole');
         }
       }
     }

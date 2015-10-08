@@ -32,7 +32,6 @@
           $_page = new Page_public($_model->getArticleListTotal(),$limit);
           $_model->limit = $_page->limit;
           $smarty->assign('Page',$_page->showPage());
-          $smarty->assign('num',(($_page->page-1)*$limit)+1);
         }
         // 获取数据
         $ArticleInfo = $_model->getAllArticleList();

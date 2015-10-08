@@ -1,7 +1,7 @@
-<?php /* Smarty version 3.1.24, created on 2015-09-25 15:30:21
+<?php /* Smarty version 3.1.24, created on 2015-10-08 12:38:18
          compiled from "C:/wamp/www/CMS-PHP/templates/admin/ContentArticle.tpl" */ ?>
 <?php
-/*%%SmartyHeaderCode:125105604f80de50902_71883906%%*/
+/*%%SmartyHeaderCode:245655615f33a1980e3_66139476%%*/
 if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
@@ -9,14 +9,13 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '845401899a3cc02b4642ac5815541014465f7418' => 
     array (
       0 => 'C:/wamp/www/CMS-PHP/templates/admin/ContentArticle.tpl',
-      1 => 1441811006,
+      1 => 1444184302,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '125105604f80de50902_71883906',
+  'nocache_hash' => '245655615f33a1980e3_66139476',
   'variables' => 
   array (
-    'position' => 0,
     'showArticle' => 0,
     'delete' => 0,
     'update' => 0,
@@ -36,41 +35,39 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
   'version' => '3.1.24',
-  'unifunc' => 'content_5604f80e046450_40071951',
+  'unifunc' => 'content_5615f33a2dcc33_60886354',
 ),false);
 /*/%%SmartyHeaderCode%%*/
-if ($_valid && !is_callable('content_5604f80e046450_40071951')) {
-function content_5604f80e046450_40071951 ($_smarty_tpl) {
+if ($_valid && !is_callable('content_5615f33a2dcc33_60886354')) {
+function content_5615f33a2dcc33_60886354 ($_smarty_tpl) {
 
-$_smarty_tpl->properties['nocache_hash'] = '125105604f80de50902_71883906';
+$_smarty_tpl->properties['nocache_hash'] = '245655615f33a1980e3_66139476';
 ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>main</title>
-<link rel="stylesheet" type="text/css" href="../style/admin.css" />
-<?php echo '<script'; ?>
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>文章管理</title>
+    <link href="../style/admin.css" rel="stylesheet">
+    <link href="../style/bootstrap.min.css" rel="stylesheet">
+    <?php echo '<script'; ?>
  type="text/javascript" charset="utf-8" src="../ueditor/ueditor.config.js"><?php echo '</script'; ?>
 >
-<?php echo '<script'; ?>
+    <?php echo '<script'; ?>
  type="text/javascript" charset="utf-8" src="../ueditor/ueditor.all.min.js"> <?php echo '</script'; ?>
 >
-<?php echo '<script'; ?>
+    <?php echo '<script'; ?>
  type="text/javascript" charset="utf-8" src="../ueditor/lang/zh-cn/zh-cn.js"><?php echo '</script'; ?>
 >
-</head>
-<body id="manage">
-
-<div class="map">
-  内容管理 &gt;&gt; 查看文档列表 &gt;&gt; <strong><?php echo $_smarty_tpl->tpl_vars['position']->value;?>
-</strong>
-</div>
-
-  <?php if (isset($_smarty_tpl->tpl_vars['showArticle']->value) && $_smarty_tpl->tpl_vars['showArticle']->value == true) {?>
-    <table class="list" id="show">
-    <tr><th>序号</th><th>所属栏目</th><th>标题</th><th>文章描述</th><th>更新时间</th><?php if (isset($_smarty_tpl->tpl_vars['delete']->value) || isset($_smarty_tpl->tpl_vars['update']->value)) {?><th>操作</th><?php }?></tr>
-    <?php
+  </head>
+  <body class="background">
+  <div class="container min-height wite">
+    <?php if (isset($_smarty_tpl->tpl_vars['showArticle']->value) && $_smarty_tpl->tpl_vars['showArticle']->value == true) {?>
+        <table class="table table-hover">
+        <tr><th>序号</th><th>所属栏目</th><th>标题</th><th>文章描述</th><th>更新时间</th><?php if (isset($_smarty_tpl->tpl_vars['delete']->value) || isset($_smarty_tpl->tpl_vars['update']->value)) {?><th>操作</th><?php }?></tr>
+        <?php
 $_from = $_smarty_tpl->tpl_vars['AllArticle']->value;
 if (!is_array($_from) && !is_object($_from)) {
 settype($_from, 'array');
@@ -82,47 +79,57 @@ foreach ($_from as $_smarty_tpl->tpl_vars['key']->value => $_smarty_tpl->tpl_var
 $_smarty_tpl->tpl_vars['item']->_loop = true;
 $foreach_item_Sav = $_smarty_tpl->tpl_vars['item'];
 ?>
-      <tr>
-        <td><?php echo $_smarty_tpl->tpl_vars['key']->value+1;?>
+          <tr>
+            <td><?php echo $_smarty_tpl->tpl_vars['key']->value+1;?>
 </td>
-        <td><?php echo $_smarty_tpl->tpl_vars['item']->value['columnName'];?>
+            <td><?php echo $_smarty_tpl->tpl_vars['item']->value['columnName'];?>
 </td>
-        <td><?php echo $_smarty_tpl->tpl_vars['item']->value['articleTitle'];?>
+            <td><?php echo $_smarty_tpl->tpl_vars['item']->value['articleTitle'];?>
 </td>
-        <td><?php echo $_smarty_tpl->tpl_vars['item']->value['articleInfo'];?>
+            <td><?php echo $_smarty_tpl->tpl_vars['item']->value['articleInfo'];?>
 </td>
-        <td><?php echo $_smarty_tpl->tpl_vars['item']->value['articleUpdatetime'];?>
+            <td><?php echo $_smarty_tpl->tpl_vars['item']->value['articleUpdatetime'];?>
 </td>
-        <td>
-          <?php if (isset($_smarty_tpl->tpl_vars['update']->value) && $_smarty_tpl->tpl_vars['update']->value == true) {?><a href="contentArticle.php?action=updateArticle&ID=<?php echo $_smarty_tpl->tpl_vars['item']->value['articleID'];?>
-">[ 修改 ]</a>
-          <?php } elseif (isset($_smarty_tpl->tpl_vars['delete']->value) && $_smarty_tpl->tpl_vars['delete']->value == true) {?><a href="contentArticle.php?action=deleteArticle&ID=<?php echo $_smarty_tpl->tpl_vars['item']->value['articleID'];?>
-" onclick="return confirm('确定删除此文章')?true:false">[ 删除 ]</a>
-          <?php }?>
-        </td>
-      </tr>
-    <?php
+            <td>
+              <?php if (isset($_smarty_tpl->tpl_vars['update']->value) && $_smarty_tpl->tpl_vars['update']->value == true) {?><a href="contentArticle.php?action=updateArticle&ID=<?php echo $_smarty_tpl->tpl_vars['item']->value['articleID'];?>
+"><button type="button" class="btn btn-primary btn-sm">修改</button></a>
+              <?php } elseif (isset($_smarty_tpl->tpl_vars['delete']->value) && $_smarty_tpl->tpl_vars['delete']->value == true) {?><a href="contentArticle.php?action=deleteArticle&ID=<?php echo $_smarty_tpl->tpl_vars['item']->value['articleID'];?>
+" onclick="return confirm('确定删除此文章')?true:false"><button type="button" class="btn btn-primary btn-sm">删除</button></a>
+              <?php }?>
+            </td>
+          </tr>
+        <?php
 $_smarty_tpl->tpl_vars['item'] = $foreach_item_Sav;
 }
 ?>
-  </table>
-  <div id="page"><?php echo $_smarty_tpl->tpl_vars['Page']->value;?>
-</div>
+      </table>
+      <div class="page">
+        <ul class="pagination">
+          <?php echo $_smarty_tpl->tpl_vars['Page']->value;?>
 
-<?php } elseif (isset($_smarty_tpl->tpl_vars['updateArticle']->value) && $_smarty_tpl->tpl_vars['updateArticle']->value == true) {?>
-<?php echo '<script'; ?>
+        </ul>
+      </div>
+
+    <?php } elseif (isset($_smarty_tpl->tpl_vars['updateArticle']->value) && $_smarty_tpl->tpl_vars['updateArticle']->value == true) {?>
+    <?php echo '<script'; ?>
  type="text/javascript" charset="utf-8" src="../js/admin_article.js"><?php echo '</script'; ?>
 >
-  <form method="post">
-  <input type="hIDden" id="articleID" name="articleID" value="<?php echo $_smarty_tpl->tpl_vars['articleID']->value;?>
+      <form method="post">
+      <input type="hIDden"  name="articleID" value="<?php echo $_smarty_tpl->tpl_vars['articleID']->value;?>
 "/>
-  <input type="hIDden" id="columnID" value="<?php echo $_smarty_tpl->tpl_vars['columnID']->value;?>
+      <input type="hIDden"  value="<?php echo $_smarty_tpl->tpl_vars['columnID']->value;?>
 ">
-  <table cellspacing="0" class="content">
-    <tr><td>文档标题：<input type="text" name="articleTitle" class="text" value="<?php echo $_smarty_tpl->tpl_vars['articleTitle']->value;?>
-" /></td></tr>
-    <tr><td>栏目：<select name="columnID">
-                    <?php
+      <form method="post">
+        <div class="form-group">
+          <label for="title">文档标题：</label>
+          <input input type="text" name="articleTitle" class="form-control" id="title" placeholder="标题" value="<?php echo $_smarty_tpl->tpl_vars['articleTitle']->value;?>
+"/>
+        </div>
+        <div class="form-group">
+          <label for="title">栏目：</label>
+          <select class="form-control" name="columnID">
+              <option>请选择文章栏目</option>
+              <?php
 $_from = $_smarty_tpl->tpl_vars['columnList']->value;
 if (!is_array($_from) && !is_object($_from)) {
 settype($_from, 'array');
@@ -134,74 +141,54 @@ foreach ($_from as $_smarty_tpl->tpl_vars['key']->value => $_smarty_tpl->tpl_var
 $_smarty_tpl->tpl_vars['item']->_loop = true;
 $foreach_item_Sav = $_smarty_tpl->tpl_vars['item'];
 ?>
-                    <option value="<?php echo $_smarty_tpl->tpl_vars['item']->value['columnID'];?>
+              <option value="<?php echo $_smarty_tpl->tpl_vars['item']->value['columnID'];?>
 "><?php echo preg_replace('!^!m',str_repeat('---',$_smarty_tpl->tpl_vars['item']->value['level']),$_smarty_tpl->tpl_vars['item']->value['columnName']);?>
 </option>
-                    <?php
+              <?php
 $_smarty_tpl->tpl_vars['item'] = $foreach_item_Sav;
 }
 ?>
-                  </select></td></tr>
-    <tr><td>定义属性：<input type="checkbox" name="top" value="头条" />头条
-                  <input type="checkbox" name="rec" value="推荐" />推荐
-                  <input type="checkbox" name="bold" value="加粗" />加粗
-                  <input type="checkbox" name="skip" value="跳转" />跳转
-    </td></tr>
-    <tr><td>标　　签：<input type="text" name="tag" class="text" /></td></tr>
-    <tr><td>关 键 字：<input type="text" name="keyword" class="text" /></td></tr>
-    <tr><td>缩 略 图：<input type="text" name="thumbnail" class="text" /> <input type="button" value="上传缩略图" onclick="centerWindow('../templates/UploadFile.html','upfile','400','100')" /></td></tr>
-    <tr><td>文章来源：<input type="text" name="source" class="text" /></td></tr>
-    <tr><td>作　　者：<input type="text" name="author" class="text" /></td></tr>
-    <tr><td><span class="mIDdle">内容摘要：</span><textarea name="articleInfo"><?php echo $_smarty_tpl->tpl_vars['articleInfo']->value;?>
-</textarea></td></tr>
-    <tr><td>评论选项：<input type="radio" name="commend" value="1" checked="checked" />允许评论 
-                  <input type="radio" name="commend" value="0" />禁止评论 
-            　　　　浏览次数：<input type="text" name="count" value="100" class="small" />
-    </td></tr>
-    <tr><td>文档排序：<select name="sort">
-                    <option>默认排序</option>
-                    <option>置顶一天</option>
-                    <option>置顶一周</option>
-                    <option>置顶一月</option>
-                    <option>置顶一年</option>
-                  </select>
-             　 　　消费金币：<input type="text" name="gold" value="0" class="small" />
-    </td></tr>
-    <tr><td>阅读权限：<select name="limit">
-                    <option>开放浏览</option>
-                    <option>初级会员</option>
-                    <option>中级会员</option>
-                    <option>高级会员</option>
-                    <option>VIP会员</option>
-                  </select>
-          标题颜色：<select name="color">
-                    <option>默认颜色</option>
-                    <option style="color:red;">红色</option>
-                    <option style="color:blue;">蓝色</option>
-                    <option style="color:orange;">橙色</option>
-                  </select>
-    </td></tr>
-    <tr><td>编辑文章内容：<div><textarea id="editor" name="articleContent" type="text/plain" style="wIDth:1024px;height:500px;"><?php echo $_smarty_tpl->tpl_vars['articleContent']->value;?>
-</textarea></div></td></tr>
-    <tr><td><input name="send" type="submit" value="发布文档" /> <input type="reset" value="重置" /></td></tr>
-  </table>
-  </form>
-  <?php echo '<script'; ?>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="InputFile">缩略图</label>
+          <input type="file" id="InputFile">
+        </div>
+        <div class="form-group">
+          <label for="info">文章摘要：</label>
+          <textarea class="form-control" rows="2" placeholder="摘要" name="articleInfo"><?php echo $_smarty_tpl->tpl_vars['articleInfo']->value;?>
+</textarea>
+        </div>
+        <div class="form-group">
+          <label for="content">文编辑文章内容：</label>
+          <textarea id="editor" name="articleContent" type="text/plain" style="wIDth:1024px;height:500px;"><?php echo $_smarty_tpl->tpl_vars['articleContent']->value;?>
+</textarea>
+        </div>
+        <div class="form-group">  
+          <input name="send" type="submit" class="btn btn-primary btn-lg" value="发布文档" />
+          <a href="ContentArticle.php?action=updateArticle"><button type="button" class="btn btn-primary btn-lg">返回列表</button></a>
+        </div>
+      </form>
+      <?php echo '<script'; ?>
  type="text/javascript">
-      var ue = UE.getEditor('editor');
-  <?php echo '</script'; ?>
+          var ue = UE.getEditor('editor');
+      <?php echo '</script'; ?>
 >
-
-<?php } elseif (isset($_smarty_tpl->tpl_vars['addArticle']->value) && $_smarty_tpl->tpl_vars['addArticle']->value == true) {?>
-<?php echo '<script'; ?>
+    
+    <?php } elseif (isset($_smarty_tpl->tpl_vars['addArticle']->value) && $_smarty_tpl->tpl_vars['addArticle']->value == true) {?>
+    <?php echo '<script'; ?>
  type="text/javascript" charset="utf-8" src="../js/admin_content.js"><?php echo '</script'; ?>
 >
-  <form method="post">
-  <table cellspacing="0" class="content">
-    <tr><th><strong>发布一篇文章</strong></th></tr>
-    <tr><td>文档标题：<input type="text" name="articleTitle" class="text" /></td></tr>
-    <tr><td>栏目：<select name="columnID">
-                    <?php
+      <form method="post">
+        <div class="form-group">
+          <label for="title">文档标题：</label>
+          <input input type="text" name="articleTitle" class="form-control" id="title" placeholder="标题">
+        </div>
+        <div class="form-group">
+          <label for="title">栏目：</label>
+          <select class="form-control" name="columnID">
+              <option>请选择文章栏目</option>
+              <?php
 $_from = $_smarty_tpl->tpl_vars['ColumnList']->value;
 if (!is_array($_from) && !is_object($_from)) {
 settype($_from, 'array');
@@ -213,63 +200,46 @@ foreach ($_from as $_smarty_tpl->tpl_vars['key']->value => $_smarty_tpl->tpl_var
 $_smarty_tpl->tpl_vars['item']->_loop = true;
 $foreach_item_Sav = $_smarty_tpl->tpl_vars['item'];
 ?>
-                    <option value="<?php echo $_smarty_tpl->tpl_vars['item']->value['columnID'];?>
+              <option value="<?php echo $_smarty_tpl->tpl_vars['item']->value['columnID'];?>
 "><?php echo preg_replace('!^!m',str_repeat('---',$_smarty_tpl->tpl_vars['item']->value['level']),$_smarty_tpl->tpl_vars['item']->value['columnName']);?>
 </option>
-                    <?php
+              <?php
 $_smarty_tpl->tpl_vars['item'] = $foreach_item_Sav;
 }
 ?>
-                  </select></td></tr>
-    <tr><td>定义属性：<input type="checkbox" name="top" value="头条" />头条
-                  <input type="checkbox" name="rec" value="推荐" />推荐
-                  <input type="checkbox" name="bold" value="加粗" />加粗
-                  <input type="checkbox" name="skip" value="跳转" />跳转
-    </td></tr>
-    <tr><td>标　　签：<input type="text" name="tag" class="text" /></td></tr>
-    <tr><td>关 键 字：<input type="text" name="keyword" class="text" /></td></tr>
-    <tr><td>缩 略 图：<input type="text" name="thumbnail" class="text" /> <input type="button" value="上传缩略图" onclick="centerWindow('../templates/UploadFile.html','upfile','400','100')" /></td></tr>
-    <tr><td>文章来源：<input type="text" name="source" class="text" /></td></tr>
-    <tr><td>作　　者：<input type="text" name="author" class="text" /></td></tr>
-    <tr><td><span class="mIDdle">内容摘要：</span><textarea name="articleInfo"></textarea></td></tr>
-    <tr><td>评论选项：<input type="radio" name="commend" value="1" checked="checked" />允许评论 
-                  <input type="radio" name="commend" value="0" />禁止评论 
-            　　　　浏览次数：<input type="text" name="count" value="100" class="small" />
-    </td></tr>
-    <tr><td>文档排序：<select name="sort">
-                    <option>默认排序</option>
-                    <option>置顶一天</option>
-                    <option>置顶一周</option>
-                    <option>置顶一月</option>
-                    <option>置顶一年</option>
-                  </select>
-             　 　　消费金币：<input type="text" name="gold" value="0" class="small" />
-    </td></tr>
-    <tr><td>阅读权限：<select name="limit">
-                    <option>开放浏览</option>
-                    <option>初级会员</option>
-                    <option>中级会员</option>
-                    <option>高级会员</option>
-                    <option>VIP会员</option>
-                  </select>
-          标题颜色：<select name="color">
-                    <option>默认颜色</option>
-                    <option style="color:red;">红色</option>
-                    <option style="color:blue;">蓝色</option>
-                    <option style="color:orange;">橙色</option>
-                  </select>
-    </td></tr>
-    <tr><td>编辑文章内容：<div><textarea id="editor" name="articleContent" type="text/plain" style="wIDth:1024px;height:500px;"></textarea></div></td></tr>
-    <tr><td><input name="send" type="submit" value="发布文档" /> <input type="reset" value="重置" /></td></tr>
-  </table>
-  </form>
-  <?php echo '<script'; ?>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="InputFile">缩略图</label>
+          <input type="file" id="InputFile">
+        </div>
+        <div class="form-group">
+          <label for="info">文章摘要：</label>
+          <textarea class="form-control" rows="2" placeholder="摘要" name="articleInfo"/></textarea>
+        </div>
+        <div class="form-group">
+          <label for="content">文编辑文章内容：</label>
+          <textarea id="editor" type="text/plain" style="wIDth:1024px;height:500px;" name="articleContent"></textarea>
+        </div>
+        <div class="form-group">  
+          <input name="send" type="submit" class="btn btn-primary btn-lg" value="发布文档" />
+          <a href="ContentArticle.php?action=showArticle"><button type="button" class="btn btn-primary btn-lg">返回列表</button></a>
+        </div>
+      </form>
+      <?php echo '<script'; ?>
  type="text/javascript">
-      var ue = UE.getEditor('editor');
-  <?php echo '</script'; ?>
+          var ue = UE.getEditor('editor');
+      <?php echo '</script'; ?>
 >
-<?php }?>
-</body>
+    <?php }?>
+  </div>
+	<?php echo '<script'; ?>
+ src="../js/jq/jquery-1.11.3.min.js"><?php echo '</script'; ?>
+>
+	<?php echo '<script'; ?>
+ src="../js/bootstrap/bootstrap.min.js"><?php echo '</script'; ?>
+>
+  </body>
 </html><?php }
 }
 ?>

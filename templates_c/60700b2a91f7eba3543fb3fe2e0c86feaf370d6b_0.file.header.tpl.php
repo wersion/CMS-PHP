@@ -1,7 +1,7 @@
-<?php /* Smarty version 3.1.24, created on 2015-10-01 10:21:26
+<?php /* Smarty version 3.1.24, created on 2015-10-08 12:46:28
          compiled from "C:/wamp/www/CMS-PHP/templates/header.tpl" */ ?>
 <?php
-/*%%SmartyHeaderCode:8557560c98a6de5d47_84083048%%*/
+/*%%SmartyHeaderCode:164245615f5244bdec3_23766660%%*/
 if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
@@ -9,38 +9,37 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '60700b2a91f7eba3543fb3fe2e0c86feaf370d6b' => 
     array (
       0 => 'C:/wamp/www/CMS-PHP/templates/header.tpl',
-      1 => 1443666069,
+      1 => 1444205992,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '8557560c98a6de5d47_84083048',
+  'nocache_hash' => '164245615f5244bdec3_23766660',
   'variables' => 
   array (
-    'column' => 0,
+    'nav' => 0,
     'item' => 0,
   ),
   'has_nocache_code' => false,
   'version' => '3.1.24',
-  'unifunc' => 'content_560c98a6e79ad4_61103187',
+  'unifunc' => 'content_5615f5245805d2_14396659',
 ),false);
 /*/%%SmartyHeaderCode%%*/
-if ($_valid && !is_callable('content_560c98a6e79ad4_61103187')) {
-function content_560c98a6e79ad4_61103187 ($_smarty_tpl) {
-if (!is_callable('smarty_function_GetAllTopColumn')) require_once 'C:/wamp/www/CMS-PHP/tag/function.GetAllTopColumn.php';
+if ($_valid && !is_callable('content_5615f5245805d2_14396659')) {
+function content_5615f5245805d2_14396659 ($_smarty_tpl) {
+if (!is_callable('smarty_function_GetNav')) require_once 'C:/wamp/www/CMS-PHP/tag/function.GetNav.php';
 
-$_smarty_tpl->properties['nocache_hash'] = '8557560c98a6de5d47_84083048';
+$_smarty_tpl->properties['nocache_hash'] = '164245615f5244bdec3_23766660';
 ?>
 <div id="top">
-
 </div>
 <div id="header">
 </div>
 <div id="nav">
 	<ul>
-		<?php echo smarty_function_GetAllTopColumn(array('assign'=>"column",'url'=>"List.php",'limit'=>"10"),$_smarty_tpl);?>
+		<?php echo smarty_function_GetNav(array('assign'=>"nav",'url'=>"List.php",'limit'=>"10"),$_smarty_tpl);?>
 
 		<?php
-$_from = $_smarty_tpl->tpl_vars['column']->value;
+$_from = $_smarty_tpl->tpl_vars['nav']->value;
 if (!is_array($_from) && !is_object($_from)) {
 settype($_from, 'array');
 }
@@ -52,7 +51,7 @@ $_smarty_tpl->tpl_vars['item']->_loop = true;
 $foreach_item_Sav = $_smarty_tpl->tpl_vars['item'];
 ?>
 			<li><a href="<?php echo $_smarty_tpl->tpl_vars['item']->value['url'];?>
-"><?php echo $_smarty_tpl->tpl_vars['item']->value['columnName'];?>
+"><?php echo $_smarty_tpl->tpl_vars['item']->value['navName'];?>
 </a></li>
 		<?php
 $_smarty_tpl->tpl_vars['item'] = $foreach_item_Sav;

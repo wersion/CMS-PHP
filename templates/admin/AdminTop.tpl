@@ -1,29 +1,39 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>top</title>
-<link rel="stylesheet" type="text/css" href="../style/admin.css" />
-<script type="text/javascript" src="../js/admin/admin_top_nav.js"></script>
-</head>
-<body id="top">
-
-<h1>LOGO</h1>
-
-<ul>
-	<li><a href="../templates/sidebar.html" target="sidebar" id="nav1" class="selected" onclick="admin_top_nav(1)">首页</a></li>
-	<li><a href="../templates/sidebarn.html" target="sidebar" id="nav2" onclick="admin_top_nav(2)">内容</a></li>
-	<li><a href="###" id="nav3" target="sidebar" onclick="admin_top_nav(3)">会员</a></li>
-	<li><a href="###" id="nav4" target="sidebar" onclick="admin_top_nav(4)">系统</a></li>
-</ul>
-
-<p>
-<<<<<<< HEAD
-	您好，<strong>{$admin_user}</strong> [ {$ueser_lever} ] [ <a href="../" target="_blank">去首页</a> ] [ <a href="AdminLogin.php?action=adminLogout" target="_parent">退出</a> ]
-=======
-	您好，<strong>{$admin_user}</strong> [ {$ueser_lever} ] [ <a href="../" target="_blank">去首页</a> ] [ <a href="AdminLogin.php?action=logout" target="_parent">退出</a> ]
->>>>>>> origin/master
-</p>
-
-</body>
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Template</title>
+    <link href="../style/admin.css" rel="stylesheet">
+    <link href="../style/bootstrap.min.css" rel="stylesheet">
+  </head>
+  <body class="background font">
+    <div class="admin-top">
+      <div class="top-background gray"></div>
+      <div class="home">
+        <a href="Admin.php" target="_parent">
+          <div class="btn btn-default btn-lg">
+            <span class="glyphicon glyphicon-home" aria-hidden="true"></span>&nbsp后台首页
+          </div>
+        </a>
+      </div>
+      <div class="user-info">
+       用户：{$admin_user} <br>
+       用户组：{$admin_role} <br>
+        <a href="AdminLogin.php?action=adminLogout" target="_parent">
+          <div class="btn btn-default btn-xs">
+            <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>&nbsp退出登录
+          </div>
+        </a>
+        <a href="../index.php" target="_blank">
+          <div class="btn btn-default btn-xs">
+            <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>&nbsp网站前台
+          </div>
+        </a>
+      </div>
+    </div>
+	<script src="../js/jq/jquery-1.11.3.min.js"></script>
+	<script src="../js/bootstrap/bootstrap.min.js"></script>
+  </body>
 </html>

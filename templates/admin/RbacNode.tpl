@@ -1,95 +1,136 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>main</title>
-<link rel="stylesheet" type="text/css" href="../style/admin.css" />
-</head>
-<body id="manage">
-  <div class="map">
-    管理首页 &gt;&gt; 管理员管理&gt;&gt;<strong>{$title}</strong>
-  </div>
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Template</title>
+    <link href="../style/admin.css" rel="stylesheet">
+    <link href="../style/bootstrap.min.css" rel="stylesheet">
+  </head>
+  <body class="background">
+  <div class="container min-height wite">
   {if isset($showNode)&&$showNode == true}
-  <table class="list">
-    <tr><th>ID</th><th>权限结构</th><th>权限名称</th><th>状态</th><th>描述</th><th>父级</th><th>层级</th>{if isset($delete)||isset($update)}<th>操作</th>{/if}</tr>
-    {foreach from=$AllNode key=key item=item}
-      <tr>
-        <td>{$item.nodeID}</td>
-        <td id="struct">{$item.nodeNameCH|indent:$item.level:'---'}</td>
-        <td>{$item.nodeNameEN}</td>
-        <td>{if $item.status==0}停用{elseif $item.status==1}开启{/if}</td>
-        <td>{$item.nodeInfo}</td>
-        <td>{$item.parentID}</td>
-        <td>{if $item.level==1}系统{elseif $item.level ==2}模块{elseif $item.level ==3}方法{/if}</td>
-        <td>
-          {if isset($update)&&$update == true}<a href="RbacNode.php?action=updateNode&id={$item.nodeID}">[ 修改 ]</a>
-          {elseif isset($delete)&&$delete == true}<a href="RbacNode.php?action=deleteNode&id={$item.nodeID}" onclick="return confirm('确定删除此用户')?true:false">[ 删除 ]</a>
-          {/if}
-        </td>
-      </tr>
-    {/foreach}
-  </table>
-
-  {elseif isset($addNode)&&$addNode == true}
-    <form method="post">
-      <table class="create">
-        <tr><td><p>权限方法名：</p></td><td><input type="text" name="nodeNameEN" class="text" /></td></tr>
-        <tr><td><p>权限中文描述：</p></td><td><input type="text" name="nodeNameCH" class="text" /></td></tr>
-<<<<<<< HEAD
-        <tr><td><p>权限状态：</p></td><td><label><input type="radio" name="nodeStatus" value="1" />开启</label><label><input type="radio" name="nodeSatatus" value="0" />停用</label></td></tr>
-        <tr><td><p>排序：</p></td><td><input type="text" name="nodeSort" class="text" /></td></tr>
-        <tr><td><p>父级：</p></td><td>
-          <select name="parentID">
-            <option value="0">---顶级----</option>
-=======
-        <tr><td><p>权限状态：</p></td><td><label><input type="radio" name="nodeSatatus" value="1" />开启</label><label><input type="radio" name="nodeSatatus" value="0" />停用</label></td></tr>
-        <tr><td><p>排序：</p></td><td><input type="text" name="nodeSort" class="text" /></td></tr>
-        <tr><td><p>父级：</p></td><td>
-          <select name="parentID">
->>>>>>> origin/master
-            {foreach from=$Parent_Node key=key item=item}
-            <option value="{$item.nodeID}">{if $item.level ==1}{elseif $item.level ==2}&nbsp&nbsp{elseif $item.level==3}&nbsp&nbsp&nbsp&nbsp{/if}{$item.nodeNameCH}</option>
-            {/foreach}
-          </select></td></tr>
-        <tr><td><p>层级：</p></td><td>          
-          <select name="nodeLevel">
-            <option value="1">系统</option>
-            <option value="2">模块</option>
-            <option value="3">方法</option>
-          </select></td></tr>
-        <tr><td><p>权限简介：</p></td><td><input type="text" name="nodeInfo" class="text" /></td></tr>
-      </table>
-      <div class="butt"><input type="submit" name="send" value="新增权限" class="submit" /> [ <a href="RbacNode.php?action=show">返回列表</a> ]</div>
-    </form>
-
-  {elseif isset($updateNode)&&$updateNode == true}
-    <form method="post">
-      <table class="create">
-        <input type="hidden" id="pre_url" name="preUrl" value="{$preUrl}">
-        <tr><td><p>权限名：</p></td><td><input type="text" name="nodeNameCH" class="text" value="{$nodeNameCH}" /></td></tr>
-        <tr><td><p>权限中文：</p></td><td><input type="text" name="nodeNameEN" class="text" value="{$nodeNameEN}" /></td></tr>
-        <tr><td><p>权限状态：</p></td><td><label><input type="radio" name="status" value="1" />开启</label><label><input type="radio" name="status" value="0" />停用</label></td></tr>
-        <tr><td><p>排序：</p></td><td><input type="text" name="sort" class="text" value="{$sort}" /></td></tr>
-        <tr><td><p>父级：</p></td><td>
-          <select name="parentID">
-<<<<<<< HEAD
-            <option value="0">---顶级----</option>
-=======
->>>>>>> origin/master
-            {foreach from=$Parent_Node key=key item=item}
-            <option value="{$item.nodeID}">{if $item.level ==1}{elseif $item.level ==2}&nbsp&nbsp{elseif $item.level==3}&nbsp&nbsp&nbsp&nbsp{/if}{$item.nodeNameCH}</option>
-            {/foreach}
-          </select></td></tr>
-        <tr><td><p>层级：</p></td><td>          
-          <select name="nodeLevel">
-            <option value="1">系统</option>
-            <option value="2">模块</option>
-            <option value="3">方法</option>
-          </select></td></tr>
-        <tr><td><p>权限简介：</p></td><td><input type="text" name="nodeInfo" class="text" value="{$nodeInfo}" /></td></tr>
-      </table>
-      <div class="butt"><input type="submit" name="send" value="修改权限" class="submit" /> [ <a href="RbacNode.php?action=show">返回列表</a> ]</div>
-    </form>
-  {/if}
-</body>
+    <table class="table table-hover">
+      <tr><th>ID</th><th>权限结构</th><th>权限名称</th><th>状态</th><th>描述</th><th>父级</th><th>层级</th>{if isset($delete)||isset($update)}<th>操作</th>{/if}</tr>
+      {foreach from=$AllNode key=key item=item}
+        <tr>
+          <td>{$item.nodeID}</td>
+          <td id="struct">{$item.nodeNameCH|indent:$item.level:'---'}</td>
+          <td>{$item.nodeNameEN}</td>
+          <td>{if $item.status==0}停用{elseif $item.status==1}开启{/if}</td>
+          <td>{$item.nodeInfo}</td>
+          <td>{$item.parentID}</td>
+          <td>{if $item.level==1}系统{elseif $item.level ==2}模块{elseif $item.level ==3}方法{/if}</td>
+          <td>
+            {if isset($update)&&$update == true}<a href="RbacNode.php?action=updateNode&id={$item.nodeID}"><button type="button" class="btn btn-primary btn-sm">修改</button></a>
+            {elseif isset($delete)&&$delete == true}<a href="RbacNode.php?action=deleteNode&id={$item.nodeID}" onclick="return confirm('确定删除此用户')?true:false"><button type="button" class="btn btn-primary btn-sm">删除</button></a>
+            {/if}
+          </td>
+        </tr>
+      {/foreach}
+    </table>
+  
+    {elseif isset($addNode)&&$addNode == true}
+      <form method="post">
+          <div class="form-group">
+            <label for="roleName">权限中文：</label>
+            <input input type="text" name="nodeNameCH" class="form-control" placeholder="权限中文："/>
+          </div>
+          <div class="form-group">
+            <label for="roleName">权限名：</label>
+            <input input type="text" name="nodeNameEN" class="form-control" placeholder="权限名："/>
+          </div>
+          <div class="form-group">
+            <label for="roleName">排序：</label>
+            <input input type="text" name="nodeSort" class="form-control" placeholder="排序："/>
+          </div>
+          <div class="form-group">
+            权限状态：
+            <label class="radio-inline">
+              <input type="radio" name="nodeStatus" value="1"> 开启
+            </label>
+            <label class="radio-inline">
+              <input type="radio" name="nodeStatus" value="0"> 停用
+            </label>
+          </div>
+          <div class="form-group">
+          <label for="userRole">父级：</label>
+          <select class="form-control" name="parentID">
+              <option>请选择父级权限</option>
+              <option value="0">---顶级----</option>
+              {foreach from=$Parent_Node key=key item=item}
+              <option value="{$item.nodeID}">{if $item.level ==1}{elseif $item.level ==2}---{elseif $item.level==3}------{/if}{$item.nodeNameCH}</option>
+              {/foreach}
+          </select>
+          <label for="userRole">层级：</label>
+          <select class="form-control" name="nodeLevel">
+              <option value="1">系统</option>
+              <option value="2">模块</option>
+              <option value="3">方法</option>
+          </select>
+        </div>
+          <div class="form-group">
+            <label for="roleName">权限简介：</label>
+            <input input type="text" name="nodeInfo" class="form-control" placeholder="权限简介："/>
+          </div>
+          <div class="form-group">  
+            <input name="send" type="submit" class="btn btn-primary btn-lg" value="新增权限" />
+            <a href="RbacNode.php?action=showNode"><button type="button" class="btn btn-primary btn-lg">返回列表</button></a>
+          </div>
+      </form>
+  
+    {elseif isset($updateNode)&&$updateNode == true}
+      <form method="post">
+          <div class="form-group">
+            <label for="roleName">权限中文：</label>
+            <input input type="text" name="nodeNameCH" class="form-control" placeholder="权限中文：" value="{$nodeNameCH}"/>
+          </div>
+          <div class="form-group">
+            <label for="roleName">权限名：</label>
+            <input input type="text" name="nodeNameEN" class="form-control" placeholder="权限名：" value="{$nodeNameEN}"/>
+          </div>
+          <div class="form-group">
+            <label for="roleName">排序：</label>
+            <input input type="text" name="sort" class="form-control" placeholder="排序：" value="{$sort}"/>
+          </div>
+          <div class="form-group">
+            权限状态：
+            <label class="radio-inline">
+              <input type="radio" name="status" value="1"> 开启
+            </label>
+            <label class="radio-inline">
+              <input type="radio" name="status" value="0"> 停用
+            </label>
+          </div>
+          <div class="form-group">
+          <label for="userRole">父级：</label>
+          <select class="form-control" name="parentID">
+              <option>请选择父级权限</option>
+              <option value="0">---顶级----</option>
+              {foreach from=$Parent_Node key=key item=item}
+              <option value="{$item.nodeID}">{if $item.level ==1}{elseif $item.level ==2}---{elseif $item.level==3}----{/if}{$item.nodeNameCH}</option>
+              {/foreach}
+          </select>
+          <label for="userRole">层级：</label>
+          <select class="form-control" name="nodeLevel">
+              <option value="1">系统</option>
+              <option value="2">模块</option>
+              <option value="3">方法</option>
+          </select>
+        </div>
+          <div class="form-group">
+            <label for="roleName">权限简介：</label>
+            <input input type="text" name="nodeInfo" class="form-control" placeholder="权限简介：" value="{$nodeInfo}"/>
+          </div>
+          <div class="form-group">  
+            <input name="send" type="submit" class="btn btn-primary btn-lg" value="修改权限" />
+            <a href="RbacNode.php?action=updateNode"><button type="button" class="btn btn-primary btn-lg">返回列表</button></a>
+          </div>
+      </form>
+    {/if}
+  </div>
+	<script src="../js/jq/jquery-1.11.3.min.js"></script>
+	<script src="../js/bootstrap/bootstrap.min.js"></script>
+  </body>
 </html>

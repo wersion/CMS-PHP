@@ -40,11 +40,7 @@
       if(isset($_POST['send'])){
         $this->_model->nodeNameEN = $_POST['nodeNameEN'];
         $this->_model->nodeNameCH = $_POST['nodeNameCH'];
-<<<<<<< HEAD
         $this->_model->status = $_POST['nodeStatus'];
-=======
-        $this->_model->satatus = $_POST['nodeSatatus'];
->>>>>>> origin/master
         $this->_model->sort = $_POST['nodeSort'];
         $this->_model->parentID = $_POST['parentID'];
         $this->_model->level = $_POST['nodeLevel'];
@@ -106,7 +102,7 @@
           $this->_model->level = $_POST['nodeLevel'];
           $this->_model->nodeInfo = $_POST['nodeInfo'];
           if($this->_model->UpdateNode()){
-            Tool_public::alertJump(':) 修改权限成功',$_POST['preUrl']);
+            Tool_public::alertJump(':) 修改权限成功','RbacNode.php?action=showNode');
           }
           else{
             Tool_public::alertBack(':( 修改权限失败');

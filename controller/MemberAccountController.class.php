@@ -101,6 +101,7 @@
     // 查
     private function showAccount(){
       Validate_public::checkNode('showAccount');
+      parent::page($this->_model->getTotalAccount());
       $this->_tpl->assign('showAccount',true);
       $this->_tpl->assign('title','会员账号列表');
       $this->_tpl->assign('AllAccount',$this->_model->getAllAccount());
